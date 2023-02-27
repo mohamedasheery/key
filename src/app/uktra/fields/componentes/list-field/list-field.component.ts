@@ -1,5 +1,5 @@
 import { SharedService } from 'src/app/shared/shared/services/shared.service';
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { FieldsService } from '../../services/fields.service';
@@ -15,6 +15,7 @@ export class ListFieldComponent {
        private fieldsService: FieldsService,
        private sharedService:SharedService,
       private fb:FormBuilder,
+      private elem: ElementRef,
       private toastr: ToastrService){}
 fields:any={
   data:[]
@@ -35,6 +36,7 @@ sendEle(ele:any){
 @Input() setOptionsToUpdataField: any;
 @Input() action: any;
 @Input() field: any;
+@Input() switchLangField: any;
 
     ngOnInit(): void {
 

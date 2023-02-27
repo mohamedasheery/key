@@ -28,7 +28,7 @@ export class AddFieldComponent {
     private sharedService: SharedService,
     private elem: ElementRef,
     private typeFieldDataService: TypeFieldDataService) { }
-  actionType: any = '';
+
   langField: any = localStorage.getItem('selectedLanguage');
   langText = 'Language';
   titleField = 'Title';
@@ -114,17 +114,32 @@ export class AddFieldComponent {
   updateField(ele: any) {
 // debugger
      console.log(ele);
-      this.fieldsService.setActionOnField('updata');
+      this.fieldsService.setActionOnField('update');
       this.fieldsService.setFieldToUpdata(ele);
     this.selectedField.type = ele.type;
-    this.createFieldForm.patchValue({
-      title: ele.title.en,
-      some_requirements: {
-        required: ele.some_requirements.includes('Required'),
-        used_in_Filter: ele.some_requirements.includes('Used in Filter'),
-        unique: ele.some_requirements.includes('Unique'),
-      },
-    })
+    if (ele.title.en) {
+      this.createFieldForm.patchValue({
+
+        title: ele.title.en,
+        some_requirements: {
+          required: ele.some_requirements.includes('Required'),
+          used_in_Filter: ele.some_requirements.includes('Used in Filter'),
+          unique: ele.some_requirements.includes('Unique'),
+        },
+      })
+    }else if (ele.title.ar){
+      this.createFieldForm.patchValue({
+
+        title: ele.title.ar,
+        some_requirements: {
+          required: ele.some_requirements.includes('Required'),
+          used_in_Filter: ele.some_requirements.includes('Used in Filter'),
+          unique: ele.some_requirements.includes('Unique'),
+        },
+      })
+    //  this.switchLangField('ar')
+    }
+
     this.setOptionsToUpdataField(ele);
     console.log(this.createFieldForm.value);
   }
@@ -170,16 +185,15 @@ export class AddFieldComponent {
     //   // this.field.type = this.selectedField.type;
     //   singleField.some_requirements = this.getSome_requirements();
     })
-      singleField.title[this.langField] = this.fieldTitle?.value;
-     singleField.options[this.langField] = this.fieldTypeArray.controls.map(cont => cont.value);
-        this.field.type = this.selectedField.type;
+        singleField.title[this.langField] = this.fieldTitle?.value;
+        singleField.options[this.langField] = this.fieldTypeArray.controls.map(cont => cont.value);
        singleField.some_requirements = this.getSome_requirements();
-   console.log(singleField);
+        console.log(singleField);
 
-  this.fieldsService.updateField(singleField).subscribe((data:any)=>{
-    this.sharedService.setToggleSpinner(false);
-    this.toastr.success(data.message);
-     // this.clearForm();
+      this.fieldsService.updateField(singleField).subscribe((data:any)=>{
+      this.sharedService.setToggleSpinner(false);
+     this.toastr.success(data.message);
+      this.clearForm();
     this.fieldsService.getFieldsFromApi().subscribe((data:any)=>{
       this.fieldsService.setFields(data);
     })

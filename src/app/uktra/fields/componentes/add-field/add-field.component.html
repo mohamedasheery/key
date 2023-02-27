@@ -42,6 +42,7 @@
           [setOptionsToUpdataField]="setOptionsToUpdataField"
           [addAnotherOption]="addAnotherOption"
           [field]="field"
+          [switchLangField]="switchLangField"
         ></app-list-field>
         <!-- show error message create field -->
         <div *ngIf="errorCreateField.error.message">
@@ -75,7 +76,7 @@
                   </div>
                 </div>
                 <!-- select field type -->
-                <div class="col-lg-4 my-lg-0 my-2">
+                <div *ngIf=" action == 'create'" class="col-lg-4 my-lg-0 my-2">
                   <app-field-type
                     [fieldTypeArray]="fieldTypeArray"
                     [setFieldType]="setFieldType"
@@ -325,41 +326,59 @@
                 </div>
               </div>
               <div class="d-flex justify-content-start mt-2 d-block d-lg-none">
-                <div class="mx-3 pointer">
-                  <img src="assets/icons/delete.png" alt="delete" />
-                </div>
                 <div class="language me-1">
-                  <select
-                    class="form-select form-select-sm border-0 language-option p-2 shadow-none"
-                  >
-                    <option value="" disabled selected hidden>Language</option>
-                    <option value="text">Arbic</option>
-                    <option value="text">English</option>
-                  </select>
+                  <div
+                   type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false" class="form-select form-select-sm border-0 language-option p-2 shadow-none"> {{ langText }}</div>
+                  <ul class="dropdown-menu">
+                    <li
+                      (click)="switchLangField('en')"
+                      class="text-center dropdown-item"
+                    >
+                      English
+                    </li>
+                    <li
+                      (click)="switchLangField('ar')"
+                      class="text-center dropdown-item"
+                    >
+                      Arbic
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
-            <div class="new-btn">
-              <div *ngIf="action =='create'; then  create  else updata">
+            <div class="actions d-flex justify-content-end my-2">
+              <div class="new-btn">
+                <div *ngIf="action =='create'; then  create  else updata">
 
-              </div>
-              <ng-template #create>
-                <button
-                (click)="createField()"
-                class="btn btn-primary rounded-1 btn-new"
-              >
-                <i class="fa-solid fa-check"></i> Save
-              </button>
-              </ng-template>
-              <ng-template #updata>
-                <button
-                  (click)="sendDataToUpdataField()"
+                </div>
+                <ng-template #create>
+                  <button
+                  (click)="createField()"
                   class="btn btn-primary rounded-1 btn-new"
                 >
-                  <i class="fa-solid fa-check"></i> updata
+                  <i class="fa-solid fa-check"></i> Save
                 </button>
-              </ng-template>
+                </ng-template>
+                <ng-template #updata>
+                  <button
+                    (click)="sendDataToUpdataField()"
+                    class="btn btn-primary rounded-1 btn-new"
+                  >
+                    <i class="fa-solid fa-check"></i> updata
+                  </button>
+                </ng-template>
+              </div>
+              <div class="delete mx-2"  *ngIf="action == 'update'">
+                 <button class="btn btn-outline-danger">delete</button>
+              </div>
+              <div class="cancel mx-2">
+                <button class="btn btn-outline-warning">cancel</button>
+
+              </div>
             </div>
+
           </form>
 
           <p>{{ createFieldForm.value | json }}</p>

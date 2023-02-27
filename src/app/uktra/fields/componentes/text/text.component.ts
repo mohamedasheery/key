@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/shared/shared/services/shared.service';
@@ -13,6 +13,7 @@ export class TextComponent {
   constructor(public fb:FormBuilder,
       private fieldsService :FieldsService ,
       private toastr: ToastrService,
+      private elem: ElementRef,
       private sharedService:SharedService){}
   listError:any;
 
@@ -27,6 +28,7 @@ export class TextComponent {
 @Input() setOptionsToUpdataField: any;
 @Input() updateField: any;
 @Input() field: any;
+@Input() switchLangField: any;
 
 ngOnInit(): void {
 console.log(this.action);

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { FieldsService } from '../../services/fields.service';
@@ -12,6 +12,7 @@ export class CheckboxComponent {
 
     constructor(public fb:FormBuilder ,
        private  fieldsService:FieldsService,
+       private elem: ElementRef,
        public toastr: ToastrService,){}
 @Input() addAnotherOption: any;
 @Input() selectedField: any;
@@ -24,7 +25,13 @@ export class CheckboxComponent {
 @Input() fields: any;
 @Input() setOptionsToUpdataField: any;
 @Input() field: any;
+@Input() switchLangField: any;
 
+ngOnInit(): void {
+  //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+  //Add 'implements OnInit' to the class.
+  console.log(this.field);
 
+}
 
 }

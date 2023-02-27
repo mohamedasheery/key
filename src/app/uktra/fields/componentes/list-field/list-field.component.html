@@ -5,6 +5,7 @@
       <app-text
        action="viwe"
        [field]="field"
+       [switchLangField]="switchLangField"
 
       [fields]="fields"
       [updateField]="updateField"
@@ -22,9 +23,9 @@
 
     <div *ngIf="field.type == 'Checkbox'">
       <app-checkbox
+
         action="viwe"
         [field]="field"
-
         [fields]="fields"
         [updateField]="updateField"
         [fieldTypeArray]="fieldTypeArray"
@@ -34,6 +35,7 @@
         [createFieldForm]="createFieldForm"
         [addAnotherOption]="addAnotherOption"
         [setOptionsToUpdataField]="setOptionsToUpdataField"
+        [switchLangField]="switchLangField"
 
       ></app-checkbox>
     </div>
