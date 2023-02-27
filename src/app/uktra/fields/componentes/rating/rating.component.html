@@ -1,0 +1,28 @@
+<form [formGroup]="createFieldForm" class=" row ">
+  <div
+  formArrayName="fieldType"
+  *ngFor="let input of fieldTypeArray.controls; let i = index"
+>
+  <div class="rating">
+    <div *ngIf="i == 0" class="d-flex align-items-center">
+      <i class="fa-regular fa-star px-2"></i>
+      <input
+        [formControlName]="i"
+        [class.is-invalid]="input?.invalid"
+        class="form-control w-50 shadow-none answer-text-input"
+        type="text"
+      />
+    </div>
+
+    <div *ngIf="i == 1" class="d-flex align-items-center">
+      <i class="fa-solid fa-star px-2"></i>
+      <input
+        [formControlName]="i"
+        [class.is-invalid]="input?.invalid"
+        class="form-control w-50 shadow-none answer-text-input"
+        type="text"
+      />
+    </div>
+  </div>
+</div>
+</form>

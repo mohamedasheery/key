@@ -1,0 +1,13 @@
+<div class="field-edit">
+  <div class=" form-select w-100 shadow-none rounded-0 py-2" id="fieldType" data-bs-toggle="dropdown" aria-expanded="false">
+    <img class="mx-2" src={{selectedField.src}} alt="text"/>{{selectedField.text}}
+  </div>
+  <ul   class="dropdown-menu" aria-labelledby="fieldType">
+    <li class="pointer dropdown-item" *ngFor="let field of typeFields"  (click)="setFieldType(field)"  >
+       <img class="mx-2"  #src src={{field.src}} alt="text"/>
+       <span #text >{{field.text}}</span>
+    </li>
+
+
+  </ul>
+</div>

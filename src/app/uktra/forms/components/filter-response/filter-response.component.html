@@ -1,0 +1,156 @@
+<!-- filter -->
+<div class="d-none d-xl-block py-2">
+  <form>
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="sort">
+        <select class="form-select sort p-2 shadow-none">
+          <option selected>sort by</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+
+      <div>
+        <select
+          class="form-select form-select-sm border-0 fileds strikeout p-2"
+          formControlName="creatorEmployee"
+        >
+          <option value="" selected>User crated</option>
+        </select>
+      </div>
+      <div>
+        <select
+          class="form-select form-select-sm border-0 fileds strikeout p-2"
+          formControlName="creatorEmployee"
+        >
+          <option value="" selected>User crated</option>
+        </select>
+      </div>
+      <div>
+        <select
+          class="form-select form-select-sm border-0 fileds strikeout p-2"
+          formControlName="IndustryType"
+        >
+          <option value="" selected>Industry</option>
+          <option value="text ">text</option>
+          <option value="Schools">shcools</option>
+          <option value="Health ">Health</option>
+          <option value="Retail">Retail</option>
+        </select>
+      </div>
+
+      <div>
+        <select
+          class="form-select form-select-sm border-0 fileds strikeout p-2"
+          formControlName="AssignedEmployee"
+        >
+          <option value="" selected>Fieled Name</option>
+        </select>
+      </div>
+
+      <div class="filter-btn">
+        <button class="btn btn-primary rounded-1 py-2 btn-new">
+          Filter <img class="ps-4" src="assets/icons/filter.png" alt="filter" />
+        </button>
+        <ng-template #spinner>
+          <span class="spinner-border"></span>
+        </ng-template>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- btn filter to open sidebar filter -->
+<div class="filter-btn d-xl-none d-flex justify-content-end">
+  <button
+    class="btn btn-primary rounded-1 py-2 btn-new"
+    type="button"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasWithBothOptions"
+    aria-controls="offcanvasWithBothOptions"
+  >
+    Filter <img class="ps-4" src="assets/icons/filter.png" alt="filter" />
+  </button>
+</div>
+
+<!-- sidebar filter  -->
+
+<div
+  class="offcanvas offcanvas-end filter-side"
+  data-bs-scroll="true"
+  tabindex="-1"
+  id="offcanvasWithBothOptions"
+  aria-labelledby="offcanvasWithBothOptionsLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="title-side fw-bold" id="offcanvasWithBothOptionsLabel">
+      Filter
+    </h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <form>
+      <div class="align-items-center">
+        <div class="m-2">
+          <select class="form-select p-2 px-3">
+            <option selected>sort by</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+    
+        <div class="m-2">
+          <select
+            class="form-select form-select-sm p-3"
+            formControlName="creatorEmployee"
+          >
+            <option value="" selected>Fieled Name</option>
+          </select>
+        </div>
+        <div class="m-2">
+          <select
+            class="form-select form-select-sm p-3"
+            formControlName="creatorEmployee"
+          >
+            <option value="" selected>Fieled Name</option>
+          </select>
+        </div>
+
+        <div class="m-2">
+          <select
+            class="form-select form-select-sm p-3"
+            formControlName="AssignedEmployee"
+          >
+            <option value="" selected>Fieled Name</option>
+          </select>
+        </div>
+
+        <div class="m-2">
+          <select
+            class="form-select form-select-sm p-3"
+            formControlName="IndustryType"
+          >
+            <option value="" selected>Fieled Name</option>
+            <option value="ERP">Erp</option>
+            <option value="Schools">shcool</option>
+            <option value="Health ">Health</option>
+            <option value="Retail">Retail</option>
+          </select>
+        </div>
+
+        <button
+          class="btn btn-primary rounded-1 btn-new w-100 m-auto text-center"
+        >
+          Filter <img class="" src="assets/icons/filter.png" alt="filter" />
+        </button>
+        <ng-template #spinner>
+          <span class="spinner-border"></span>
+        </ng-template>
+      </div>
+    </form>
+  </div>
+</div>

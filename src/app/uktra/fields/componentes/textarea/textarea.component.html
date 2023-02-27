@@ -1,0 +1,19 @@
+
+<form [formGroup]="createFieldForm">
+
+  <div
+    formArrayName="fieldType"
+    *ngFor="let input of fieldTypeArray.controls; let i = index"
+  >
+    <div *ngIf="i == 0">
+      <input
+        [formControlName]="i"
+        class="form-control w-50 shadow-none answer-text-input"
+        placeholder="Text Answer"
+        type="text"
+
+      />
+    </div>
+  </div>
+
+</form>

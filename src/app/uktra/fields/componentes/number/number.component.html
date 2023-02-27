@@ -1,0 +1,15 @@
+<div class="type-NumberField">
+  <div class="bg-white-content p-2 my-3">
+  
+    <div class="Answer-NumberField my-3 px-3 ">
+
+    <div class="d-flex">
+      <button class=" btn btn-light px-3 py-1 fs-3 " [disabled]="numberField == 0" (click)="changeNumberField('desc')">-</button>
+       <p class=" mx-4 mt-2">{{numberField}}</p>
+      <button class=" btn btn-light px-3 py-1 fs-3"   (click)="changeNumberField('increment')">+</button>
+    </div>
+
+
+    </div>
+  </div>
+</div>

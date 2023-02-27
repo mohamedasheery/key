@@ -1,0 +1,45 @@
+<div *ngIf="fields.data.length > 0">
+  <div *ngFor="let field of fields.data">
+    <!-- display field when type  = text en  -->
+    <div *ngIf="field.type == 'Text'">
+      <app-text
+       action="viwe"
+       [field]="field"
+
+      [fields]="fields"
+      [updateField]="updateField"
+      [fieldTypeArray]="fieldTypeArray"
+      [setFieldType]="setFieldType"
+      [selectedField]="selectedField"
+      [deleteOption]="deleteOption"
+      [createFieldForm]="createFieldForm"
+      [addAnotherOption]="addAnotherOption"
+      [setOptionsToUpdataField]="setOptionsToUpdataField"
+      ></app-text>
+    </div>
+
+    <!-- display field when type  = checkbox en  -->
+
+    <div *ngIf="field.type == 'Checkbox'">
+      <app-checkbox
+        action="viwe"
+        [field]="field"
+
+        [fields]="fields"
+        [updateField]="updateField"
+        [fieldTypeArray]="fieldTypeArray"
+        [setFieldType]="setFieldType"
+        [selectedField]="selectedField"
+        [deleteOption]="deleteOption"
+        [createFieldForm]="createFieldForm"
+        [addAnotherOption]="addAnotherOption"
+        [setOptionsToUpdataField]="setOptionsToUpdataField"
+
+      ></app-checkbox>
+    </div>
+
+    <!--
+      <p *ngFor="let item of field.some_requirements"> {{item}}</p>
+     <p *ngFor="let option of field.options"> {{option}}</p> -->
+  </div>
+</div>

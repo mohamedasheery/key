@@ -1,0 +1,79 @@
+<div class="mp-2 position-relative nav-bar ">
+  <nav class="navbar p-0 navbar-expand-lg navbar-light bg-white mb-5  ">
+    <div class="container-fluid d-flex py-0">
+      <div class=" d-flex">
+        <!-- button sidebar open  -->
+        <div class="d-md-none">
+          <button
+            class="btn bg-white m-0"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvas"
+            role="button"
+          >
+            <img src="assets/icons/bars.png" alt="" />
+          </button>
+        </div>
+
+       <div>
+        <p class="fs-4 fw- ">{{title}}</p>
+      </div>
+      </div>
+
+
+
+      <div>
+        <ul class="d-flex">
+          <!-- <span class="nav-item">
+          <button (click)="switchLang('ar')" class=" btn btn-info">ar</button>
+          </span>
+            <span class="nav-item">
+              <button  (click)="switchLang('en')" class=" btn btn-info">en</button>
+
+          </span>
+          <span class="nav-item">
+            <p>{{"Tenant_Name" | translate}}</p>
+
+        </span> -->
+          <span class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">
+              <img class="me-3" src="assets/icons/search.png" alt="search" />
+            </a>
+          </span>
+          <span class="nav-item">
+            <a class="nav-link" href="#">
+              <img
+                class="me-3"
+                src="assets/icons/notifications.png"
+                alt="notifications"
+              />
+            </a>
+          </span>
+          <span class="nav-item">
+            <a class="nav-link" href="#">
+              <img
+                class="me-3"
+                src="assets/images/lang.png"
+                width="32"
+                height="22 "
+                alt="lang"
+              />
+            </a>
+          </span>
+          <span class="nav-item">
+            <a class="nav-link" href="#">
+              <img
+                src="assets/images/personal.jpg"
+                alt=""
+                width="22"
+                height="22"
+                class="rounded-circle"
+              />
+            </a>
+          </span>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<app-spinner></app-spinner>

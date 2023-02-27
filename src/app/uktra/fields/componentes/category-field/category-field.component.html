@@ -1,0 +1,17 @@
+<div class="d-flex align-items-center flex-column mt-5  ">
+  <div class="title-add">
+    <p class="fw-semibold">Add new</p>
+  </div>
+  <div>
+    <div *ngFor="let field of typeFields">
+      <button
+
+        [disabled]="fieldTypeArray.controls.length > 0"
+        (click)="setFieldType(field)"
+        class="type-fileds rounded-0"
+      >
+        <img class="mx-2" src="{{ field.src }}" alt="text" />{{ field.text }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+
+.filter {
+    margin: 0 8px;
+     padding: 10px 10px ;
+     border-radius: 4.7px;
+     background-color: #f1f1f1;
+     color: #2e2e2e;
+   }
+   .fileds{
+     background-color: #f1f1f1;
+     color: #2e2e2e;
+     padding: 10px;
+   }
+   .strikeout {
+     width: 130px;
+   }
+   .sort{
+ 
+     width: 120px;
+    color: #0f5fa5;
+    font-weight: bold;
+   }
+   .sort:focus{
+    
+     outline-style: none !important;
+   }
+   .filter-side{
+     width: 300px !important;
+   }
+   .title-side {
+     color: #0f5fa5;
+     font-size: 19px;
+     text-align: center;
+   }
+   .data-filter{
+     max-width: 150px !important;
+    
+   }

@@ -1,0 +1,139 @@
+<div class="py-3 bg-white-content container">
+  <div class="mb-3">
+    <button class="btn ps-0 back-to-role" routerLink="/roles">
+      <img src="assets/icons/arrow-left.png" alt="" /> Roles
+    </button>
+  </div>
+  <div class="d-flex justify-content-between header-new-role">
+    <div class="title">
+      <h5 class="fw-semibold title-new-role">update Role</h5>
+    </div>
+    <div class="new-btn">
+      <span class="me-3">
+        <button class="btn rounded-1">
+          <img
+            class="pe-2"
+            src="assets/icons/arrow-down-to-line.png"
+            alt="download"
+          />
+          Cancel
+        </button>
+      </span>
+      <button
+      *ngIf="spinner; else loading"
+        class="btn btn-new btn-primary rounded-1"
+        [disabled]="updateRole.invalid || selectedPermissions.length == 0"
+        (click)="updatedRole()"
+        #saveRole
+      >
+        <img class="pe-2" src="assets/icons/add.png" alt="add" /> save
+      </button>
+      <ng-template #loading>
+        <span  class="spinner-border spinner-border-sm text-info"></span>
+      </ng-template>
+    </div>
+  </div>
+
+
+
+  <div class="add-new row my-3">
+    <div>
+      <form [formGroup]="updateRole">
+        <div class="role-name">
+          <input
+            [class.is-invalid]="roleName?.invalid && roleName?.touched"
+            class="form-control bg-input py-2 border-0"
+            formControlName="roleName"
+            type="text"
+            placeholder="Role Name"
+            id="Role-role"
+          />
+          <div *ngIf="roleName?.invalid && roleName?.touched">
+            <p
+              *ngIf="roleName?.errors?.['required'] "
+              class="text-danger p-2 my-1 small-f-12"
+            >
+              name is required
+            </p>
+            <p
+              *ngIf="roleName?.errors?.['pattern'] "
+              class="text-danger p-2 my-1 small-f-12"
+            >
+              name must be least 3 character
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="my-2" *ngIf="errorsAddRole">
+      <p class="alert alert-danger">{{ errorsAddRole.message }}</p>
+    </div>
+  </div>
+  <!-- display  permissions to add new role -->
+  <div class="permissions container">
+    <div class="row">
+      <div
+        class="px-3 col-md-6 col-lg-4"
+        *ngFor="let module of Permissions.data"
+      >
+        <div class="module card">
+          <div class="d-flex justify-content-between my-2">
+            <p class="fw-bold ps-3">{{ module.name }}</p>
+            <button
+              class="btn me-4 dropdown-toggle"
+              type="button"
+              (click)="showPermission(categoryes)"
+            ></button>
+          </div>
+          <div class="categoryes" #categoryes>
+            <div
+              class="card permission-card category-permission mt-3"
+              *ngFor="let Category of module.permission_categories"
+            >
+              <div class="card-header d-flex justify-content-between">
+                <label for="account-summery" class="text-capitalize fw-bold">{{
+                  Category.name
+                }}</label>
+
+                <div class="custom-control custom-checkbox me-2">
+                  <input
+                    type="checkbox"
+                    (change)="selectPermission($event, Category)"
+                    name="permission"
+                    class="custom-control-input"
+                  />
+                </div>
+              </div>
+              <div
+                class="card-body permisson-card"
+                *ngFor="let permission of Category.permissions"
+              >
+                <ul>
+                  <li class="d-flex justify-content-between">
+                    <label for="account-summery" class="text-capitalize">{{
+                      permission.name
+                    }}</label>
+                    <div class="custom-control custom-checkbox mb-1">
+                      <input
+                        type="checkbox"
+                        [checked]="
+                        selectedPermissions.includes(permission.id)
+                            ? true
+                            : false
+                        "
+                        (change)="selectSinglePermission(permission)"
+                        name="permission"
+                        class="custom-control-input permissionCat_"
+                        value="{{ permission.id }}"
+                      />
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

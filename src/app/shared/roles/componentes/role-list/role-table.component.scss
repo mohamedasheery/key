@@ -1,0 +1,36 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.table-head{
+     background-color: #f7f7f7;
+}
+.t-body{
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #2e2e2e;
+}
+.statue{
+    background-color: #f7d6d3;
+    color: #0080ff;
+    
+}
+.actions {
+    width: 150px;
+   }
+   .action{
+    width: 70px;
+   }
+.desc{
+    
+    min-width:350px;
+}
+.table-head tr th{
+    min-width: 150px;
+    
+}
+
+@media screen and (max-width: 992px) {
+    .actions {
+     width: auto;
+    }
+   
+  }

@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+.unpaid,
+.paid {
+ 
+  height: 20px;
+  text-align: left;
+  color: #1c1c1c !important;
+  font-family: Inter;
+  font-weight: bold;
+}
+.table-head{
+    height: 18px;
+  flex-grow: 1;
+
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+ .table td { 
+    border: none !important; 
+  
+}

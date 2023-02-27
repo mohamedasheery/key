@@ -1,0 +1,77 @@
+// .formToAddField{
+//   direction: rtl;
+// }
+
+
+.title {
+    margin: 11px 24px 28px 0;
+    font-size: 19px;
+    font-weight: 600 !important;
+    color: #0f5fa5;
+  }
+  .title-form{
+    font-size: 19px;
+    color: #202124;
+    font-weight: bold;
+  }
+.form-add{
+  background-color: #0f5fa5 !important;
+}
+.type-fileds{
+  background-color: #fff;
+  color: #2e2e2e;
+  padding: 10px;
+  border: 1px solid #dadce0 !important;
+
+}
+
+
+.answer-text-input{
+  color: #70757a;
+  font-size: 14px !important;
+ border-radius: 0px !important;
+  border-top: none !important ;
+  border-left: none !important ;
+  border-right: none !important ;
+  padding-left: 0 !important;
+}
+.input-title{
+background-color: #f8f9fa;
+border-radius: 0px !important;
+border-top: none !important ;
+border-left: none !important ;
+border-right: none !important ;
+color: #202124 !important;
+font-weight: bold;
+}
+
+
+.header input::placeholder {
+color: #202124;
+}
+.language-option{
+background-color: #fff;
+color: #2e2e2e;
+padding: 10px;
+border: 1px solid #dadce0 !important;
+width: 200px !important;
+}
+.option-toggle {
+background-color: #a3c7f6;
+
+}
+
+
+.type-fileds{
+background-color: #fff;
+color: #2e2e2e;
+padding: 10px;
+width: 220px;
+border: 1px solid #dadce0 !important;
+margin: 5px auto !important;
+}
+
+.title-add{
+width: 220px;
+}
+

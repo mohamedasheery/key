@@ -1,0 +1,36 @@
+.sidebarItem{
+     font-size: 14.2px;
+     font-weight: 300;
+
+     text-decoration: none;
+}
+.DashboardTitle {
+ font-family: Montserrat;
+ font-size: 14.2px;
+ font-weight: 500;
+ text-align: left;
+ color: #ffffff;
+
+}
+
+.sidebar{
+     position: fixed;
+     z-index: 999;
+     background-color: #003d5b !important;
+     max-width: 200px !important;
+     min-width:200px;
+     padding: 0 10px;
+  color: #ffffff !important;
+}
+.side-main {
+
+     max-width: 220px !important;
+     min-width:220px;
+
+}
+.active{
+     background-color: #ffffff;
+     color: #003d5b !important;
+     padding: 10px;
+     border-radius: 10px;
+}

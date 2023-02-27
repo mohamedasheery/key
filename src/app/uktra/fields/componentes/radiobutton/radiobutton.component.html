@@ -1,0 +1,37 @@
+<form [formGroup]="createFieldForm" class=" row ">
+  <div
+  formArrayName="fieldType"
+  *ngFor="let input of fieldTypeArray.controls; let i = index"
+>
+  <div class="form-check d-flex align-items-center">
+    <input class=" me-2" type="radio" />
+    <input
+      placeholder="Text Answer"
+      [formControlName]="i"
+      class="form-control w-50 shadow-none answer-text-input"
+      [class.is-invalid]="input?.invalid"
+      type="text"
+    />
+    <button
+      (click)="deleteOption(i)"
+      class="btn-close shadow-none small-f-10"
+    ></button>
+  </div>
+</div>
+<!--  btn to create another option type = radio -->
+
+<div class="d-flex align-items-center">
+  <input
+    class="form-check-input me-2"
+    type="radio"
+    value=""
+    id="flexCheckDefault"
+  />
+  <button
+    (click)="addAnotherOption()"
+    class="btn fw-semibold text-primary small-f-14"
+  >
+    Add option
+  </button>
+</div>
+</form>

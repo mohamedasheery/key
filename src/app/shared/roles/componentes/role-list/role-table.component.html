@@ -1,0 +1,106 @@
+<div class="my-3" *ngIf="errorListRoles; else listRoles">
+  <p class="alert alert-danger text-center">{{ errorListRoles }}</p>
+</div>
+
+<ng-template #listRoles>
+
+  <div class="my-3" *ngIf="response; else data">
+    <div class="  text-center">
+      <span  class="spinner-border text-info "></span>
+    </div>
+   </div>
+   <ng-template #data>
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="table-head fw-normal">
+          <tr>
+            <th scope="col">Role Name</th>
+
+            <th scope="col">Created At</th>
+            <th class="actions" scope="col">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody class="t-body">
+          <tr *ngFor="let role of roles.data">
+            <td>{{ role.name }}</td>
+            <td>{{ role.created_at }}</td>
+            <td class="d-flex">
+              <button
+                class="btn p-0 action"
+                [routerLink]="'/roles/update/' + role.id"
+              >
+                <img src="assets/icons/Edit.png" alt="edit" />
+                Edit
+              </button>
+              <button
+                class="ms-2 text-danger btn p-0 action"
+                (click)="deletRole(role.id)"
+              >
+                <img src="assets/icons/del.png" alt="edit" />
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- pagination -->
+      <div class="">
+        <div>
+          <nav aria-label="Page navigation ">
+            <ul class="pagination d-flex justify-content-between">
+              <li class="page-item" >
+                <button
+                (click)="pagination('prev')"
+                  [disabled]="roles.meta.current_page == 1"
+                  class="btn btn-light border-1"
+                >
+                <i class="fa-solid fa-arrow-left"></i>
+                Previous
+                </button>
+              </li>
+              <li class="page-item d-flex gap-3">
+                <button
+                *ngIf="roles.meta.current_page != 1"
+                (click)="pagination('prev')"
+                  [disabled]="roles.meta.current_page == 1"
+                  class="btn btn-light border-1"
+                >
+                  {{ roles.meta.current_page - 1 }}
+                </button>
+                <span class="page-item active"
+                  ><a class="page-link rounded" >{{
+                    roles.meta.current_page
+                  }}</a></span
+                >
+                <button
+                (click)="pagination('next')"
+                [disabled]="roles.meta.current_page == roles.meta.last_page"
+                class="btn btn-light border-1"
+              >
+                {{ roles.meta.current_page + 1 }}
+              </button>
+
+              </li>
+
+              <li class="page-item" >
+                <button
+                (click)="pagination('next')"
+                [disabled]="roles.meta.current_page == roles.meta.last_page"
+                  class="btn btn-light border-1"
+                >
+                Next
+                <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+   </ng-template>
+
+
+</ng-template>
+

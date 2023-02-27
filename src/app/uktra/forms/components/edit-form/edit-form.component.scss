@@ -1,0 +1,45 @@
+.title-form{
+    font-size: 19px;
+    color: #202124;
+    font-weight: bold;
+  }
+
+.form-desc{
+  color: #687384;
+}
+
+.Answer-text  input{
+  color: #70757a;
+  font-size: 14px !important;
+ border-radius: 0px !important;
+  border-top: none !important ;
+  border-left: none !important ;
+  border-right: none !important ;
+  padding-left: 0 !important;
+}
+
+.type-fileds{
+    background-color: #fff;
+    color: #2e2e2e;
+    padding: 10px;
+
+    border: 1px solid #dadce0 !important;
+   margin: 5px auto !important;
+  }
+
+  .title-add{
+    width: 220px;
+  }
+  .import{
+    border: 1px solid #0f5fa5;
+    padding: 10px;
+    .import-field{
+        border: 1px dashed #0f5fa5;
+        text-align: center;
+        padding: 5px;
+        color: rgba(0, 0, 0, 0.38);
+    }
+  }
+
+ 
+ 

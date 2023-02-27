@@ -1,0 +1,11 @@
+<div class="container">
+     <app-tenant-header></app-tenant-header>
+     <div *ngIf="message, else data">
+        <p class=" alert alert-info text-center">{{message}}</p>
+     </div>
+     <ng-template #data>
+        <app-tenant-filter></app-tenant-filter>
+        <app-tenant-table></app-tenant-table>
+     </ng-template>
+ 
+</div>

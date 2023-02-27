@@ -1,0 +1,98 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr';
+
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    background-color: #f4f6f9;
+    font-size: 16px !important;
+    font-family: Montserrat, sans-serif !important;
+}
+
+.padding-x-0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.margin-00 {
+
+    margin: 0 !important;
+
+}
+
+.padding-0 {
+    padding: 3px !important;
+    background-color: black;
+}
+
+.bg-white-content {
+    background-color: #ffffff !important;
+}
+
+.btn-new {
+    background-color: #0f5fa5;
+    color: #ffffff;
+}
+
+.bg-input {
+    background-color: #f1f1f1 !important;
+}
+
+.small-f-12 {
+    font-size: 12px !important;
+}
+.small-f-10 {
+  font-size: 10px !important;
+}
+.small-f-14 {
+  font-size: 14px !important;
+}
+.pointer {
+    cursor: pointer;
+}
+
+// select {
+//     max-height: 100px;
+//     overflow-y: scroll;
+// }
+
+//   select{
+//    background-color: #0f5fa5 !important;
+//     max-height: 50px !important;
+//     overflow-y:scroll !important;
+
+//     }
+
+.blue-color {
+    color: #0f5fa5;
+}
+
+.button {
+    max-height: 40px;
+}
+
+// select{
+
+
+//     overflow-y:auto;
+//       width:100px;
+//   }
+// option:hover{
+//     background-color: red !important;
+//     height: 5px !important;
+//     overflow-y:auto !important;
+//   }
+//   select:focus{
+//     background-color: #0f5fa5 !important;
+
+
+//     overflow-y: scroll !important;
+//   }
+// select option{
+
+// color: #ffffff !important;
+//     overflow:scroll !important;
+
+//     border: 10px solid blue !important;
+// }

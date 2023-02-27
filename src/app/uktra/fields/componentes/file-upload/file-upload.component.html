@@ -1,0 +1,16 @@
+<form [formGroup]="createFieldForm" class=" row ">
+
+<div
+formArrayName="fieldType"
+*ngFor="let input of fieldTypeArray.controls; let i = index"
+>
+<div class="addFile rounded">
+  <span
+    ><i
+      class="fa-sharp fa-solid fa-arrow-up-from-bracket px-2"
+    ></i
+  ></span>
+  <span>Add File</span>
+</div>
+</div>
+</form>

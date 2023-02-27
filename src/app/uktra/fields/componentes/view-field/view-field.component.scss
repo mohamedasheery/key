@@ -1,0 +1,40 @@
+.Answer-text  input{
+    color: #70757a;
+    font-size: 14px !important;
+   border-radius: 0px !important;
+    border-top: none !important ;
+    border-left: none !important ;
+    border-right: none !important ;
+    padding-left: 0 !important;
+  }
+
+  .title_field{
+    color: #202124;
+    line-height: 24px;
+    
+  }
+  .required-mark{
+    color: #d93025;
+  }
+  .type-FileUpload{
+    .FileUpload-field{
+        border: 1px dashed rgba(0, 0, 0, 0.38);
+      
+       
+      }
+      .Answer-FileUpload ::placeholder{
+        text-align: center;
+        color: rgba(0, 0, 0, 0.38);;
+      }
+  }
+ 
+
+.type-rating{
+    .checked{
+        color:#1a73e8;
+    }
+    .rating{
+        color: #202124;
+    }
+}
+

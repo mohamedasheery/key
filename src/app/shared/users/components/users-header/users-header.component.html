@@ -1,0 +1,240 @@
+<div class="py-3">
+  <div class="d-flex justify-content-between">
+    <div class="title">
+      <h5 class="fw-bold">Add new user</h5>
+    </div>
+    <div class="new-btn">
+      <span class="me-3">
+        <button class="btn btn-primary rounded-1" (click)="downloadUsers()">
+          <img
+            class="pe-2"
+            src="assets/icons/arrow-down-to-line.png"
+            alt="download"
+          />
+          Download
+        </button>
+      </span>
+      <button
+        class="btn btn-primary rounded-1"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        <img class="pe-2" src="assets/icons/add.png" alt="add" /> new
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title title-form" id="exampleModalLabel">
+            New user
+          </h5>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-danger text-center m-1" *ngIf="addUserError">
+            <p class="text-center m-1">{{ addUserError.error.errors.phone }}</p>
+
+            <p class="text-center m-1">{{ addUserError.error.errors.email }}</p>
+          </div>
+          <div>
+            <form [formGroup]="addNewUser">
+              <div class="row">
+                <div class="mb-3 col-sm-6">
+                  <input
+                    type="text" 
+                    [class.is-invalid]="userName?.invalid && userName?.touched"
+                    class="form-control border-0 bg-light p-3"
+                    formControlName="name"
+                    placeholder="Name"
+                  />
+                  <div *ngIf="userName?.invalid && userName?.touched">
+                    <p
+                      *ngIf="userName?.errors?.['required'] "
+                      class="text-danger p-2 my-1 small-f-12"
+                    >
+                      name is required
+                    </p>
+                    <p
+                      *ngIf="userName?.errors?.['pattern'] "
+                      class="text-danger p-2 my-1 small-f-12"
+                    >
+                      name must be least 3 digt
+                    </p>
+                  </div>
+                </div>
+                <div class="mb-3 col-sm-6">
+                  <input
+                    type="email"
+                    [class.is-invalid]="
+                      userEmail?.invalid && userEmail?.touched
+                    "
+                    class="form-control border-0 bg-light p-3"
+                    formControlName="email"
+                    placeholder="Email"
+                  />
+                  <div *ngIf="userEmail?.invalid && userEmail?.touched">
+                    <p
+                      *ngIf="userEmail?.errors?.['required'] "
+                      class="text-danger p-2 my-1 small-f-12"
+                    >
+                      email is required
+                    </p>
+                    <p
+                      *ngIf="userEmail?.errors?.['pattern'] "
+                      class="text-danger p-2 my-1 small-f-12"
+                    >
+                      email must match this " example@gmail.com"
+                    </p>
+                  </div>
+                </div>
+                <div class="mb-3 col-sm-6">
+                  <input
+                    type="text"
+                    [class.is-invalid]="
+                      userPhone?.invalid && userPhone?.touched
+                    "
+                    class="form-control border-0 bg-light p-3"
+                    formControlName="phone"
+                    placeholder="Phone"
+                  />
+                  <div *ngIf="userPhone?.invalid && userPhone?.touched">
+                    <p
+                      *ngIf="userPhone?.errors?.['required'] "
+                      class="text-danger p-2 my-1 small-f-12"
+                    >
+                      phone is required
+                    </p>
+                    <p
+                      *ngIf="userPhone?.errors?.['pattern'] "
+                      class="text-danger p-2 my-1 small-f-12"
+                    >
+                    phone must be 11 number
+                    </p>
+                  </div>
+                </div>
+                <div class="mb-3 col-sm-6">
+                  <input
+                    type="password"
+                    [class.is-invalid]="
+                      userPassword?.invalid && userPassword?.touched
+                    "
+                    class="form-control border-0 bg-light p-3"
+                    formControlName="password"
+                    placeholder="Password"
+                  />
+                  <div *ngIf="userPassword?.invalid && userPassword?.touched">
+                    <p
+                      *ngIf="userPassword?.errors?.['required'] "
+                      class="text-danger p-2 my-1 small-f-12"
+                    >
+                      password is required
+                    </p>
+                    <p
+                      *ngIf="userPassword?.errors?.['pattern'] "
+                      class="text-danger p-2 my-1 small-f-12"
+                    >
+                      password must by 8 digt or more
+                    </p>
+                  </div>
+                </div>
+
+                <div class="mb-3 col-sm-6">
+                  <select
+                    class="form-select border-0 bg-light p-3"
+                    [class.is-invalid]="userRole?.invalid && userRole?.touched"
+                    formControlName="role_id"
+                    name="userRole"
+                  >
+                    <option value="" disabled selected hidden>Role</option>
+                    <option *ngFor="let role of roles.data" value={{role.id}}>{{role.name}}</option>
+
+                  </select>
+                  <div *ngIf="userRole?.invalid && userRole?.touched">
+                    <p
+                      *ngIf="userRole?.errors?.['required'] "
+                      class="text-danger p-2 my-1 small-f-12"
+                    >
+                      Role is required
+                    </p>
+                  </div>
+                </div>
+                <div class="mb-3 col-sm-6">
+                  <select
+                    class="form-select border-0 bg-light p-3"
+                    [class.is-invalid]="
+                      userStatus?.invalid && userStatus?.touched
+                    "
+                    formControlName="status"
+                    name="userStatus"
+                  >
+                    <option value="" disabled selected hidden>Status</option>
+                    <option value="Active">Active</option>
+                    <option value="Disabled">Disabled</option>
+                  </select>
+                  <div *ngIf="userStatus?.invalid && userStatus?.touched">
+                    <p
+                      *ngIf="userStatus?.errors?.['required'] "
+                      class="text-danger p-2 my-1 small-f-12"
+                    >
+                      status is required
+                    </p>
+                  </div>
+                </div>
+
+                <div class="mb-3 col-sm-6">
+                  <select
+                    class="form-select border-0 bg-light p-3"
+                    [class.is-invalid]="
+                      userParent_id?.invalid && userParent_id?.touched
+                    "
+                    formControlName="parent_id"
+                    name="userParent_id"
+                  >
+                    <option value="" disabled selected hidden>Parent</option>
+                    <option *ngFor="let user of users.data" value={{user.id}}>{{user.name}}</option>
+
+                  </select>
+                  <div *ngIf="userParent_id?.invalid && userParent_id?.touched">
+                    <p
+                      *ngIf="userParent_id?.errors?.['required'] "
+                      class="text-danger p-2 my-1 small-f-12"
+                    >
+                      Parent is required
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="s" class="btn" #closeModal data-bs-dismiss="modal">
+            Cancel
+          </button>
+          <button
+          *ngIf="spinner; else loading"
+            type="submit"
+            (click)="addUser()"
+            [disabled]="addNewUser.invalid"
+            class="btn btn-primary btn-new px-4 rounded-1"
+          >
+            <img class="px-2" src="assets/icons/check.png" alt="check" /> Add
+          </button>
+          <ng-template #loading>
+            <span  class="spinner-border spinner-border-sm text-info"></span>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,315 @@
+<div *ngIf="listUsersError; else table">
+  <p class="alert alert-danger text-center">{{ listUsersError.message }}</p>
+</div>
+
+<ng-template #table>
+
+  <div  *ngIf="response; else data">
+    <div class="  text-center">
+      <span  class="spinner-border text-info "></span>
+    </div>
+   </div>
+
+  <ng-template #data>
+  <div class="table-responsive " >
+    <table class="table">
+      <thead class="table-head fw-normal">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th class="email" scope="col">Email</th>
+          <th scope="col">Status</th>
+          <th scope="col">Role</th>
+          <th scope="col">parent</th>
+          <th class="actions" scope="col">Actions</th>
+        </tr>
+      </thead>
+
+    <tbody class="t-body" *ngFor="let user of users.data; index as i">
+      <tr>
+        <td>{{ i + 1}}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td class=" ">
+          <span class="w-auto statue rounded-5 p-2">{{ user.status }}</span>
+        </td>
+        <td>{{ user.role }}</td>
+        <td>{{ user.parent }}</td>
+        <td class="d-flex">
+          <button
+            class="btn p-0 action"
+            (click)="getDataUserToUpdata(user.id)"
+            data-bs-toggle="modal"
+            data-bs-target="#updataModal"
+          >
+            <img src="assets/icons/Edit.png" alt="edit" />
+            Edit
+          </button>
+          <button class="ms-2 text-danger btn p-0 action" (click)=" deleteUser(user.id)">
+            <img src="assets/icons/del.png" alt="edit" />
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+    </table>
+    <div class="pagenation">
+
+      <div>
+        <nav aria-label="Page navigation ">
+          <ul class="pagination d-flex justify-content-between">
+            <li class="page-item" >
+              <button
+              (click)="pagination('prev')"
+                [disabled]="users.meta.current_page <= 1"
+                class="btn btn-light border-1"
+              >
+              <i class="fa-solid fa-arrow-left"></i>
+              Previous
+              </button>
+            </li>
+            <li class="page-item d-flex gap-3">
+              <button *ngIf="users.meta.current_page > 1"
+              (click)="pagination('prev')"
+                [disabled]="users.meta.current_page == 1"
+                class="btn btn-light border-1 "
+              >
+                {{ users.meta.current_page - 1 }}
+              </button>
+              <span class="page-item active"
+                ><a class="page-link rounded" >{{
+                  users.meta.current_page
+                }}</a></span
+              >
+              <button
+              (click)="pagination('next')"
+              [disabled]="users.meta.current_page == users.meta.last_page"
+              class="btn btn-light border-1"
+            >
+              {{ users.meta.current_page + 1 }}
+            </button>
+
+            </li>
+
+            <li class="page-item" >
+              <button
+              (click)="pagination('next')"
+              [disabled]="users.meta.current_page == users.meta.last_page"
+                class="btn btn-light border-1"
+              >
+              Next
+              <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</ng-template>
+</ng-template>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="updataModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title title-form" id="exampleModalLabel">
+          New user
+        </h5>
+      </div>
+      <div class="alert alert-danger text-center" *ngIf="updateErrors">
+        <div *ngFor="let error of updateErrors.errors.email">
+          <p>{{ error }}</p>
+        </div>
+        <div *ngFor="let error of updateErrors.errors.phone">
+          <p>{{ error }}</p>
+        </div>
+      </div>
+      <div class="modal-body">
+
+
+
+
+        <div>
+
+
+
+          <form [formGroup]="updateUser">
+            <div class="row">
+              <div class="mb-3 col-sm-6">
+                <input
+                  type="text"
+                  [class.is-invalid]="userName?.invalid && userName?.touched"
+                  value="{{ updateUserDate.data.name }}"
+                  class="form-control border-0 bg-light p-3"
+                  formControlName="userName"
+                  placeholder="Name"
+                />
+                <div *ngIf="userName?.invalid && userName?.touched">
+                  <p
+                    *ngIf="userName?.errors?.['required'] "
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                    name is required
+                  </p>
+                  <p
+                    *ngIf="userName?.errors?.['pattern'] "
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                    name must be 3 letters or more
+                  </p>
+                </div>
+              </div>
+              <div class="mb-3 col-sm-6">
+                <input
+                  type="email"
+                  [class.is-invalid]="userEmail?.invalid && userEmail?.touched"
+                  value="{{ updateUserDate.data.email }}"
+                  class="form-control border-0 bg-light p-3"
+                  formControlName="userEmail"
+                  placeholder="Email"
+                />
+                <div *ngIf="userEmail?.invalid && userEmail?.touched">
+                  <p
+                    *ngIf="userEmail?.errors?.['required'] "
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                    email is required
+                  </p>
+                  <p
+                    *ngIf="userEmail?.errors?.['pattern'] "
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                    email must match this " example@gmail.com"
+                  </p>
+                </div>
+              </div>
+              <div class="mb-3 col-sm-6">
+                <input
+                  type="text"
+                  [class.is-invalid]="userPhone?.invalid && userPhone?.touched"
+                  value="{{updateUserDate.data.phone}}"
+                  class="form-control border-0 bg-light p-3"
+                  formControlName="userPhone"
+                  placeholder="Phone"
+                />
+                <div *ngIf="userPhone?.invalid && userPhone?.touched">
+                  <p
+                    *ngIf="userPhone?.errors?.['required'] "
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                    phone is required
+                  </p>
+                  <p
+                    *ngIf="userPhone?.errors?.['pattern'] "
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                    phone must be 11 number
+                  </p>
+                </div>
+              </div>
+
+
+              <div class="mb-3 col-sm-6">
+                <select
+                  class="form-select border-0 bg-light p-3"
+                  [class.is-invalid]="userRole?.invalid && userRole?.touched"
+                  formControlName="userRole"
+                  name="userRole"
+                >
+                  <option value={{updateUserDate.data.role_id}} hidden  selected>
+                    {{updateUserDate.data.role}}
+                  </option>
+                  <option *ngFor="let role of roles.data" value={{role.id}}>{{role.name}}</option>
+                </select>
+                <div *ngIf="userRole?.invalid && userRole?.touched">
+                  <p
+                    *ngIf="userRole?.errors?.['required'] "
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                    Role is required
+                  </p>
+                </div>
+              </div>
+              <div class="mb-3 col-sm-6">
+                <select
+                  class="form-select border-0 bg-light p-3"
+                  [class.is-invalid]="
+                    userStatus?.invalid && userStatus?.touched
+                  "
+                  formControlName="userStatus"
+                  name="userStatus"
+                >
+                  <option  selected>
+                    {{updateUserDate.data.status}}
+                  </option>
+                  <option value="Active">block</option>
+                </select>
+                <div *ngIf="userStatus?.invalid && userStatus?.touched">
+                  <p
+                    *ngIf="userStatus?.errors?.['required'] "
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                    status is required
+                  </p>
+                </div>
+              </div>
+
+              <div class="mb-3 col-sm-6">
+                <select
+                  class="form-select border-0 bg-light p-3"
+                  [class.is-invalid]="
+                    userParent?.invalid && userParent?.touched
+                  "
+                  formControlName="userParent"
+                  name="userParent"
+                >
+                  <option hidden selected>
+                    {{updateUserDate.data.parent}}
+                  </option>
+                  <option *ngFor="let user of users.data" value={{user.id}}>{{user.name}}</option>
+
+                </select>
+                <div *ngIf="userParent?.invalid && userParent?.touched">
+                  <p
+                    *ngIf="userParent?.errors?.['required'] "
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                    Parent is required
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" #closeModal  class="btn" data-bs-dismiss="modal">
+                Cancel
+              </button>
+              <button
+              *ngIf="spinner; else loading"
+                type="submit"
+                class="btn btn-primary px-4 rounded-1"
+                (click)="updataUser()"
+                [disabled]="updateUser.invalid"
+              >
+                <img class="ps-2" src="assets/icons/check.png" alt="check" />
+                update
+              </button>
+              <ng-template #loading>
+                <span  class="spinner-border spinner-border-sm text-info"></span>
+              </ng-template>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

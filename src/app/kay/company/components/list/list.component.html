@@ -1,0 +1,245 @@
+<div class="my-3" *ngIf="errorListCompanies; else listCompanies">
+  <p class="alert alert-danger text-center">{{ errorListCompanies }}</p>
+</div>
+<ng-template #listCompanies>
+  <div class="my-3" *ngIf="response; else data">
+    <div class="text-center">
+      <span class="spinner-border text-info"></span>
+    </div>
+  </div>
+  <ng-template #data>
+    <div *ngIf="companies.data.length == 0">
+      <p class="alert alert-danger text-center">{{ message }}</p>
+    </div>
+    <div class="table-responsive my-4">
+      <table class="table">
+        <thead class="table-head fw-normal">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">tenant</th>
+            <th scope="col" class="Assigned-employee">Assigned employee</th>
+
+            <th class="actions" scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody
+          class="t-body"
+          *ngFor="let company of companies.data; index as i"
+        >
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td
+
+            >
+              {{ company.name }}
+            </td>
+
+            <td class="statue-company">
+              <span
+                [className]="
+                  company.status == 'In-Active'
+                    ? 'text-danger w-auto statue  rounded-5 p-2'
+                    : 'w-auto statue rounded-5 p-2'
+                "
+                class="w-auto statue rounded-5 p-2"
+                >{{ company.status }}</span
+              >
+            </td>
+            <td>{{ company.tenant }}</td>
+
+            <td class="text-center">{{ company.creator }}</td>
+            <td class=" ">
+              <button
+                class="btn p-0 action"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#updataModal"
+                (click)="getDataCompanyToUpdata(company)"
+              >
+                <img src="assets/icons/Edit.png" alt="edit" />
+                Edit
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="pagenation">
+        <div>
+          <nav aria-label="Page navigation ">
+            <ul class="pagination d-flex justify-content-between">
+              <li class="page-item" >
+                <button
+                  (click)="pagination('prev')"
+                  [disabled]="companies.meta.current_page == 1"
+                  class="btn btn-light border-1"
+                ><i class="fa-solid fa-arrow-left"></i>
+                  Previous
+                </button>
+              </li>
+              <li class="page-item d-flex gap-3">
+                <button *ngIf="companies.meta.current_page > 1"
+                  (click)="pagination('prev')"
+                  [disabled]="companies.meta.current_page == 1"
+                  class="btn btn-light border-1"
+                >
+                  {{ companies.meta.current_page -1}}
+                </button>
+                <span class="page-item active"
+                  ><a class="page-link rounded">{{
+                    companies.meta.current_page
+                  }}</a></span
+                >
+                <button
+                  (click)="pagination('next')"
+                  [disabled]="
+                    companies.meta.current_page == companies.meta.last_page
+                  "
+                  class="btn btn-light border-1"
+                >
+                  {{ companies.meta.current_page + 1 }}
+                </button>
+              </li>
+
+              <li class="page-item">
+                <button
+                  (click)="pagination('next')"
+                  [disabled]="
+                    companies.meta.current_page == companies.meta.last_page
+                  "
+                  class="btn btn-light border-1"
+                >
+                  next
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="updataModal"
+  tabindex="-1"
+  aria-labelledby="ModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title title-form" id="ModalLabel">New company</h5>
+      </div>
+
+      <div class="modal-body">
+        <div>
+          <form [formGroup]="company">
+            <div class="row">
+              <div class="mb-3 col-sm-12">
+                <input
+                  [class.is-invalid]="
+                    companyName?.invalid && companyName?.touched
+                  "
+                  type="text"
+                  class="form-control border-0 bg-light p-2"
+                  formControlName="companyName"
+                  id="companyName"
+                  placeholder="Name"
+                  name="companyName"
+                />
+                <div *ngIf="companyName?.invalid && companyName?.touched">
+                  <p
+                    *ngIf="companyName?.errors?.['required'] "
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                    name is required
+                  </p>
+                  <p
+                    *ngIf="companyName?.errors?.['pattern'] "
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                    name must be 3 letters or more
+                  </p>
+                </div>
+              </div>
+              <div class="mb-3 col-sm-6">
+                <select
+                  class="form-select border-0 bg-light p-2"
+                  [class.is-invalid]="
+                    companyStatus?.invalid && companyStatus?.touched
+                  "
+                  formControlName="companyStatus"
+                  name="tenantStatu"
+                >
+                  <option value="" disabled selected hidden>stutes</option>
+
+                  <option value="Active">Active</option>
+                  <option value="In-Active">InActive</option>
+                </select>
+                <div *ngIf="companyStatus?.invalid && companyStatus?.touched">
+                  <p
+                    *ngIf="companyStatus?.errors?.['required'] "
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                    Status is required
+                  </p>
+                </div>
+              </div>
+              <div class="mb-3 col-sm-6">
+                <select
+                  class="form-select border-0 bg-light p-2"
+                  [class.is-invalid]="
+                    AssignedTenant?.invalid && AssignedTenant?.touched
+                  "
+                  formControlName="AssignedTenant"
+                  name="tenantStatu"
+                >
+                  <option value="" disabled selected hidden>tenant</option>
+                  <option
+                    *ngFor="let tenant of tenants.data"
+                    value="{{ tenant.id }}"
+                  >
+                    {{ tenant.name }}
+                  </option>
+                </select>
+                <div *ngIf="AssignedTenant?.invalid && AssignedTenant?.touched">
+                  <p
+                    *ngIf="AssignedTenant?.errors?.['required'] "
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                    Status is required
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer border-0">
+              <button
+                type="button"
+                #closeModal
+                class="btn"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary px-4 rounded-1"
+                (click)="updateCompany()"
+                [disabled]="company.invalid"
+              >
+                <img class="ps-2" src="assets/icons/check.png" alt="check" />
+                update
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

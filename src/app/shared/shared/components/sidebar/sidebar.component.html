@@ -1,0 +1,251 @@
+<div class="side-main p-3 d-none d-md-block">
+  <div class="sidebar rounded-5">
+    <div class="logo py-2">
+      <div class="d-flex justify-content-center">
+        <img class="" src="assets/logo/logo.png" alt="logo" />
+      </div>
+    </div>
+    <div class="d-flex flex-column vh-100">
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li
+          class="nav-item my-3 d-flex justify-content-between pointer"
+          routerLink="/home"
+        >
+          <div
+            class="sidebarItem d-flex justify-content-between w-100"
+            routerLinkActive="active"
+          >
+            <div>
+              <i class="fa-solid fa-house"></i>
+              <span class="px-2">Dashboard</span>
+            </div>
+
+            <div class="pe-2">
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </li>
+        <li
+          class="nav-item my-3 d-flex justify-content-between pointer"
+          routerLink="/tenants"
+        >
+          <div
+            class="sidebarItem d-flex justify-content-between w-100"
+            routerLinkActive="active"
+          >
+            <div>
+              <i class="fa-solid fa-layer-group"></i>
+              <span class="px-2">Tenants</span>
+            </div>
+
+            <div class="pe-2">
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </li>
+        <li
+          class="nav-item my-3 d-flex justify-content-between pointer"
+          routerLink="/roles"
+        >
+          <div
+            class="sidebarItem d-flex justify-content-between text-light w-100"
+            routerLinkActive="active"
+          >
+            <div>
+              <i class="fa-sharp fa-solid fa-circle-check"></i>
+              <span class="px-2">Roles</span>
+            </div>
+            <div class="pe-2">
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item my-3 d-flex justify-content-between pointer">
+          <div
+            class="sidebarItem d-flex justify-content-between text-light w-100"
+            routerLinkActive="active"
+            routerLink="/users"
+          >
+            <div>
+              <i class="fa-solid fa-users"></i>
+              <span class="px-2">Users</span>
+            </div>
+            <div class="pe-2">
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </li>
+        <li
+          class="nav-item my-3 d-flex justify-content-between pointer"
+          routerLink="/fields"
+        >
+          <div
+            class="sidebarItem d-flex justify-content-between text-light w-100"
+            routerLinkActive="active"
+          >
+            <div>
+              <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+              <span class="px-2">Fields</span>
+            </div>
+            <div class="pe-2">
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </li>
+        <li
+          class="nav-item my-3 d-flex justify-content-between pointer"
+          routerLink="/forms"
+        >
+          <div
+            class="sidebarItem d-flex justify-content-between text-light w-100"
+            routerLinkActive="active"
+          >
+            <div>
+              <i class="fa-solid fa-file-lines"></i>
+              <span class="px-2">Forms</span>
+            </div>
+
+            <div class="pe-2">
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- with offcanvas responsve -->
+<div
+  class="offcanvas side-main offcanvas-start"
+  tabindex="-1"
+  id="offcanvas"
+  data-bs-keyboard="false"
+  data-bs-backdrop="false"
+>
+  <div class="sidebar">
+    <div class="offcanvas-header d-md-none d-flex justify-content-between">
+      <img class="" src="assets/logo/logo.png" alt="logo" />
+      <button
+        type="button"
+        class="btn mx-2"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ><i class="fa-solid fa-xmark fs-3  text-light"></i></button>
+    </div>
+    <div class="d-flex flex-column vh-100">
+
+
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li
+        class="nav-item my-3 d-flex justify-content-between pointer"
+        routerLink="/home"
+      >
+        <div
+          class="sidebarItem d-flex justify-content-between w-100"
+          routerLinkActive="active"
+          data-bs-dismiss="offcanvas"
+        >
+          <div>
+            <i class="fa-solid fa-house"></i>
+            <span class="px-2">Dashboard</span>
+          </div>
+
+          <div class="pe-2">
+            <i class="fa-solid fa-angle-right"></i>
+          </div>
+        </div>
+      </li>
+      <li
+          class="nav-item my-3 d-flex justify-content-between pointer"
+          routerLink="/tenants"
+        >
+          <div
+            class="sidebarItem d-flex justify-content-between w-100"
+            routerLinkActive="active"
+            data-bs-dismiss="offcanvas"
+          >
+            <div>
+              <i class="fa-solid fa-layer-group"></i>
+              <span class="px-2">Tenants</span>
+            </div>
+
+            <div class="pe-2">
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </li>
+        <li
+        class="nav-item my-3 d-flex justify-content-between pointer"
+        routerLink="/roles"
+      >
+        <div
+          class="sidebarItem d-flex justify-content-between text-light w-100"
+          routerLinkActive="active"
+          data-bs-dismiss="offcanvas"
+        >
+          <div>
+            <i class="fa-sharp fa-solid fa-circle-check"></i>
+            <span class="px-2">Roles</span>
+          </div>
+          <div class="pe-2">
+            <i class="fa-solid fa-angle-right"></i>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item my-3 d-flex justify-content-between pointer">
+        <div
+          class="sidebarItem d-flex justify-content-between text-light w-100"
+          routerLinkActive="active"
+          routerLink="/users"
+        >
+          <div>
+            <i class="fa-solid fa-users"></i>
+            <span class="px-2">Users</span>
+          </div>
+          <div class="pe-2">
+            <i class="fa-solid fa-angle-right"></i>
+          </div>
+        </div>
+      </li>
+      <li
+      class="nav-item my-3 d-flex justify-content-between pointer"
+      routerLink="/fields"
+    >
+      <div
+        class="sidebarItem d-flex justify-content-between text-light w-100"
+        routerLinkActive="active"
+        data-bs-dismiss="offcanvas"
+      >
+        <div>
+          <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+          <span class="px-2">Fields</span>
+        </div>
+        <div class="pe-2">
+          <i class="fa-solid fa-angle-right"></i>
+        </div>
+      </div>
+    </li>
+    <li
+      class="nav-item my-3 d-flex justify-content-between pointer"
+      routerLink="/forms"
+    >
+      <div
+        class="sidebarItem d-flex justify-content-between text-light w-100"
+        routerLinkActive="active"
+        data-bs-dismiss="offcanvas"
+      >
+        <div>
+          <i class="fa-solid fa-file-lines"></i>
+          <span class="px-2">Forms</span>
+        </div>
+
+        <div class="pe-2">
+          <i class="fa-solid fa-angle-right"></i>
+        </div>
+      </div>
+    </li>
+      </ul>
+    </div>
+  </div>
+</div>

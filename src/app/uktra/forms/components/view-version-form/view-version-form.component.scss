@@ -1,0 +1,25 @@
+.option-forms{
+    border: 2px solid #0f5fa5;
+    padding: 1px;
+   
+    .option-selected{
+        background-color: #0f5fa5;
+        color: #fff;
+    }
+}
+.option-forms span{
+text-align: center ;
+}
+.form-desc{
+    color: #687384;
+}
+
+.Answer-text  input{
+    color: #70757a;
+    font-size: 14px !important;
+   border-radius: 0px !important;
+    border-top: none !important ;
+    border-left: none !important ;
+    border-right: none !important ;
+    padding-left: 0 !important;
+  }

@@ -1,0 +1,12 @@
+<div class="container">
+  <app-add-new></app-add-new>
+  <div *ngIf="message, else data">
+     <p class=" alert alert-info text-center">{{message}}</p>
+  </div>
+  <ng-template #data>
+    <app-filter></app-filter>
+    <app-list></app-list>
+  </ng-template>
+  
+ 
+</div>

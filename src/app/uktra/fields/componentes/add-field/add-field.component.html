@@ -1,0 +1,380 @@
+<div>
+  <!-- title and save button  -->
+  <div class="d-flex justify-content-between py-3">
+    <div class="title">
+      <h5 class="fw-bold">Add new Field</h5>
+    </div>
+    <div class="new-btn">
+      <div *ngIf="action =='create'; then  create  else updata">
+
+      </div>
+      <ng-template #create>
+        <button
+        (click)="createField()"
+        class="btn btn-primary rounded-1 btn-new"
+      >
+        <i class="fa-solid fa-check"></i> Save
+      </button>
+      </ng-template>
+      <ng-template #updata>
+        <button
+          (click)="sendDataToUpdataField()"
+          class="btn btn-primary rounded-1 btn-new"
+        >
+          <i class="fa-solid fa-check"></i> updata
+        </button>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-9">
+      <app-filter-field></app-filter-field>
+      <div>
+        <app-list-field
+          [fieldTypeArray]="fieldTypeArray"
+          [setFieldType]="setFieldType"
+          [selectedField]="selectedField"
+          [deleteOption]="deleteOption"
+          [createFieldForm]="createFieldForm"
+          [setOptionsToUpdataField]="setOptionsToUpdataField"
+          [updateField]="updateField"
+          [setOptionsToUpdataField]="setOptionsToUpdataField"
+          [addAnotherOption]="addAnotherOption"
+          [field]="field"
+        ></app-list-field>
+        <!-- show error message create field -->
+        <div *ngIf="errorCreateField.error.message">
+          <p class="alert alert-danger">{{ errorCreateField.error.message }}</p>
+        </div>
+
+        <!-- card to create field -->
+        <div
+          *ngIf="fieldTypeArray.controls.length > 0"
+          class="bg-white-content p-4 my-3 formToAddField"
+        >
+          <form [formGroup]="createFieldForm">
+            <div class="header">
+              <div class="row">
+                <!-- field type -->
+                <div class="col-lg-8">
+                  <input
+                    [class.is-invalid]="fieldTitle?.invalid"
+                    formControlName="title"
+                    type="text"
+                    class="form-control input-title shadow-none"
+                    [placeholder]="titleField"
+                  />
+                  <div *ngIf="fieldTitle?.invalid">
+                    <p
+                      *ngIf="fieldTitle?.errors?.['required']"
+                      class="text-danger p-2 my-1 small-f-12"
+                    >
+                      {{ errorTitleField }}
+                    </p>
+                  </div>
+                </div>
+                <!-- select field type -->
+                <div class="col-lg-4 my-lg-0 my-2">
+                  <app-field-type
+                    [fieldTypeArray]="fieldTypeArray"
+                    [setFieldType]="setFieldType"
+                  ></app-field-type>
+                </div>
+              </div>
+            </div>
+            <!-- answer based field type -->
+            <div class="mb-5 mt-2">
+              <div class="col-sm-12">
+                <!-- create field type = text -->
+
+                <div class="Answer-text" *ngIf="selectedField.type == 'Text'">
+                  <app-text
+                    [fieldTypeArray]="fieldTypeArray"
+                    [setFieldType]="setFieldType"
+                    [selectedField]="selectedField"
+                    [deleteOption]="deleteOption"
+                    [createFieldForm]="createFieldForm"
+                    [addAnotherOption]="addAnotherOption"
+                    [updateField]="updateField"
+                    action="create"
+                  ></app-text>
+                </div>
+
+                <!-- create field type = checkbox -->
+
+                <div
+                  class="Answer-checkbox"
+                  *ngIf="selectedField.type == 'Checkbox'"
+                >
+                  <app-checkbox
+                    [fieldTypeArray]="fieldTypeArray"
+                    [setFieldType]="setFieldType"
+                    [selectedField]="selectedField"
+                    [deleteOption]="deleteOption"
+                    [createFieldForm]="createFieldForm"
+                    [addAnotherOption]="addAnotherOption"
+                    action="create"
+                  ></app-checkbox>
+                </div>
+                <!-- create field type = radio -->
+
+                <div
+                  class="Answer-radio"
+                  *ngIf="selectedField.type == 'Radio Button'"
+                >
+                  <app-radiobutton
+                    [fieldTypeArray]="fieldTypeArray"
+                    [setFieldType]="setFieldType"
+                    [selectedField]="selectedField"
+                    [deleteOption]="deleteOption"
+                    [createFieldForm]="createFieldForm"
+                    [addAnotherOption]="addAnotherOption"
+                  ></app-radiobutton>
+                </div>
+                <!-- create field type = fileUpload -->
+                <div
+                  class="Answer-file"
+                  *ngIf="selectedField.type == 'File Upload'"
+                >
+                  <app-file-upload
+                    [fieldTypeArray]="fieldTypeArray"
+                    [setFieldType]="setFieldType"
+                    [selectedField]="selectedField"
+                    [deleteOption]="deleteOption"
+                    [createFieldForm]="createFieldForm"
+                    [addAnotherOption]="addAnotherOption"
+                  ></app-file-upload>
+                </div>
+                <!-- create field type = rating -->
+                <div class="Answer-file" *ngIf="selectedField.type == 'Rating'">
+                  <app-rating
+                    [fieldTypeArray]="fieldTypeArray"
+                    [setFieldType]="setFieldType"
+                    [selectedField]="selectedField"
+                    [deleteOption]="deleteOption"
+                    [createFieldForm]="createFieldForm"
+                    [addAnotherOption]="addAnotherOption"
+                  ></app-rating>
+                </div>
+                <!-- create field type = dropdown -->
+
+                <div
+                  class="Answer-dropdown"
+                  *ngIf="selectedField.type == 'Dropdown'"
+                >
+                  <app-dropdown
+                    [fieldTypeArray]="fieldTypeArray"
+                    [setFieldType]="setFieldType"
+                    [selectedField]="selectedField"
+                    [deleteOption]="deleteOption"
+                    [createFieldForm]="createFieldForm"
+                    [addAnotherOption]="addAnotherOption"
+                  ></app-dropdown>
+                </div>
+                <!-- create field type = textarea -->
+
+                <div
+                  class="Answer-checkbox"
+                  *ngIf="selectedField.type == 'TextArea'"
+                >
+                  <app-textarea
+                    [fieldTypeArray]="fieldTypeArray"
+                    [setFieldType]="setFieldType"
+                    [selectedField]="selectedField"
+                    [deleteOption]="deleteOption"
+                    [createFieldForm]="createFieldForm"
+                    [addAnotherOption]="addAnotherOption"
+                  ></app-textarea>
+                </div>
+
+                <!-- create field type = toggle -->
+
+                <div
+                  class="Answer-toggle"
+                  *ngIf="selectedField.type == 'Toggle Switch'"
+                >
+                  <app-toggle-switch
+                    [fieldTypeArray]="fieldTypeArray"
+                    [setFieldType]="setFieldType"
+                    [selectedField]="selectedField"
+                    [deleteOption]="deleteOption"
+                    [createFieldForm]="createFieldForm"
+                    [addAnotherOption]="addAnotherOption"
+                  ></app-toggle-switch>
+                </div>
+                <!-- create field type = lebel  no  body -->
+                <!-- create field type = time picker no body -->
+
+                <!-- create field type = number -->
+
+                <div
+                  class="Answer-checkbox"
+                  *ngIf="selectedField.type == 'Number'"
+                >
+                  <app-number
+                    [fieldTypeArray]="fieldTypeArray"
+                    [setFieldType]="setFieldType"
+                    [selectedField]="selectedField"
+                    [deleteOption]="deleteOption"
+                    [createFieldForm]="createFieldForm"
+                    [addAnotherOption]="addAnotherOption"
+                  ></app-number>
+                </div>
+                <!-- create field type = image -->
+
+                <div class="Answer-image" *ngIf="selectedField.type == 'Image'">
+                  <app-image
+                    [fieldTypeArray]="fieldTypeArray"
+                    [setFieldType]="setFieldType"
+                    [selectedField]="selectedField"
+                    [deleteOption]="deleteOption"
+                    [createFieldForm]="createFieldForm"
+                    [addAnotherOption]="addAnotherOption"
+                  ></app-image>
+                </div>
+              </div>
+            </div>
+
+            <!-- options for field  -->
+            <hr />
+            <div class="options">
+              <div
+                formGroupName="some_requirements"
+                class="d-flex justify-content-between"
+              >
+                <div
+                  (click)="deleteField()"
+                  class="mx-3 pointer d-none d-lg-block"
+                >
+                  <i class="fa-solid fa-trash"></i>
+                </div>
+                <div class="language me-1 d-none d-lg-block">
+                  <div class="dropdown">
+                    <button
+                      class="form-select form-select-sm border-0 language-option p-2 shadow-none"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      {{ langText }}
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li
+                        (click)="switchLangField('en')"
+                        class="text-center dropdown-item"
+                      >
+                        English
+                      </li>
+                      <li
+                        (click)="switchLangField('ar')"
+                        class="text-center dropdown-item"
+                      >
+                        Arbic
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="Filter d-flex">
+                  <label
+                    class="form-check-label pe-1 pointer"
+                    for="filterOption"
+                    >Used in Filter</label
+                  >
+                  <div class="form-check form-switch">
+                    <input
+                      formControlName="used_in_Filter"
+                      class="form-check-input shadow-none"
+                      type="checkbox"
+                      role="switch"
+                      id="filterOption"
+                    />
+                  </div>
+                </div>
+                <div class="unique d-flex">
+                  <label
+                    class="form-check-label pe-1 pointer"
+                    for="uniqueOption"
+                    >Unique</label
+                  >
+                  <div class="form-check form-switch">
+                    <input
+                      formControlName="unique"
+                      class="form-check-input shadow-none"
+                      type="checkbox"
+                      role="switch"
+                      id="uniqueOption"
+                    />
+                  </div>
+                </div>
+                <div class="required d-flex">
+                  <label
+                    class="form-check-label pe-1 pointer"
+                    for="requiredOption"
+                    >Required</label
+                  >
+                  <div class="form-check form-switch">
+                    <input
+                      formControlName="required"
+                      class="form-check-input shadow-none"
+                      type="checkbox"
+                      role="switch"
+                      id="requiredOption"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-start mt-2 d-block d-lg-none">
+                <div class="mx-3 pointer">
+                  <img src="assets/icons/delete.png" alt="delete" />
+                </div>
+                <div class="language me-1">
+                  <select
+                    class="form-select form-select-sm border-0 language-option p-2 shadow-none"
+                  >
+                    <option value="" disabled selected hidden>Language</option>
+                    <option value="text">Arbic</option>
+                    <option value="text">English</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="new-btn">
+              <div *ngIf="action =='create'; then  create  else updata">
+
+              </div>
+              <ng-template #create>
+                <button
+                (click)="createField()"
+                class="btn btn-primary rounded-1 btn-new"
+              >
+                <i class="fa-solid fa-check"></i> Save
+              </button>
+              </ng-template>
+              <ng-template #updata>
+                <button
+                  (click)="sendDataToUpdataField()"
+                  class="btn btn-primary rounded-1 btn-new"
+                >
+                  <i class="fa-solid fa-check"></i> updata
+                </button>
+              </ng-template>
+            </div>
+          </form>
+
+          <p>{{ createFieldForm.value | json }}</p>
+          <p>{{ createFieldForm.status | json }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- category-field to select field type -->
+    <div class="col-xl-3">
+      <app-category-field
+        [fieldTypeArray]="fieldTypeArray"
+        [setFieldType]="setFieldType"
+        [selectedField]="selectedField"
+      ></app-category-field>
+    </div>
+  </div>
+</div>

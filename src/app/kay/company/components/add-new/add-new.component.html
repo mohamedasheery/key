@@ -1,0 +1,145 @@
+<div class="d-flex justify-content-between py-3">
+    <div class="title">
+      <h5 class="fw-bold">Add new company</h5>
+    </div>
+    <div class="new-btn">
+      <button
+        class="btn btn-primary rounded-1 btn-new"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#addModal"
+      >
+        <img class="pe-2" src="assets/icons/add.png" alt="add" /> new
+      </button>
+    </div>
+
+
+      <!-- Modal -->
+
+
+
+  <div
+  class="modal fade"
+  id="addModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title title-form" id="exampleModalLabel">
+          New company
+        </h5>
+      </div>
+
+      <div class="modal-body">
+        <div>
+          <form [formGroup]="addNewCompany">
+            <div class="row">
+              <div class="mb-3 col-sm-12">
+                <input
+                  [class.is-invalid]="
+                    companyName?.invalid && companyName?.touched
+                  "
+                  type="text"
+                  class="form-control border-0 bg-light p-2"
+                  formControlName="companyName"
+                  id="companyName"
+                  placeholder="Name"
+                  name="companyName"
+                />
+                <div *ngIf="companyName?.invalid && companyName?.touched">
+                  <p
+                    *ngIf="companyName?.errors?.['required']"
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                    name is required
+                  </p>
+                  <p
+                    *ngIf="companyName?.errors?.['pattern'] "
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                     name must be 3 letters or more
+                  </p>
+                </div>
+              </div>
+              <div class="mb-3 col-sm-6">
+                <select
+                  class="form-select border-0 bg-light p-2"
+                  [class.is-invalid]="
+                    companyStatus?.invalid && companyStatus?.touched
+                  "
+                  formControlName="companyStatus"
+                  name="tenantStatu"
+                >
+                  <option value="" disabled selected hidden>stutes</option>
+
+                  <option value="Active">Active</option>
+                  <option value="In-Active">In Active</option>
+                </select>
+                <div *ngIf="companyStatus?.invalid && companyStatus?.touched">
+                  <p
+                    *ngIf="companyStatus?.errors?.['required'] "
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                    Status is required
+                  </p>
+                </div>
+              </div>
+              <div class="mb-3 col-sm-6 " >
+                <select
+
+                  class="form-select border-0 bg-light p-2"
+                  [class.is-invalid]="
+                    AssignedTenant?.invalid && AssignedTenant?.touched
+                  "  
+                  formControlName="AssignedTenant"
+
+
+                >
+
+                <option value="" disabled selected hidden>tenant</option>
+                  <option  *ngFor="let tenant of tenants.data" value="{{tenant.id}}">{{tenant.name}}</option>
+                </select>
+                <div *ngIf="AssignedTenant?.invalid && AssignedTenant?.touched">
+                  <p
+                    *ngIf="AssignedTenant?.errors?.['required'] "
+                    class="text-danger p-2 my-1 small-f-12"
+                  >
+                    tenant is required
+                  </p>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" #closeModal class="btn" data-bs-dismiss="modal">
+                Cancel
+              </button>
+              <button
+              *ngIf="spinner; else loading"
+                type="submit"
+                class="btn btn-primary px-4 rounded-1"
+                (click)="getNewCompany()"
+                [disabled]="addNewCompany.invalid"
+              >
+                <img class="ps-2" src="assets/icons/check.png" alt="check" />
+                Add
+              </button>
+              <ng-template #loading>
+                <span  class="spinner-border spinner-border-sm text-info"></span>
+              </ng-template>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+  </div>
+
+

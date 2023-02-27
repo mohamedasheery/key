@@ -1,0 +1,85 @@
+<div *ngIf="action == 'create'; then create; else list"></div>
+
+<ng-template #create>
+  <form [formGroup]="createFieldForm" class="row">
+    <div
+      formArrayName="fieldType"
+      *ngFor="let input of fieldTypeArray.controls; let i = index"
+    >
+      <div class="form-check d-flex align-items-center">
+        <input class="me-3" type="checkbox" />
+        <input
+          placeholder="Text Answer"
+          [formControlName]="i"
+          [class.is-invalid]="input?.invalid"
+          class="form-control w-50 shadow-none answer-text-input"
+          type="text"
+        />
+        <button
+          (click)="deleteOption(i)"
+          class="btn-close shadow-none small-f-10"
+        ></button>
+      </div>
+    </div>
+    <!--  btn to create another option type = checkbox -->
+    <div class="d-flex align-items-center">
+      <input
+        class="form-check-input me-2"
+        type="checkbox"
+        value=""
+        id="flexCheckDefault"
+      />
+      <button
+        (click)="addAnotherOption()"
+        class="btn fw-semibold text-primary small-f-14"
+      >
+        Add option
+      </button>
+    </div>
+  </form></ng-template
+>
+<ng-template #list>
+  <div *ngIf="fields.data.length > 0">
+    <div *ngFor="let field of fields.data">
+      <div *ngIf="field.type == 'Checkbox'" >
+      <div class="bg-white-content p-2 my-3">
+        <!-- head of field -->
+        <div class="d-flex justify-content-between">
+          <div class="title-field">
+            <span >{{ field.title.en }}</span>
+            <span>{{ field.id }}</span>
+            <span>{{ field.type }}</span>
+            <span *ngFor="let item of field.some_requirements">
+              <i
+                *ngIf="item == 'Required'"
+                class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+              ></i>
+            </span>
+          </div>
+          <div>
+            <i
+              (click)="updateField(field)"
+              class="fa-sharp fa-solid fa-pen-to-square pointer"
+            ></i>
+          </div>
+        </div>
+        <!-- body of field -->
+
+        <div class="Answer-text mb-3 mt-2 px-3">
+          <div class="form-check my-2" *ngFor="let option of field.options.en">
+            <input
+              class="form-check-input shadow-none"
+              type="checkbox"
+              value=""
+              id="option-1"
+            />
+            <label class="form-check-label" for="option-1">
+              {{ option }}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</ng-template>

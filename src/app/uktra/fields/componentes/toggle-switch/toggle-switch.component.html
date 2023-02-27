@@ -1,0 +1,23 @@
+
+<form [formGroup]="createFieldForm" class=" row ">
+
+  <div  class="col-md-6"
+    formArrayName="fieldType"
+    *ngFor="let input of fieldTypeArray.controls; let i = index"
+  >
+
+    <input
+    [formControlName]="i"
+    [class.is-invalid]="input.invalid"
+    class="form-control  shadow-none answer-text-input"
+    [placeholder]='"option " + (i +1)'
+    type="text"
+
+  />
+
+
+
+  </div>
+
+</form>
+
