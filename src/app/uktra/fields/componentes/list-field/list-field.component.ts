@@ -14,11 +14,12 @@ export class ListFieldComponent {
     constructor(
        private fieldsService: FieldsService,
        private sharedService:SharedService,
-      private fb:FormBuilder ,
+      private fb:FormBuilder,
       private toastr: ToastrService){}
 fields:any={
   data:[]
 };
+
 listError:any;
 sendEle(ele:any){
   console.log(ele);
@@ -36,14 +37,18 @@ sendEle(ele:any){
 @Input() field: any;
 
     ngOnInit(): void {
-      console.log(this.action);
 
       this.sharedService.setToggleSpinner(true);
       this.fieldsService.getFieldsFromApi().subscribe((data:any)=>{
-        this.fields=data;
+        this.fields=data
+        this.fieldsService.setFields(data);
+        this.fieldsService.getFields().subscribe((data:any)=>{
+          console.log(data);
+          this.fields=data});
+     ;
       this.sharedService.setToggleSpinner(false);
 
-        console.log(data);
+
       },(error)=>{
       this.sharedService.setToggleSpinner(false);
 

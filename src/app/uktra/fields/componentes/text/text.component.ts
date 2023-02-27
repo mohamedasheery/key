@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/shared/shared/services/shared.service';
 import { FieldsService } from '../../services/fields.service';
 
@@ -10,7 +11,8 @@ import { FieldsService } from '../../services/fields.service';
 })
 export class TextComponent {
   constructor(public fb:FormBuilder,
-     private fieldsService :FieldsService ,
+      private fieldsService :FieldsService ,
+      private toastr: ToastrService,
       private sharedService:SharedService){}
   listError:any;
 

@@ -112,13 +112,11 @@ export class AddFieldComponent {
 
   // fill form to updata
   updateField(ele: any) {
-    debugger
-     this.fieldsService.setActionOnField('updata');
-     this.fieldsService.setFieldToUpdata(ele);
-    this.field = ele;
-    console.log(this.field);
+// debugger
+     console.log(ele);
+      this.fieldsService.setActionOnField('updata');
+      this.fieldsService.setFieldToUpdata(ele);
     this.selectedField.type = ele.type;
-    console.log(ele);
     this.createFieldForm.patchValue({
       title: ele.title.en,
       some_requirements: {
@@ -127,7 +125,7 @@ export class AddFieldComponent {
         unique: ele.some_requirements.includes('Unique'),
       },
     })
-    this.setOptionsToUpdataField(ele)
+    this.setOptionsToUpdataField(ele);
     console.log(this.createFieldForm.value);
   }
 
@@ -159,28 +157,43 @@ export class AddFieldComponent {
 
   }
   sendDataToUpdataField(){
-
+    let singleField:any ;
+    this.sharedService.setToggleSpinner(true);
     this.fieldsService.getFieldToUpdata().subscribe((data:any)=>{
-     this.field = data;
-           this.field.title[this.langField] = this.fieldTitle?.value;
-      this.field.options[this.langField] = this.fieldTypeArray.controls.map(cont => cont.value);
-      this.field.type = this.selectedField.type;
-      this.field.some_requirements = this.getSome_requirements();
+      console.log(data);
+
+     singleField = data;
+     console.log(singleField);
+
+    //  singleField.title[this.langField] = this.fieldTitle?.value;
+    //  singleField.options[this.langField] = this.fieldTypeArray.controls.map(cont => cont.value);
+    //   // this.field.type = this.selectedField.type;
+    //   singleField.some_requirements = this.getSome_requirements();
     })
-     console.log(this.field);
+      singleField.title[this.langField] = this.fieldTitle?.value;
+     singleField.options[this.langField] = this.fieldTypeArray.controls.map(cont => cont.value);
+        this.field.type = this.selectedField.type;
+       singleField.some_requirements = this.getSome_requirements();
+   console.log(singleField);
 
-  this.fieldsService.updateField(this.field).subscribe((data:any)=>{console.log(data);
-  },(error)=>{console.log(error);
+  this.fieldsService.updateField(singleField).subscribe((data:any)=>{
+    this.sharedService.setToggleSpinner(false);
+    this.toastr.success(data.message);
+     // this.clearForm();
+    this.fieldsService.getFieldsFromApi().subscribe((data:any)=>{
+      this.fieldsService.setFields(data);
+    })
+  },(error)=>{
+    this.sharedService.setToggleSpinner(false);
+
+     this.toastr.error(error.message);;
   })
-
-
-
 
   }
   //  set form control to form array
   setFieldType(ele: any) {
     debugger
-    this.fieldsService.setActionOnField('add');
+    this.fieldsService.setActionOnField('create');
 
     if (ele.type == this.selectedField.type) {
       this.typeFieldDataService.setSelectedField(ele);
@@ -330,9 +343,10 @@ export class AddFieldComponent {
     this.createFieldForm.reset();
     this.field.some_requirements = [];
     this.field.options = {};
-    this.field.title[this.langField] = '';
+    this.field.title[this.langField] = 'tttttttt';
     this.switchLangField(localStorage.getItem('selectedLanguage'));
     this.langText = 'Language';
+
 
   }
   createField() {
@@ -346,13 +360,12 @@ export class AddFieldComponent {
       this.sharedService.setToggleSpinner(true);
 
       this.field.title[this.langField] = this.fieldTitle?.value;
-      // this.field.title['ar'] = '';
       this.field.options[this.langField] = this.fieldTypeArray.controls.map(cont => cont.value);
       this.field.type = this.selectedField.type;
       this.field.some_requirements = this.getSome_requirements();
-      console.log(this.field.some_requirements);
 
-      console.log(this.field);
+
+
 
 
       this.fieldsService.addField(this.field).subscribe((data: any) => {
@@ -393,9 +406,7 @@ export class AddFieldComponent {
 
   ngOnInit(): void {
     this.fieldsService.getActionOnField().subscribe((data:any)=>{this.action = data})
-    this.fieldsService.getFieldsFromApi().subscribe((data: any) => {
-    }, (error: any) => {
-    })
+
     this.typeFieldDataService.getTypefieldData().subscribe((data: any) => {
       this.typeFields = data;
 

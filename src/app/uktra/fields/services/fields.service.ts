@@ -10,6 +10,7 @@ export class FieldsService {
   constructor(private http: HttpClient) { }
 actionOnField = new BehaviorSubject('create');
  fieldToUpdata = new BehaviorSubject({});
+ fields = new BehaviorSubject([]);
   getFieldsFromApi() {
     return this.http.get('/api/field', {
       headers: environment.headers
@@ -46,4 +47,10 @@ actionOnField = new BehaviorSubject('create');
 getFieldToUpdata():Observable<any>{
 return this.fieldToUpdata
 }
+getFields():Observable<any>{
+  return this.fields
+  }
+  setFields(value:any){
+    this.fields.next(value)
+  }
 }
