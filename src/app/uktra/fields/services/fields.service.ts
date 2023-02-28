@@ -27,6 +27,13 @@ actionOnField = new BehaviorSubject('create');
       })
     );
   }
+  deleteField(id:any) {
+    return this.http.delete('/api/field/'+id).pipe(
+      catchError((error) => {
+        return throwError(() => error.message || 'some error from server ');
+      })
+    );
+  }
   addField(field:any) {
     return this.http.post('/api/field/create', field ).pipe(
       catchError((error) => {

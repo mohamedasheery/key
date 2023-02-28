@@ -45,9 +45,9 @@
         <!-- head of field -->
         <div class="d-flex justify-content-between">
           <div class="title-field">
-            <p >{{ field.title.ar }}</p>
-            <span>{{ field.id }} ---</span>
-            <span>{{ field.type }}</span>
+            <span >{{ field.title.ar }}</span>
+            <!-- <span>{{ field.id }} ---</span>
+            <span>{{ field.type }}</span> -->
             <span *ngFor="let item of field.some_requirements">
               <i
                 *ngIf="item == 'Required'"
@@ -65,14 +65,14 @@
         <!-- body of field -->
 
         <div class="Answer-text mb-3 mt-2 px-3">
-          <div class="form-check my-2" *ngFor="let option of field.options.ar">
+          <div class="form-check my-2" *ngFor="let option of field.options.ar; let i = index">
             <input
               class="form-check-input shadow-none"
               type="checkbox"
-              value=""
-              id="option-1"
+              [value]="i"
+              [id]="i + field.id"
             />
-            <label class="form-check-label" for="option-1">
+            <label class="form-check-label" [for]="i + field.id">
               {{ option }}
             </label>
           </div>
@@ -85,9 +85,9 @@
       <!-- head of field -->
       <div class="d-flex justify-content-between">
         <div class="title-field">
-          <p >{{ field.title.en }}</p>
-          <span>{{ field.id }} ---</span>
-          <span>{{ field.type }}</span>
+          <span >{{ field.title.en }}</span>
+          <!-- <span>{{ field.id }} ---</span>
+          <span>{{ field.type }}</span> -->
           <span *ngFor="let item of field.some_requirements">
             <i
               *ngIf="item == 'Required'"
@@ -105,14 +105,14 @@
       <!-- body of field -->
 
       <div class="Answer-text mb-3 mt-2 px-3">
-        <div class="form-check my-2" *ngFor="let option of field.options.en">
+        <div class="form-check my-2" *ngFor="let option of field.options.en ; let i = index">
           <input
             class="form-check-input shadow-none"
             type="checkbox"
-            value=""
-            id="option-1"
+            [value]="i"
+            [id]="i + field.id"
           />
-          <label class="form-check-label" for="option-1">
+          <label class="form-check-label" [for]="i + field.id">
             {{ option }}
           </label>
         </div>

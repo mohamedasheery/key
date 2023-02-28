@@ -31,19 +31,7 @@
     <div class="col-xl-9">
       <app-filter-field></app-filter-field>
       <div>
-        <app-list-field
-          [fieldTypeArray]="fieldTypeArray"
-          [setFieldType]="setFieldType"
-          [selectedField]="selectedField"
-          [deleteOption]="deleteOption"
-          [createFieldForm]="createFieldForm"
-          [setOptionsToUpdataField]="setOptionsToUpdataField"
-          [updateField]="updateField"
-          [setOptionsToUpdataField]="setOptionsToUpdataField"
-          [addAnotherOption]="addAnotherOption"
-          [field]="field"
-          [switchLangField]="switchLangField"
-        ></app-list-field>
+
         <!-- show error message create field -->
         <div *ngIf="errorCreateField.error.message">
           <p class="alert alert-danger">{{ errorCreateField.error.message }}</p>
@@ -131,6 +119,7 @@
                     [deleteOption]="deleteOption"
                     [createFieldForm]="createFieldForm"
                     [addAnotherOption]="addAnotherOption"
+                    action="create"
                   ></app-radiobutton>
                 </div>
                 <!-- create field type = fileUpload -->
@@ -244,12 +233,7 @@
                 formGroupName="some_requirements"
                 class="d-flex justify-content-between"
               >
-                <div
-                  (click)="deleteField()"
-                  class="mx-3 pointer d-none d-lg-block"
-                >
-                  <i class="fa-solid fa-trash"></i>
-                </div>
+
                 <div class="language me-1 d-none d-lg-block">
                   <div class="dropdown">
                     <button
@@ -371,10 +355,11 @@
                 </ng-template>
               </div>
               <div class="delete mx-2"  *ngIf="action == 'update'">
-                 <button class="btn btn-outline-danger">delete</button>
+                 <button (click)="deleteField()" class="btn btn-outline-danger">delete</button>
+
               </div>
               <div class="cancel mx-2">
-                <button class="btn btn-outline-warning">cancel</button>
+                <button (click)="cancelField()"  class="btn me-2 h-sm-100 text-danger border-danger rounded-1">cancel</button>
 
               </div>
             </div>
@@ -384,6 +369,19 @@
           <p>{{ createFieldForm.value | json }}</p>
           <p>{{ createFieldForm.status | json }}</p>
         </div>
+        <app-list-field
+        [fieldTypeArray]="fieldTypeArray"
+        [setFieldType]="setFieldType"
+        [selectedField]="selectedField"
+        [deleteOption]="deleteOption"
+        [createFieldForm]="createFieldForm"
+        [setOptionsToUpdataField]="setOptionsToUpdataField"
+        [updateField]="updateField"
+        [setOptionsToUpdataField]="setOptionsToUpdataField"
+        [addAnotherOption]="addAnotherOption"
+        [field]="field"
+        [switchLangField]="switchLangField"
+      ></app-list-field>
       </div>
     </div>
 

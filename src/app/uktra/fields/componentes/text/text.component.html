@@ -31,14 +31,15 @@
           <div class="d-flex justify-content-between">
             <div>
               <span>{{ field.title.ar }}</span>
-              <span>{{ field.id }}</span>
-              <span>{{ field.type }}</span>
               <span *ngFor="let item of field.some_requirements">
                 <i
                   *ngIf="item == 'Required'"
                   class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
                 ></i>
               </span>
+              <!-- <p>{{ field.id }}</p>
+              <span>{{ field.type }}</span> -->
+
             </div>
             <div>
               <i
@@ -71,8 +72,8 @@
         <div class="d-flex justify-content-between">
           <div>
             <span>{{ field.title.en }}</span>
-            <span>{{ field.id }}</span>
-            <span>{{ field.type }}</span>
+            <!-- <span>{{ field.id }}</span>
+            <span>{{ field.type }}</span> -->
             <span *ngFor="let item of field.some_requirements">
               <i
                 *ngIf="item == 'Required'"

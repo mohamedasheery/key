@@ -86,7 +86,14 @@ export class AddFieldComponent {
     this.fieldTypeArray.push(this.fb.control('', [Validators.required]));
   }
 
+  deleteOption(index: any) {
+    if (this.fieldTypeArray.length > 1) {
+      this.fieldTypeArray.removeAt(index)
+    } else {
+      this.toastr.show('this fieid must have one option or more')
+    }
 
+  }
   switchLangField(lang: any) {
 
     let element = this.elem.nativeElement.querySelector('.formToAddField');
@@ -113,6 +120,10 @@ export class AddFieldComponent {
   // fill form to updata
   updateField(ele: any) {
 // debugger
+ window.scroll({
+  top: 0,
+  behavior: 'smooth'
+});
      console.log(ele);
       this.fieldsService.setActionOnField('update');
       this.fieldsService.setFieldToUpdata(ele);
@@ -206,7 +217,11 @@ export class AddFieldComponent {
   }
   //  set form control to form array
   setFieldType(ele: any) {
-    debugger
+  //  debugger
+  window.scroll({
+    top: 0,
+    behavior: 'smooth'
+  });
     this.fieldsService.setActionOnField('create');
 
     if (ele.type == this.selectedField.type) {
@@ -286,7 +301,7 @@ export class AddFieldComponent {
         case 'Checkbox':
           this.fieldTypeArray.push(this.fb.control('', [Validators.required]));
           break;
-        case 'Radio Button ':
+        case 'Radio Button':
           this.fieldTypeArray.push(this.fb.control('', [Validators.required]));
 
           break;
@@ -404,19 +419,27 @@ export class AddFieldComponent {
   }
 
   deleteField() {
+   let fieldId:any;
+    this.fieldsService.getFieldToUpdata().subscribe((data:any)=>{
+      fieldId = data.id;
+     console.log(fieldId);
+    });
+    this.fieldsService.deleteField(fieldId).subscribe((data:any)=>{
+      this.toastr.success(data.message);
+      this.fieldTypeArray.clear();
+      this.fieldsService.getFieldsFromApi().subscribe((data:any)=>{
+        this.fieldsService.setFields(data);
+      })
+    },(error:any)=>{
+      this.toastr.error(error.message)
+    })
+
+  }
+  cancelField() {
     this.fieldTypeArray.clear();
 
-
-
   }
-  deleteOption(index: any) {
-    if (this.fieldTypeArray.length > 1) {
-      this.fieldTypeArray.removeAt(index)
-    } else {
-      this.toastr.warning('this fieid must have one option or more')
-    }
 
-  }
 
   ngOnInit(): void {
     this.fieldsService.getActionOnField().subscribe((data:any)=>{this.action = data})

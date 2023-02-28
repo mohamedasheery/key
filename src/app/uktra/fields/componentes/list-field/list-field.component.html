@@ -6,7 +6,6 @@
        action="viwe"
        [field]="field"
        [switchLangField]="switchLangField"
-
       [fields]="fields"
       [updateField]="updateField"
       [fieldTypeArray]="fieldTypeArray"
@@ -38,6 +37,23 @@
         [switchLangField]="switchLangField"
 
       ></app-checkbox>
+    </div>
+    <div *ngIf="field.type == 'Radio Button'">
+      <app-radiobutton
+        action="viwe"
+        [field]="field"
+        [fields]="fields"
+        [updateField]="updateField"
+        [fieldTypeArray]="fieldTypeArray"
+        [setFieldType]="setFieldType"
+        [selectedField]="selectedField"
+        [deleteOption]="deleteOption"
+        [createFieldForm]="createFieldForm"
+        [addAnotherOption]="addAnotherOption"
+        [setOptionsToUpdataField]="setOptionsToUpdataField"
+        [switchLangField]="switchLangField"
+
+      ></app-radiobutton>
     </div>
 
     <!--

@@ -1,37 +1,128 @@
-<form [formGroup]="createFieldForm" class=" row ">
-  <div
-  formArrayName="fieldType"
-  *ngFor="let input of fieldTypeArray.controls; let i = index"
->
-  <div class="form-check d-flex align-items-center">
-    <input class=" me-2" type="radio" />
+
+<div *ngIf="action == 'create'; then create; else list"></div>
+
+<ng-template #create>
+  <form [formGroup]="createFieldForm" class=" row ">
+    <div
+    formArrayName="fieldType"
+    *ngFor="let input of fieldTypeArray.controls; let i = index"
+  >
+    <div class="form-check d-flex align-items-center">
+      <input class=" me-2" type="radio" />
+      <input
+        placeholder="Text Answer"
+        [formControlName]="i"
+        class="form-control w-50 shadow-none answer-text-input"
+        [class.is-invalid]="input?.invalid"
+        type="text"
+      />
+      <button
+        (click)="deleteOption(i)"
+        class="btn-close shadow-none small-f-10"
+      ></button>
+    </div>
+  </div>
+  <!--  btn to create another option type = radio -->
+
+  <div class="d-flex align-items-center">
     <input
-      placeholder="Text Answer"
-      [formControlName]="i"
-      class="form-control w-50 shadow-none answer-text-input"
-      [class.is-invalid]="input?.invalid"
-      type="text"
+      class="form-check-input me-2"
+      type="radio"
+      value=""
+      id="flexCheckDefault"
     />
     <button
-      (click)="deleteOption(i)"
-      class="btn-close shadow-none small-f-10"
-    ></button>
+      (click)="addAnotherOption()"
+      class="btn fw-semibold text-primary small-f-14"
+    >
+      Add option
+    </button>
   </div>
-</div>
-<!--  btn to create another option type = radio -->
+  </form>
+  </ng-template
+>
+<ng-template #list>
+   <!-- display field Arbic -->
+   <div *ngIf="field.title.ar" dir="rtl" >
+      <div class="bg-white-content p-2 my-3">
+        <!-- head of field -->
+        <div class="d-flex justify-content-between">
+          <div class="title-field">
+            <span >{{ field.title.ar }}</span>
+            <!-- <span>{{ field.id }} ---</span>
+            <span>{{ field.type }}</span> -->
+            <span *ngFor="let item of field.some_requirements">
+              <i
+                *ngIf="item == 'Required'"
+                class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+              ></i>
+            </span>
+          </div>
+          <div>
+            <i
+              (click)="updateField(field)"
+              class="fa-sharp fa-solid fa-pen-to-square pointer"
+            ></i>
+          </div>
+        </div>
+        <!-- body of field -->
 
-<div class="d-flex align-items-center">
-  <input
-    class="form-check-input me-2"
-    type="radio"
-    value=""
-    id="flexCheckDefault"
-  />
-  <button
-    (click)="addAnotherOption()"
-    class="btn fw-semibold text-primary small-f-14"
-  >
-    Add option
-  </button>
-</div>
-</form>
+        <div class="Answer-text mb-3 mt-2 px-3">
+          <div class="form-check my-2" *ngFor="let option of field.options.ar ; let i = index">
+            <input
+              class="form-check-input shadow-none"
+              type="radio"
+              [value]="i"
+              [id]="i + field.id"
+              [name]="field.title.ar"
+
+            />
+            <label class="form-check-label" [for]="i + field.id">
+              {{ option }}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- display field English  -->
+  <div *ngIf="field.title.en" >
+    <div class="bg-white-content p-2 my-3">
+      <!-- head of field -->
+      <div class="d-flex justify-content-between">
+        <div class="title-field">
+          <span >{{ field.title.en }}</span>
+          <!-- <span>{{ field.id }} ---</span>
+          <span>{{ field.type }}</span> -->
+          <span *ngFor="let item of field.some_requirements">
+            <i
+              *ngIf="item == 'Required'"
+              class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+            ></i>
+          </span>
+        </div>
+        <div>
+          <i
+            (click)="updateField(field)"
+            class="fa-sharp fa-solid fa-pen-to-square pointer"
+          ></i>
+        </div>
+      </div>
+      <!-- body of field -->
+
+      <div class="Answer-text mb-3 mt-2 px-3">
+        <div class="form-check my-2" *ngFor="let option of field.options.en ; let i = index">
+          <input
+            class="form-check-input shadow-none"
+            type="radio"
+             [value]="i"
+             [id]="i + field.id"
+             [name]="field.title.en"
+          />
+          <label class="form-check-label" [for]="i + field.id">
+            {{ option }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
