@@ -35,8 +35,8 @@ sendEle(ele:any){
 @Input() createFieldForm: any;
 @Input() setOptionsToUpdataField: any;
 @Input() action: any;
-@Input() field: any;
 @Input() switchLangField: any;
+@Input() langField: any;
 
     ngOnInit(): void {
 

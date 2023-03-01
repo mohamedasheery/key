@@ -1,23 +1,69 @@
+<div *ngIf="action == 'create'; then create; else list"></div>
 
-<form [formGroup]="createFieldForm" class=" row ">
+<ng-template #create>
+  <form [formGroup]="createFieldForm" class="row">
+    <div
+      class="col-md-6"
+      formArrayName="fieldType"
+      *ngFor="let input of fieldTypeArray.controls; let i = index"
+    >
+      <input
+        [formControlName]="i"
+        [class.is-invalid]="input.invalid"
+        class="form-control shadow-none answer-text-input"
+        [placeholder]="'option ' + (i + 1)"
+        type="text"
+      />
+    </div>
+  </form>
+</ng-template>
+<ng-template #list>
+  <!-- display field -->
+  <div *ngIf="field">
+    <div class="bg-white-content p-2 my-3">
+      <!-- head of field -->
+      <div class="d-flex justify-content-between">
+        <div class="title-field">
+          <span>{{ field.title[langField] }}</span>
+          <!-- <span>{{ field.id }} ---</span>
+          <span>{{ field.type }}</span> -->
+          <span *ngFor="let item of field.some_requirements">
+            <i
+              *ngIf="item == 'Required'"
+              class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+            ></i>
+          </span>
+        </div>
+        <div>
+          <i
+            (click)="updateField(field)"
+            class="fa-sharp fa-solid fa-pen-to-square pointer"
+          ></i>
+        </div>
+      </div>
+      <!-- body of field -->
+      <div class=" d-flex justify-content-around p-4">
+        <div [class.justify-content-between]="i == 0" [class.justify-content-end]="i == 1" class="d-flex  my-2 w-50 " *ngFor="let option of field.options[langField]; let i = index">
 
-  <div  class="col-md-6"
-    formArrayName="fieldType"
-    *ngFor="let input of fieldTypeArray.controls; let i = index"
-  >
 
-    <input
-    [formControlName]="i"
-    [class.is-invalid]="input.invalid"
-    class="form-control  shadow-none answer-text-input"
-    [placeholder]='"option " + (i +1)'
-    type="text"
-
-  />
+            <label class="ms-3" *ngIf="i == 0" [for]="field.id">{{option}}</label>
 
 
+            <div *ngIf="i == 0" class="form-check form-switch">
+              <input
+                class="form-check-input shadow-none"
+                type="checkbox"
+                role="switch"
+                [id]="field.id"
+              />
+            </div>
 
+            <label *ngIf="i == 1" [for]="field.id">{{option}}</label>
+
+        </div>
+      </div>
+
+
+    </div>
   </div>
-
-</form>
-
+</ng-template>

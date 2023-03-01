@@ -12,6 +12,8 @@ export class RadiobuttonComponent {
   constructor(public fb:FormBuilder ,
     private fieldsService:FieldsService,
      private toastr: ToastrService,){}
+     langField:any=localStorage.getItem('selectedLanguage');
+
   @Input() addAnotherOption: any;
   @Input() selectedField: any;
   @Input() setFieldType: any;

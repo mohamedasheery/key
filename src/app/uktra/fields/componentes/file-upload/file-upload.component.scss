@@ -7,3 +7,14 @@
   width: 50% !important;
 
 }
+.type-FileUpload{
+  .FileUpload-field{
+      border: 1px dashed rgba(0, 0, 0, 0.38);
+
+
+    }
+    .Answer-FileUpload ::placeholder{
+      text-align: center;
+      color: rgba(0, 0, 0, 0.38);;
+    }
+}

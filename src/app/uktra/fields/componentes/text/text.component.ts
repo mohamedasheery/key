@@ -16,7 +16,7 @@ export class TextComponent {
       private elem: ElementRef,
       private sharedService:SharedService){}
   listError:any;
-
+  langField:any=localStorage.getItem('selectedLanguage');
 @Input() addAnotherOption: any;
 @Input() selectedField: any;
 @Input() setFieldType: any;

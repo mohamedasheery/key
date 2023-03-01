@@ -56,6 +56,7 @@ export class AddFieldComponent {
 
   createFieldForm = this.fb.group({
     title: ['', [Validators.required]],
+
     fieldType: this.fb.array([]),
     some_requirements: this.fb.group({
       required: [false],
@@ -127,30 +128,17 @@ export class AddFieldComponent {
      console.log(ele);
       this.fieldsService.setActionOnField('update');
       this.fieldsService.setFieldToUpdata(ele);
-    this.selectedField.type = ele.type;
-    if (ele.title.en) {
+      this.selectedField.type = ele.type;
+
       this.createFieldForm.patchValue({
 
-        title: ele.title.en,
+        title: ele.title[this.langField],
         some_requirements: {
           required: ele.some_requirements.includes('Required'),
           used_in_Filter: ele.some_requirements.includes('Used in Filter'),
           unique: ele.some_requirements.includes('Unique'),
         },
       })
-    }else if (ele.title.ar){
-      this.createFieldForm.patchValue({
-
-        title: ele.title.ar,
-        some_requirements: {
-          required: ele.some_requirements.includes('Required'),
-          used_in_Filter: ele.some_requirements.includes('Used in Filter'),
-          unique: ele.some_requirements.includes('Unique'),
-        },
-      })
-    //  this.switchLangField('ar')
-    }
-
     this.setOptionsToUpdataField(ele);
     console.log(this.createFieldForm.value);
   }
@@ -217,7 +205,7 @@ export class AddFieldComponent {
   }
   //  set form control to form array
   setFieldType(ele: any) {
-  //  debugger
+    debugger
   window.scroll({
     top: 0,
     behavior: 'smooth'
@@ -251,8 +239,8 @@ export class AddFieldComponent {
         case 'Rating':
           this.fieldTypeArray.clear();
 
-          this.fieldTypeArray.push(this.fb.control('Bad', [Validators.required]));
-          this.fieldTypeArray.push(this.fb.control('Good', [Validators.required]));
+          this.fieldTypeArray.push(this.fb.control('', [Validators.required]));
+
           break;
         case 'Dropdown':
           this.fieldTypeArray.push(this.fb.control('', [Validators.required]));
@@ -310,8 +298,8 @@ export class AddFieldComponent {
 
           break;
         case 'Rating':
-          this.fieldTypeArray.push(this.fb.control('Bad', [Validators.required]));
-          this.fieldTypeArray.push(this.fb.control('Good', [Validators.required]));
+          this.fieldTypeArray.push(this.fb.control('', [Validators.required]));
+
           break;
         case 'Dropdown':
           this.fieldTypeArray.push(this.fb.control('', [Validators.required]));
@@ -372,7 +360,7 @@ export class AddFieldComponent {
     this.createFieldForm.reset();
     this.field.some_requirements = [];
     this.field.options = {};
-    this.field.title[this.langField] = 'tttttttt';
+    this.field.title[this.langField] = '';
     this.switchLangField(localStorage.getItem('selectedLanguage'));
     this.langText = 'Language';
 
@@ -399,7 +387,9 @@ export class AddFieldComponent {
 
       this.fieldsService.addField(this.field).subscribe((data: any) => {
         this.sharedService.setToggleSpinner(false);
-
+        this.fieldsService.getFieldsFromApi().subscribe((data:any)=>{
+          this.fieldsService.setFields(data)
+        })
         this.toastr.success(data.message);
         this.clearForm();
 

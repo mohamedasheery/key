@@ -1,34 +1,78 @@
-<form [formGroup]="createFieldForm">
-  <div
-    formArrayName="fieldType"
-    *ngFor="let input of fieldTypeArray.controls; let i = index"
-  >
-    <div class="dropdown-type">
-      <div class="d-flex align-items-center">
-        <span class="px-3">{{ i + 1 }}</span>
-        <input
-          [formControlName]="i"
-          [class.is-invalid]="input?.invalid"
-          [placeholder]='"option " + (i +1)'
-          class="form-control w-50 shadow-none answer-text-input"
-          type="Text"
-        />
-        <button
-          (click)="deleteOption(i)"
-          class="btn-close shadow-none small-f-10 px-2"
-        ></button>
+<div *ngIf="action == 'create'; then create; else list"></div>
+
+<ng-template #create>
+  <form [formGroup]="createFieldForm">
+    <div
+      formArrayName="fieldType"
+      *ngFor="let input of fieldTypeArray.controls; let i = index"
+    >
+      <div class="dropdown-type">
+        <div class="d-flex align-items-center">
+          <span class="px-3">{{ i + 1 }}</span>
+          <input
+            [formControlName]="i"
+            [class.is-invalid]="input?.invalid"
+            [placeholder]="'option ' + (i + 1)"
+            class="form-control w-50 shadow-none answer-text-input"
+            type="Text"
+          />
+          <button
+            (click)="deleteOption(i)"
+            class="btn-close shadow-none small-f-10 px-2"
+          ></button>
+        </div>
+      </div>
+    </div>
+    <!--  btn to create another option type = checkbox -->
+
+    <div class="d-flex align-items-center">
+      <i class="fa-solid fa-plus"></i>
+      <button
+        (click)="addAnotherOption()"
+        class="btn fw-semibold text-primary small-f-14"
+      >
+        Add option
+      </button>
+    </div>
+  </form>
+</ng-template>
+<ng-template #list>
+  <!-- display field  -->
+
+  <div *ngIf="field" class="type-rating">
+    <div>
+      <div class="bg-white-content p-2 my-3">
+        <!-- head of field -->
+        <div class="d-flex justify-content-between">
+          <div>
+            <span>{{ field.title[langField] }}</span>
+            <span *ngFor="let item of field.some_requirements">
+              <i
+                *ngIf="item == 'Required'"
+                class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+              ></i>
+            </span>
+          </div>
+          <div>
+            <i
+              (click)="updateField(field)"
+              class="fa-sharp fa-solid fa-pen-to-square pointer"
+            ></i>
+          </div>
+        </div>
+        <!-- body of field -->
+
+        <div class="Answer-dropdown my-3 px-3 d-flex justify-content-around">
+          <select class="form-select shadow-none">
+            <option
+              *ngFor="let option of field.options[langField]; let i = index"
+              selected
+            >
+              {{ option }}
+            </option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
-  <!--  btn to create another option type = checkbox -->
-
-  <div class="d-flex align-items-center">
-    <i class="fa-solid fa-plus"></i>
-    <button
-      (click)="addAnotherOption()"
-      class="btn fw-semibold text-primary small-f-14"
-    >
-      Add option
-    </button>
-  </div>
-</form>
+</ng-template>

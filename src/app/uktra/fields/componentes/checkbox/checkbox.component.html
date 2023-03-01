@@ -39,53 +39,14 @@
   </form></ng-template
 >
 <ng-template #list>
-   <!-- display field Arbic -->
-   <div *ngIf="field.title.ar" dir="rtl" >
-      <div class="bg-white-content p-2 my-3">
-        <!-- head of field -->
-        <div class="d-flex justify-content-between">
-          <div class="title-field">
-            <span >{{ field.title.ar }}</span>
-            <!-- <span>{{ field.id }} ---</span>
-            <span>{{ field.type }}</span> -->
-            <span *ngFor="let item of field.some_requirements">
-              <i
-                *ngIf="item == 'Required'"
-                class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
-              ></i>
-            </span>
-          </div>
-          <div>
-            <i
-              (click)="updateField(field)"
-              class="fa-sharp fa-solid fa-pen-to-square pointer"
-            ></i>
-          </div>
-        </div>
-        <!-- body of field -->
 
-        <div class="Answer-text mb-3 mt-2 px-3">
-          <div class="form-check my-2" *ngFor="let option of field.options.ar; let i = index">
-            <input
-              class="form-check-input shadow-none"
-              type="checkbox"
-              [value]="i"
-              [id]="i + field.id"
-            />
-            <label class="form-check-label" [for]="i + field.id">
-              {{ option }}
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-  <!-- display field English  -->
-  <div *ngIf="field.title.en" >
+  <!-- display field -->
+  <div *ngIf="field" >
     <div class="bg-white-content p-2 my-3">
       <!-- head of field -->
       <div class="d-flex justify-content-between">
         <div class="title-field">
-          <span >{{ field.title.en }}</span>
+          <span >{{ field.title[langField] }}</span>
           <!-- <span>{{ field.id }} ---</span>
           <span>{{ field.type }}</span> -->
           <span *ngFor="let item of field.some_requirements">
@@ -104,16 +65,16 @@
       </div>
       <!-- body of field -->
 
-      <div class="Answer-text mb-3 mt-2 px-3">
-        <div class="form-check my-2" *ngFor="let option of field.options.en ; let i = index">
+      <div class="Answer-checkbox mb-3 mt-2 px-3">
+        <div class="form-check my-2" *ngFor="let option of field.options[langField] ; let i = index">
           <input
             class="form-check-input shadow-none"
             type="checkbox"
             [value]="i"
-            [id]="i + field.id"
+            [id]="i+ ' '+field.id"
           />
-          <label class="form-check-label" [for]="i + field.id">
-            {{ option }}
+          <label class="form-check-label" [for]=" i + '' +field.id">
+            {{option}}
           </label>
         </div>
       </div>

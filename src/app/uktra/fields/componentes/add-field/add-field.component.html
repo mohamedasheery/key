@@ -5,16 +5,14 @@
       <h5 class="fw-bold">Add new Field</h5>
     </div>
     <div class="new-btn">
-      <div *ngIf="action =='create'; then  create  else updata">
-
-      </div>
+      <div *ngIf="action == 'create'; then create; else updata"></div>
       <ng-template #create>
         <button
-        (click)="createField()"
-        class="btn btn-primary rounded-1 btn-new"
-      >
-        <i class="fa-solid fa-check"></i> Save
-      </button>
+          (click)="createField()"
+          class="btn btn-primary rounded-1 btn-new"
+        >
+          <i class="fa-solid fa-check"></i> Save
+        </button>
       </ng-template>
       <ng-template #updata>
         <button
@@ -31,7 +29,6 @@
     <div class="col-xl-9">
       <app-filter-field></app-filter-field>
       <div>
-
         <!-- show error message create field -->
         <div *ngIf="errorCreateField.error.message">
           <p class="alert alert-danger">{{ errorCreateField.error.message }}</p>
@@ -46,14 +43,17 @@
             <div class="header">
               <div class="row">
                 <!-- field type -->
-                <div class="col-lg-8">
+                <div  class="col-lg-8">
+
                   <input
                     [class.is-invalid]="fieldTitle?.invalid"
                     formControlName="title"
                     type="text"
                     class="form-control input-title shadow-none"
                     [placeholder]="titleField"
+
                   />
+
                   <div *ngIf="fieldTitle?.invalid">
                     <p
                       *ngIf="fieldTitle?.errors?.['required']"
@@ -64,10 +64,11 @@
                   </div>
                 </div>
                 <!-- select field type -->
-                <div *ngIf=" action == 'create'" class="col-lg-4 my-lg-0 my-2">
+                <div *ngIf="action == 'create'" class="col-lg-4 my-lg-0 my-2">
                   <app-field-type
                     [fieldTypeArray]="fieldTypeArray"
                     [setFieldType]="setFieldType"
+                    [langField]="langField"
                   ></app-field-type>
                 </div>
               </div>
@@ -134,6 +135,7 @@
                     [deleteOption]="deleteOption"
                     [createFieldForm]="createFieldForm"
                     [addAnotherOption]="addAnotherOption"
+                    action="create"
                   ></app-file-upload>
                 </div>
                 <!-- create field type = rating -->
@@ -145,6 +147,7 @@
                     [deleteOption]="deleteOption"
                     [createFieldForm]="createFieldForm"
                     [addAnotherOption]="addAnotherOption"
+                    action="create"
                   ></app-rating>
                 </div>
                 <!-- create field type = dropdown -->
@@ -160,6 +163,7 @@
                     [deleteOption]="deleteOption"
                     [createFieldForm]="createFieldForm"
                     [addAnotherOption]="addAnotherOption"
+                    action="create"
                   ></app-dropdown>
                 </div>
                 <!-- create field type = textarea -->
@@ -175,6 +179,7 @@
                     [deleteOption]="deleteOption"
                     [createFieldForm]="createFieldForm"
                     [addAnotherOption]="addAnotherOption"
+                    action="create"
                   ></app-textarea>
                 </div>
 
@@ -191,11 +196,25 @@
                     [deleteOption]="deleteOption"
                     [createFieldForm]="createFieldForm"
                     [addAnotherOption]="addAnotherOption"
+                    action="create"
                   ></app-toggle-switch>
                 </div>
                 <!-- create field type = lebel  no  body -->
                 <!-- create field type = time picker no body -->
-
+                <div
+                class="Answer-toggle"
+                *ngIf="selectedField.type == 'Toggle Switch'"
+              >
+                <app-time-picker
+                  [fieldTypeArray]="fieldTypeArray"
+                  [setFieldType]="setFieldType"
+                  [selectedField]="selectedField"
+                  [deleteOption]="deleteOption"
+                  [createFieldForm]="createFieldForm"
+                  [addAnotherOption]="addAnotherOption"
+                  action="create"
+                ></app-time-picker>
+              </div>
                 <!-- create field type = number -->
 
                 <div
@@ -209,6 +228,7 @@
                     [deleteOption]="deleteOption"
                     [createFieldForm]="createFieldForm"
                     [addAnotherOption]="addAnotherOption"
+                    action="create"
                   ></app-number>
                 </div>
                 <!-- create field type = image -->
@@ -221,6 +241,7 @@
                     [deleteOption]="deleteOption"
                     [createFieldForm]="createFieldForm"
                     [addAnotherOption]="addAnotherOption"
+                    action="create"
                   ></app-image>
                 </div>
               </div>
@@ -233,7 +254,6 @@
                 formGroupName="some_requirements"
                 class="d-flex justify-content-between"
               >
-
                 <div class="language me-1 d-none d-lg-block">
                   <div class="dropdown">
                     <button
@@ -312,9 +332,13 @@
               <div class="d-flex justify-content-start mt-2 d-block d-lg-none">
                 <div class="language me-1">
                   <div
-                   type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false" class="form-select form-select-sm border-0 language-option p-2 shadow-none"> {{ langText }}</div>
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    class="form-select form-select-sm border-0 language-option p-2 shadow-none"
+                  >
+                    {{ langText }}
+                  </div>
                   <ul class="dropdown-menu">
                     <li
                       (click)="switchLangField('en')"
@@ -334,16 +358,14 @@
             </div>
             <div class="actions d-flex justify-content-end my-2">
               <div class="new-btn">
-                <div *ngIf="action =='create'; then  create  else updata">
-
-                </div>
+                <div *ngIf="action == 'create'; then create; else updata"></div>
                 <ng-template #create>
                   <button
-                  (click)="createField()"
-                  class="btn btn-primary rounded-1 btn-new"
-                >
-                  <i class="fa-solid fa-check"></i> Save
-                </button>
+                    (click)="createField()"
+                    class="btn btn-primary rounded-1 btn-new"
+                  >
+                    <i class="fa-solid fa-check"></i> Save
+                  </button>
                 </ng-template>
                 <ng-template #updata>
                   <button
@@ -354,34 +376,39 @@
                   </button>
                 </ng-template>
               </div>
-              <div class="delete mx-2"  *ngIf="action == 'update'">
-                 <button (click)="deleteField()" class="btn btn-outline-danger">delete</button>
-
+              <div class="delete mx-2" *ngIf="action == 'update'">
+                <button (click)="deleteField()" class="btn btn-outline-danger">
+                  delete
+                </button>
               </div>
               <div class="cancel mx-2">
-                <button (click)="cancelField()"  class="btn me-2 h-sm-100 text-danger border-danger rounded-1">cancel</button>
-
+                <button
+                  (click)="cancelField()"
+                  class="btn me-2 h-sm-100 text-danger border-danger rounded-1"
+                >
+                  cancel
+                </button>
               </div>
             </div>
-
           </form>
 
           <p>{{ createFieldForm.value | json }}</p>
           <p>{{ createFieldForm.status | json }}</p>
         </div>
         <app-list-field
-        [fieldTypeArray]="fieldTypeArray"
-        [setFieldType]="setFieldType"
-        [selectedField]="selectedField"
-        [deleteOption]="deleteOption"
-        [createFieldForm]="createFieldForm"
-        [setOptionsToUpdataField]="setOptionsToUpdataField"
-        [updateField]="updateField"
-        [setOptionsToUpdataField]="setOptionsToUpdataField"
-        [addAnotherOption]="addAnotherOption"
-        [field]="field"
-        [switchLangField]="switchLangField"
-      ></app-list-field>
+          [fieldTypeArray]="fieldTypeArray"
+          [langField]="langField"
+          [setFieldType]="setFieldType"
+          [selectedField]="selectedField"
+          [deleteOption]="deleteOption"
+          [createFieldForm]="createFieldForm"
+          [setOptionsToUpdataField]="setOptionsToUpdataField"
+          [updateField]="updateField"
+          [setOptionsToUpdataField]="setOptionsToUpdataField"
+          [addAnotherOption]="addAnotherOption"
+
+          [switchLangField]="switchLangField"
+        ></app-list-field>
       </div>
     </div>
 

@@ -14,6 +14,8 @@ export class CheckboxComponent {
        private  fieldsService:FieldsService,
        private elem: ElementRef,
        public toastr: ToastrService,){}
+     langField:any=localStorage.getItem('selectedLanguage');
+
 @Input() addAnotherOption: any;
 @Input() selectedField: any;
 @Input() setFieldType: any;

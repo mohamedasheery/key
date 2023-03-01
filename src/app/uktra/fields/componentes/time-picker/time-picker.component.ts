@@ -4,14 +4,16 @@ import { ToastrService } from 'ngx-toastr';
 import { FieldsService } from '../../services/fields.service';
 
 @Component({
-  selector: 'app-rating',
-  templateUrl: './rating.component.html',
-  styleUrls: ['./rating.component.scss']
+  selector: 'app-time-picker',
+  templateUrl: './time-picker.component.html',
+  styleUrls: ['./time-picker.component.scss']
 })
-export class RatingComponent {
+export class TimePickerComponent {
   constructor(public fb:FormBuilder ,  private  fieldsService:FieldsService, public toastr: ToastrService,){}
   langField:any=localStorage.getItem('selectedLanguage');
 
+
+  
   @Input() addAnotherOption: any;
   @Input() selectedField: any;
   @Input() setFieldType: any;

@@ -21,6 +21,7 @@ import { RadiobuttonComponent } from './componentes/radiobutton/radiobutton.comp
 import { FileUploadComponent } from './componentes/file-upload/file-upload.component';
 import { RatingComponent } from './componentes/rating/rating.component';
 import { ListFieldComponent } from './componentes/list-field/list-field.component';
+import { TimePickerComponent } from './componentes/time-picker/time-picker.component';
 // import {
 // 	IgxDragDirective,
 // 	IgxDropDirective,
@@ -47,7 +48,8 @@ import { ListFieldComponent } from './componentes/list-field/list-field.componen
     RadiobuttonComponent,
     FileUploadComponent,
     RatingComponent,
-    ListFieldComponent
+    ListFieldComponent,
+    TimePickerComponent
   ],
   imports: [
     CommonModule,

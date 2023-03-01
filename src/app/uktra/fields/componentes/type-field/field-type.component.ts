@@ -25,6 +25,8 @@ export class FieldTypeComponent {
 
 @Input() fieldTypeArray: any;
 @Input() setFieldType: any;
+@Input() switchLangField: any;
+@Input() langField: any;
 
 
     ngOnInit(): void {

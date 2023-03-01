@@ -22,56 +22,18 @@
 <ng-template #list>
 
 
-   <!-- display field Arbic -->
-      <div  *ngIf="field.title.ar" class="type-text" dir="rtl">
 
-        <div >
-        <div class="bg-white-content p-2 my-3">
-          <!-- head of field -->
-          <div class="d-flex justify-content-between">
-            <div>
-              <span>{{ field.title.ar }}</span>
-              <span *ngFor="let item of field.some_requirements">
-                <i
-                  *ngIf="item == 'Required'"
-                  class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
-                ></i>
-              </span>
-              <!-- <p>{{ field.id }}</p>
-              <span>{{ field.type }}</span> -->
 
-            </div>
-            <div>
-              <i
-                (click)="updateField(field)"
-                class="fa-sharp fa-solid fa-pen-to-square pointer"
-              ></i>
-            </div>
-          </div>
-          <!-- body of field -->
+   <!-- display field  -->
 
-          <div class="Answer-text mb-3 mt-2 px-3">
-            <div class="">
-              <input
-                type="text"
-                class="form-control shadow-none answer-text-input"
-                placeholder="Text Answer"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-   <!-- display field English -->
-
-    <div *ngIf="field.title.en" class="type-text">
+    <div *ngIf="field" class="type-text">
 
       <div >
       <div class="bg-white-content p-2 my-3">
         <!-- head of field -->
         <div class="d-flex justify-content-between">
           <div>
-            <span>{{ field.title.en }}</span>
+            <span>{{ field.title[langField] }}</span>
             <!-- <span>{{ field.id }}</span>
             <span>{{ field.type }}</span> -->
             <span *ngFor="let item of field.some_requirements">

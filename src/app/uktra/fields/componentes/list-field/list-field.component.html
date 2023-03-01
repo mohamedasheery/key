@@ -18,7 +18,7 @@
       ></app-text>
     </div>
 
-    <!-- display field when type  = checkbox en  -->
+    <!-- display field when type  = checkbox   -->
 
     <div *ngIf="field.type == 'Checkbox'">
       <app-checkbox
@@ -38,6 +38,7 @@
 
       ></app-checkbox>
     </div>
+     <!-- display field when type  = Radio Button   -->
     <div *ngIf="field.type == 'Radio Button'">
       <app-radiobutton
         action="viwe"
@@ -55,9 +56,113 @@
 
       ></app-radiobutton>
     </div>
+      <!-- display field when type  = file upload   -->
+      <div *ngIf="field.type == 'File Upload' ">
+        <app-file-upload
+          action="viwe"
+          [field]="field"
+          [fields]="fields"
+          [updateField]="updateField"
+          [fieldTypeArray]="fieldTypeArray"
+          [setFieldType]="setFieldType"
+          [selectedField]="selectedField"
+          [deleteOption]="deleteOption"
+          [createFieldForm]="createFieldForm"
+          [addAnotherOption]="addAnotherOption"
+          [setOptionsToUpdataField]="setOptionsToUpdataField"
+          [switchLangField]="switchLangField"
 
-    <!--
-      <p *ngFor="let item of field.some_requirements"> {{item}}</p>
-     <p *ngFor="let option of field.options"> {{option}}</p> -->
+        ></app-file-upload>
+      </div>
+        <!-- display field when type  = Rating  -->
+        <div *ngIf="field.type == 'Rating' ">
+          <app-rating
+            action="viwe"
+            [field]="field"
+            [fields]="fields"
+            [updateField]="updateField"
+            [fieldTypeArray]="fieldTypeArray"
+            [setFieldType]="setFieldType"
+            [selectedField]="selectedField"
+            [deleteOption]="deleteOption"
+            [createFieldForm]="createFieldForm"
+            [addAnotherOption]="addAnotherOption"
+            [setOptionsToUpdataField]="setOptionsToUpdataField"
+            [switchLangField]="switchLangField"
+
+          ></app-rating>
+        </div>
+           <!-- display field when type  = Dropdown   -->
+           <div *ngIf="field.type == 'Dropdown' ">
+            <app-dropdown
+              action="viwe"
+              [field]="field"
+              [fields]="fields"
+              [updateField]="updateField"
+              [fieldTypeArray]="fieldTypeArray"
+              [setFieldType]="setFieldType"
+              [selectedField]="selectedField"
+              [deleteOption]="deleteOption"
+              [createFieldForm]="createFieldForm"
+              [addAnotherOption]="addAnotherOption"
+              [setOptionsToUpdataField]="setOptionsToUpdataField"
+              [switchLangField]="switchLangField"
+
+            ></app-dropdown>
+          </div>
+    <!-- display field when type  = TextArea    -->
+    <div *ngIf="field.type == 'TextArea' ">
+      <app-textarea
+        action="viwe"
+        [field]="field"
+        [fields]="fields"
+        [updateField]="updateField"
+        [fieldTypeArray]="fieldTypeArray"
+        [setFieldType]="setFieldType"
+        [selectedField]="selectedField"
+        [deleteOption]="deleteOption"
+        [createFieldForm]="createFieldForm"
+        [addAnotherOption]="addAnotherOption"
+        [setOptionsToUpdataField]="setOptionsToUpdataField"
+        [switchLangField]="switchLangField"
+
+      ></app-textarea>
+    </div>
+    <!-- display field when type  = Toggle Switch     -->
+    <div *ngIf="field.type == 'Toggle Switch' ">
+      <app-toggle-switch
+        action="viwe"
+        [field]="field"
+        [fields]="fields"
+        [updateField]="updateField"
+        [fieldTypeArray]="fieldTypeArray"
+        [setFieldType]="setFieldType"
+        [selectedField]="selectedField"
+        [deleteOption]="deleteOption"
+        [createFieldForm]="createFieldForm"
+        [addAnotherOption]="addAnotherOption"
+        [setOptionsToUpdataField]="setOptionsToUpdataField"
+        [switchLangField]="switchLangField"
+
+      ></app-toggle-switch>
+    </div>
+      <!-- display field when type  =  Time Picker    -->
+      <div *ngIf="field.type == 'Time Picker' ">
+        <app-time-picker
+          action="viwe"
+          [field]="field"
+          [fields]="fields"
+          [updateField]="updateField"
+          [fieldTypeArray]="fieldTypeArray"
+          [setFieldType]="setFieldType"
+          [selectedField]="selectedField"
+          [deleteOption]="deleteOption"
+          [createFieldForm]="createFieldForm"
+          [addAnotherOption]="addAnotherOption"
+          [setOptionsToUpdataField]="setOptionsToUpdataField"
+          [switchLangField]="switchLangField"
+
+        ></app-time-picker>
+      </div>
   </div>
 </div>

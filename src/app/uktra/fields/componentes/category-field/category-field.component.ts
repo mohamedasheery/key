@@ -17,6 +17,8 @@ typeFields:any;
 @Input() setFieldType: any;
 @Input() fieldTypeArray: any;
 @Input() selectedField: any;
+@Input() langField: any;
+
 @Output() action = new EventEmitter<any>();
 addNewItem(value: any) {
   this.action.emit(value);
