@@ -13,7 +13,7 @@ export class TimePickerComponent {
   langField:any=localStorage.getItem('selectedLanguage');
 
 
-  
+ 
   @Input() addAnotherOption: any;
   @Input() selectedField: any;
   @Input() setFieldType: any;

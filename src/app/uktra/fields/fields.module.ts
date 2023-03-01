@@ -22,6 +22,7 @@ import { FileUploadComponent } from './componentes/file-upload/file-upload.compo
 import { RatingComponent } from './componentes/rating/rating.component';
 import { ListFieldComponent } from './componentes/list-field/list-field.component';
 import { TimePickerComponent } from './componentes/time-picker/time-picker.component';
+import { LabelComponent } from './componentes/label/label.component';
 // import {
 // 	IgxDragDirective,
 // 	IgxDropDirective,
@@ -49,7 +50,8 @@ import { TimePickerComponent } from './componentes/time-picker/time-picker.compo
     FileUploadComponent,
     RatingComponent,
     ListFieldComponent,
-    TimePickerComponent
+    TimePickerComponent,
+    LabelComponent
   ],
   imports: [
     CommonModule,

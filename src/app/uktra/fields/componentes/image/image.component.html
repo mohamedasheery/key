@@ -1,9 +1,61 @@
-<div class="Answer-FileUpload my-3 px-3">
-  <input
-          type="text"
-          class="form-control shadow-none FileUpload-field "
-          placeholder="Choose an image or drag and drop"
-          onfocus="(this.type='file')"
-        />
 
-</div>
+
+
+<div *ngIf="action == 'create'; then create; else list"></div>
+
+<ng-template #create>
+  <div class="Answer-FileUpload my-3 px-3">
+    <input
+            type="text"
+            class="form-control shadow-none FileUpload-field "
+            placeholder="Choose an image or drag and drop"
+            onfocus="(this.type='file')"
+          />
+
+  </div>
+ </ng-template
+>
+<ng-template #list>
+
+  <!-- display field -->
+  <div *ngIf="field" >
+    <div class="bg-white-content p-2 my-3">
+      <!-- head of field -->
+      <div class="d-flex justify-content-between">
+        <div class="title-field">
+          <span >{{ field.title[langField] }}</span>
+          <!-- <span>{{ field.id }} ---</span>
+          <span>{{ field.type }}</span> -->
+          <span *ngFor="let item of field.some_requirements">
+            <i
+              *ngIf="item == 'Required'"
+              class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+            ></i>
+          </span>
+        </div>
+        <div>
+          <i
+            (click)="updateField(field)"
+            class="fa-sharp fa-solid fa-pen-to-square pointer"
+          ></i>
+        </div>
+      </div>
+      <!-- body of field -->
+
+      <div class="type-img ">
+        <div class="bg-white-content p-2 my-3">
+
+          <div class="Answer-img my-3 px-3">
+            <input
+                    type="text"
+                    class="form-control shadow-none FileUpload-field pointer py-2"
+                    placeholder="Choose an File or drag and drop"
+                    onfocus="(this.type='file')"
+                  />
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

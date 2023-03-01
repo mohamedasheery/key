@@ -13,8 +13,7 @@
       <div class="d-flex justify-content-between">
         <div class="title-field">
           <span>{{ field.title[langField] }}</span>
-          <span>{{ field.id }} ---</span>
-          <span>{{ field.type }}</span>
+   
           <span *ngFor="let item of field.some_requirements">
             <i
               *ngIf="item == 'Required'"
@@ -34,14 +33,16 @@
       <div class="Answer-TimePicker my-3 px-3">
         <div class="form-group">
           <input
+
             type="text"
             placeholder="00:00"
             class="form-control"
+            value="00:00"
             onfocus="(this.type='time')"
           />
         </div>
       </div>
-   <!-- <input class="form-control" type="time"> -->
+
 
     </div>
   </div>

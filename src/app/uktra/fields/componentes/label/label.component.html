@@ -1,0 +1,44 @@
+
+<div *ngIf=" action =='create'; then create else list"></div>
+
+<ng-template #create>
+
+</ng-template>
+<ng-template #list>
+
+
+
+
+   <!-- display field  -->
+
+    <div *ngIf="field" class="type-text">
+
+      <div >
+      <div class="bg-white-content p-2 my-3">
+        <!-- head of field -->
+        <div class="d-flex justify-content-between">
+          <div>
+
+            <span class=" fw-semibold fs-5 p-3" >{{ field.title[langField] }}</span>
+            <span>{{ field.id }}</span>
+            <span>{{ field.type }}</span>
+            <span *ngFor="let item of field.some_requirements">
+              <i
+                *ngIf="item == 'Required'"
+                class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+              ></i>
+            </span>
+          </div>
+          <div>
+            <i
+              (click)="updateField(field)"
+              class="fa-sharp fa-solid fa-pen-to-square pointer"
+            ></i>
+          </div>
+        </div>
+        <!-- no  body of field -->
+
+      </div>
+    </div>
+  </div>
+</ng-template>

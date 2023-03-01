@@ -1,17 +1,17 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { FieldsService } from '../../services/fields.service';
 
 @Component({
-  selector: 'app-image',
-  templateUrl: './image.component.html',
-  styleUrls: ['./image.component.scss']
+  selector: 'app-label',
+  templateUrl: './label.component.html',
+  styleUrls: ['./label.component.scss']
 })
-export class ImageComponent {
+export class LabelComponent {
   constructor(public fb:FormBuilder ,
     private  fieldsService:FieldsService,
-    private elem: ElementRef,
+
     public toastr: ToastrService,){}
   langField:any=localStorage.getItem('selectedLanguage');
 

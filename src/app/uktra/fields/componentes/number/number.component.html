@@ -1,15 +1,65 @@
-<div class="type-NumberField">
-  <div class="bg-white-content p-2 my-3">
-  
-    <div class="Answer-NumberField my-3 px-3 ">
-
-    <div class="d-flex">
-      <button class=" btn btn-light px-3 py-1 fs-3 " [disabled]="numberField == 0" (click)="changeNumberField('desc')">-</button>
-       <p class=" mx-4 mt-2">{{numberField}}</p>
-      <button class=" btn btn-light px-3 py-1 fs-3"   (click)="changeNumberField('increment')">+</button>
-    </div>
 
 
+<div *ngIf="action == 'create'; then create; else list"></div>
+
+<ng-template #create>
+  <div class="type-NumberField">
+    <div class="bg-white-content p-2 my-3">
+
+      <div class="Answer-NumberField my-3 px-3 ">
+
+      <div class="d-flex">
+        <button class=" btn btn-light px-3 py-1 fs-3 " [disabled]="numberField == 0" (click)="changeNumberField('desc')">-</button>
+         <p class=" mx-4 mt-2">{{numberField}}</p>
+        <button class=" btn btn-light px-3 py-1 fs-3"   (click)="changeNumberField('increment')">+</button>
+      </div>
+
+
+      </div>
     </div>
   </div>
-</div>
+ </ng-template
+>
+<ng-template #list>
+
+  <!-- display field -->
+  <div *ngIf="field" >
+    <div class="bg-white-content p-2 my-3">
+      <!-- head of field -->
+      <div class="d-flex justify-content-between">
+        <div class="title-field">
+          <span >{{ field.title[langField] }}</span>
+        
+          <span *ngFor="let item of field.some_requirements">
+            <i
+              *ngIf="item == 'Required'"
+              class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+            ></i>
+          </span>
+        </div>
+        <div>
+          <i
+            (click)="updateField(field)"
+            class="fa-sharp fa-solid fa-pen-to-square pointer"
+          ></i>
+        </div>
+      </div>
+      <!-- body of field -->
+      <div class="type-NumberField">
+        <div class="bg-white-content p-2 my-3">
+
+          <div class="Answer-NumberField my-3 px-3 ">
+
+          <div class="d-flex">
+            <button class=" btn btn-light px-3 py-1 fs-3 " [disabled]="numberField == 0" (click)="changeNumberField('desc')">-</button>
+             <p class=" mx-4 mt-2">{{numberField}}</p>
+            <button class=" btn btn-light px-3 py-1 fs-3"   (click)="changeNumberField('increment')">+</button>
+          </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

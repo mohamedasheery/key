@@ -164,5 +164,59 @@
 
         ></app-time-picker>
       </div>
+      <!-- display field when type  =  image    -->
+      <div *ngIf="field.type == 'Image'">
+        <app-image
+          action="viwe"
+          [field]="field"
+          [fields]="fields"
+          [updateField]="updateField"
+          [fieldTypeArray]="fieldTypeArray"
+          [setFieldType]="setFieldType"
+          [selectedField]="selectedField"
+          [deleteOption]="deleteOption"
+          [createFieldForm]="createFieldForm"
+          [addAnotherOption]="addAnotherOption"
+          [setOptionsToUpdataField]="setOptionsToUpdataField"
+          [switchLangField]="switchLangField"
+
+        ></app-image>
+      </div>
+        <!-- display field when type  =  number    -->
+        <div *ngIf="field.type == 'Number'">
+          <app-number
+            action="viwe"
+            [field]="field"
+            [fields]="fields"
+            [updateField]="updateField"
+            [fieldTypeArray]="fieldTypeArray"
+            [setFieldType]="setFieldType"
+            [selectedField]="selectedField"
+            [deleteOption]="deleteOption"
+            [createFieldForm]="createFieldForm"
+            [addAnotherOption]="addAnotherOption"
+            [setOptionsToUpdataField]="setOptionsToUpdataField"
+            [switchLangField]="switchLangField"
+
+          ></app-number>
+        </div>
+         <!-- display field when type  =  Label    -->
+         <div *ngIf="field.type == 'Label'">
+          <app-label
+            action="viwe"
+            [field]="field"
+            [fields]="fields"
+            [updateField]="updateField"
+            [fieldTypeArray]="fieldTypeArray"
+            [setFieldType]="setFieldType"
+            [selectedField]="selectedField"
+            [deleteOption]="deleteOption"
+            [createFieldForm]="createFieldForm"
+            [addAnotherOption]="addAnotherOption"
+            [setOptionsToUpdataField]="setOptionsToUpdataField"
+            [switchLangField]="switchLangField"
+
+          ></app-label>
+        </div>
   </div>
 </div>
