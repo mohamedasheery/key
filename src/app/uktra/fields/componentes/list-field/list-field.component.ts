@@ -17,9 +17,12 @@ export class ListFieldComponent {
       private fb:FormBuilder,
       private elem: ElementRef,
       private toastr: ToastrService){}
-fields:any={
-  data:[]
+
+fields: any = {
+  data: [],
+ current_page: 1
 };
+response:boolean = false;
 
 listError:any;
 sendEle(ele:any){
@@ -38,24 +41,73 @@ sendEle(ele:any){
 @Input() switchLangField: any;
 @Input() langField: any;
 
+pagination(type: any) {
+
+  this.sharedService.setToggleSpinner(true);
+  if (type == 'next' && this.fields?.meta?.current_page < this.fields?.meta?.last_page) {
+
+    this.fieldsService.getFieldsFromServerPagination(this.fields?.meta?.current_page + 1).subscribe((data: any) => {
+      this.sharedService.setToggleSpinner(false);
+      console.log(data);
+
+      this.fields = data;
+    });
+
+  }
+  if (type == 'prev' && this.fields?.meta?.current_page > 1) {
+    this.fieldsService.getFieldsFromServerPagination(this.fields?.meta?.current_page - 1).subscribe((data: any) => {
+      this.sharedService.setToggleSpinner(false);
+      console.log(data);
+
+      this.fields = data;
+    })
+  }
+
+
+
+
+}
+
+// pagination(type: any) {
+
+//   this.sharedService.setToggleSpinner(true);
+//   if (type == 'next' && this.fields?.current_page < this.fields?.last_page) {
+
+//     this.fieldsService.getFieldsFromServerPagination(this.fields?.current_page + 1).subscribe((data: any) => {
+//       this.sharedService.setToggleSpinner(false);
+//       console.log(data);
+
+//       this.fields = data;
+//     });
+
+//   }
+//   if (type == 'prev' && this.fields?.current_page > 1) {
+//     this.fieldsService.getFieldsFromServerPagination(this.fields?.current_page - 1).subscribe((data: any) => {
+//       this.sharedService.setToggleSpinner(false);
+//       console.log(data);
+
+//       this.fields = data;
+//     })
+//   }
+
+
+
+
+// }
     ngOnInit(): void {
 
       this.sharedService.setToggleSpinner(true);
       this.fieldsService.getFieldsFromApi().subscribe((data:any)=>{
-        this.fields=data
         this.fieldsService.setFields(data);
         this.fieldsService.getFields().subscribe((data:any)=>{
-          console.log(data);
+          this.response = true;
           this.fields=data});
-     ;
       this.sharedService.setToggleSpinner(false);
-
-
       },(error)=>{
       this.sharedService.setToggleSpinner(false);
 
         this.listError = error
-        console.log(error);
+
       })
 
     }

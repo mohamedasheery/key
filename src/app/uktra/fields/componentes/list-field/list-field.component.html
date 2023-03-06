@@ -3,18 +3,18 @@
     <!-- display field when type  = text en  -->
     <div *ngIf="field.type == 'Text'">
       <app-text
-       action="viwe"
-       [field]="field"
-       [switchLangField]="switchLangField"
-      [fields]="fields"
-      [updateField]="updateField"
-      [fieldTypeArray]="fieldTypeArray"
-      [setFieldType]="setFieldType"
-      [selectedField]="selectedField"
-      [deleteOption]="deleteOption"
-      [createFieldForm]="createFieldForm"
-      [addAnotherOption]="addAnotherOption"
-      [setOptionsToUpdataField]="setOptionsToUpdataField"
+        action="viwe"
+        [field]="field"
+        [switchLangField]="switchLangField"
+        [fields]="fields"
+        [updateField]="updateField"
+        [fieldTypeArray]="fieldTypeArray"
+        [setFieldType]="setFieldType"
+        [selectedField]="selectedField"
+        [deleteOption]="deleteOption"
+        [createFieldForm]="createFieldForm"
+        [addAnotherOption]="addAnotherOption"
+        [setOptionsToUpdataField]="setOptionsToUpdataField"
       ></app-text>
     </div>
 
@@ -22,7 +22,6 @@
 
     <div *ngIf="field.type == 'Checkbox'">
       <app-checkbox
-
         action="viwe"
         [field]="field"
         [fields]="fields"
@@ -35,10 +34,9 @@
         [addAnotherOption]="addAnotherOption"
         [setOptionsToUpdataField]="setOptionsToUpdataField"
         [switchLangField]="switchLangField"
-
       ></app-checkbox>
     </div>
-     <!-- display field when type  = Radio Button   -->
+    <!-- display field when type  = Radio Button   -->
     <div *ngIf="field.type == 'Radio Button'">
       <app-radiobutton
         action="viwe"
@@ -53,65 +51,61 @@
         [addAnotherOption]="addAnotherOption"
         [setOptionsToUpdataField]="setOptionsToUpdataField"
         [switchLangField]="switchLangField"
-
       ></app-radiobutton>
     </div>
-      <!-- display field when type  = file upload   -->
-      <div *ngIf="field.type == 'File Upload' ">
-        <app-file-upload
-          action="viwe"
-          [field]="field"
-          [fields]="fields"
-          [updateField]="updateField"
-          [fieldTypeArray]="fieldTypeArray"
-          [setFieldType]="setFieldType"
-          [selectedField]="selectedField"
-          [deleteOption]="deleteOption"
-          [createFieldForm]="createFieldForm"
-          [addAnotherOption]="addAnotherOption"
-          [setOptionsToUpdataField]="setOptionsToUpdataField"
-          [switchLangField]="switchLangField"
-
-        ></app-file-upload>
-      </div>
-        <!-- display field when type  = Rating  -->
-        <div *ngIf="field.type == 'Rating' ">
-          <app-rating
-            action="viwe"
-            [field]="field"
-            [fields]="fields"
-            [updateField]="updateField"
-            [fieldTypeArray]="fieldTypeArray"
-            [setFieldType]="setFieldType"
-            [selectedField]="selectedField"
-            [deleteOption]="deleteOption"
-            [createFieldForm]="createFieldForm"
-            [addAnotherOption]="addAnotherOption"
-            [setOptionsToUpdataField]="setOptionsToUpdataField"
-            [switchLangField]="switchLangField"
-
-          ></app-rating>
-        </div>
-           <!-- display field when type  = Dropdown   -->
-           <div *ngIf="field.type == 'Dropdown' ">
-            <app-dropdown
-              action="viwe"
-              [field]="field"
-              [fields]="fields"
-              [updateField]="updateField"
-              [fieldTypeArray]="fieldTypeArray"
-              [setFieldType]="setFieldType"
-              [selectedField]="selectedField"
-              [deleteOption]="deleteOption"
-              [createFieldForm]="createFieldForm"
-              [addAnotherOption]="addAnotherOption"
-              [setOptionsToUpdataField]="setOptionsToUpdataField"
-              [switchLangField]="switchLangField"
-
-            ></app-dropdown>
-          </div>
+    <!-- display field when type  = file upload   -->
+    <div *ngIf="field.type == 'File Upload'">
+      <app-file-upload
+        action="viwe"
+        [field]="field"
+        [fields]="fields"
+        [updateField]="updateField"
+        [fieldTypeArray]="fieldTypeArray"
+        [setFieldType]="setFieldType"
+        [selectedField]="selectedField"
+        [deleteOption]="deleteOption"
+        [createFieldForm]="createFieldForm"
+        [addAnotherOption]="addAnotherOption"
+        [setOptionsToUpdataField]="setOptionsToUpdataField"
+        [switchLangField]="switchLangField"
+      ></app-file-upload>
+    </div>
+    <!-- display field when type  = Rating  -->
+    <div *ngIf="field.type == 'Rating'">
+      <app-rating
+        action="viwe"
+        [field]="field"
+        [fields]="fields"
+        [updateField]="updateField"
+        [fieldTypeArray]="fieldTypeArray"
+        [setFieldType]="setFieldType"
+        [selectedField]="selectedField"
+        [deleteOption]="deleteOption"
+        [createFieldForm]="createFieldForm"
+        [addAnotherOption]="addAnotherOption"
+        [setOptionsToUpdataField]="setOptionsToUpdataField"
+        [switchLangField]="switchLangField"
+      ></app-rating>
+    </div>
+    <!-- display field when type  = Dropdown   -->
+    <div *ngIf="field.type == 'Dropdown'">
+      <app-dropdown
+        action="viwe"
+        [field]="field"
+        [fields]="fields"
+        [updateField]="updateField"
+        [fieldTypeArray]="fieldTypeArray"
+        [setFieldType]="setFieldType"
+        [selectedField]="selectedField"
+        [deleteOption]="deleteOption"
+        [createFieldForm]="createFieldForm"
+        [addAnotherOption]="addAnotherOption"
+        [setOptionsToUpdataField]="setOptionsToUpdataField"
+        [switchLangField]="switchLangField"
+      ></app-dropdown>
+    </div>
     <!-- display field when type  = TextArea    -->
-    <div *ngIf="field.type == 'TextArea' ">
+    <div *ngIf="field.type == 'TextArea'">
       <app-textarea
         action="viwe"
         [field]="field"
@@ -125,11 +119,10 @@
         [addAnotherOption]="addAnotherOption"
         [setOptionsToUpdataField]="setOptionsToUpdataField"
         [switchLangField]="switchLangField"
-
       ></app-textarea>
     </div>
     <!-- display field when type  = Toggle Switch     -->
-    <div *ngIf="field.type == 'Toggle Switch' ">
+    <div *ngIf="field.type == 'Toggle Switch'">
       <app-toggle-switch
         action="viwe"
         [field]="field"
@@ -143,80 +136,175 @@
         [addAnotherOption]="addAnotherOption"
         [setOptionsToUpdataField]="setOptionsToUpdataField"
         [switchLangField]="switchLangField"
-
       ></app-toggle-switch>
     </div>
-      <!-- display field when type  =  Time Picker    -->
-      <div *ngIf="field.type == 'Time Picker' ">
-        <app-time-picker
-          action="viwe"
-          [field]="field"
-          [fields]="fields"
-          [updateField]="updateField"
-          [fieldTypeArray]="fieldTypeArray"
-          [setFieldType]="setFieldType"
-          [selectedField]="selectedField"
-          [deleteOption]="deleteOption"
-          [createFieldForm]="createFieldForm"
-          [addAnotherOption]="addAnotherOption"
-          [setOptionsToUpdataField]="setOptionsToUpdataField"
-          [switchLangField]="switchLangField"
-
-        ></app-time-picker>
-      </div>
-      <!-- display field when type  =  image    -->
-      <div *ngIf="field.type == 'Image'">
-        <app-image
-          action="viwe"
-          [field]="field"
-          [fields]="fields"
-          [updateField]="updateField"
-          [fieldTypeArray]="fieldTypeArray"
-          [setFieldType]="setFieldType"
-          [selectedField]="selectedField"
-          [deleteOption]="deleteOption"
-          [createFieldForm]="createFieldForm"
-          [addAnotherOption]="addAnotherOption"
-          [setOptionsToUpdataField]="setOptionsToUpdataField"
-          [switchLangField]="switchLangField"
-
-        ></app-image>
-      </div>
-        <!-- display field when type  =  number    -->
-        <div *ngIf="field.type == 'Number'">
-          <app-number
-            action="viwe"
-            [field]="field"
-            [fields]="fields"
-            [updateField]="updateField"
-            [fieldTypeArray]="fieldTypeArray"
-            [setFieldType]="setFieldType"
-            [selectedField]="selectedField"
-            [deleteOption]="deleteOption"
-            [createFieldForm]="createFieldForm"
-            [addAnotherOption]="addAnotherOption"
-            [setOptionsToUpdataField]="setOptionsToUpdataField"
-            [switchLangField]="switchLangField"
-
-          ></app-number>
-        </div>
-         <!-- display field when type  =  Label    -->
-         <div *ngIf="field.type == 'Label'">
-          <app-label
-            action="viwe"
-            [field]="field"
-            [fields]="fields"
-            [updateField]="updateField"
-            [fieldTypeArray]="fieldTypeArray"
-            [setFieldType]="setFieldType"
-            [selectedField]="selectedField"
-            [deleteOption]="deleteOption"
-            [createFieldForm]="createFieldForm"
-            [addAnotherOption]="addAnotherOption"
-            [setOptionsToUpdataField]="setOptionsToUpdataField"
-            [switchLangField]="switchLangField"
-
-          ></app-label>
-        </div>
+    <!-- display field when type  =  Time Picker    -->
+    <div *ngIf="field.type == 'Time Picker'">
+      <app-time-picker
+        action="viwe"
+        [field]="field"
+        [fields]="fields"
+        [updateField]="updateField"
+        [fieldTypeArray]="fieldTypeArray"
+        [setFieldType]="setFieldType"
+        [selectedField]="selectedField"
+        [deleteOption]="deleteOption"
+        [createFieldForm]="createFieldForm"
+        [addAnotherOption]="addAnotherOption"
+        [setOptionsToUpdataField]="setOptionsToUpdataField"
+        [switchLangField]="switchLangField"
+      ></app-time-picker>
+    </div>
+    <!-- display field when type  =  image    -->
+    <div *ngIf="field.type == 'Image'">
+      <app-image
+        action="viwe"
+        [field]="field"
+        [fields]="fields"
+        [updateField]="updateField"
+        [fieldTypeArray]="fieldTypeArray"
+        [setFieldType]="setFieldType"
+        [selectedField]="selectedField"
+        [deleteOption]="deleteOption"
+        [createFieldForm]="createFieldForm"
+        [addAnotherOption]="addAnotherOption"
+        [setOptionsToUpdataField]="setOptionsToUpdataField"
+        [switchLangField]="switchLangField"
+      ></app-image>
+    </div>
+    <!-- display field when type  =  number    -->
+    <div *ngIf="field.type == 'Number'">
+      <app-number
+        action="viwe"
+        [field]="field"
+        [fields]="fields"
+        [updateField]="updateField"
+        [fieldTypeArray]="fieldTypeArray"
+        [setFieldType]="setFieldType"
+        [selectedField]="selectedField"
+        [deleteOption]="deleteOption"
+        [createFieldForm]="createFieldForm"
+        [addAnotherOption]="addAnotherOption"
+        [setOptionsToUpdataField]="setOptionsToUpdataField"
+        [switchLangField]="switchLangField"
+      ></app-number>
+    </div>
+    <!-- display field when type  =  Label    -->
+    <div *ngIf="field.type == 'Label'">
+      <app-label
+        action="viwe"
+        [field]="field"
+        [fields]="fields"
+        [updateField]="updateField"
+        [fieldTypeArray]="fieldTypeArray"
+        [setFieldType]="setFieldType"
+        [selectedField]="selectedField"
+        [deleteOption]="deleteOption"
+        [createFieldForm]="createFieldForm"
+        [addAnotherOption]="addAnotherOption"
+        [setOptionsToUpdataField]="setOptionsToUpdataField"
+        [switchLangField]="switchLangField"
+      ></app-label>
+    </div>
   </div>
+  <div>
+  </div>
+     <!-- paganation -->
+  <nav *ngIf="response == true" >
+   <ul class="pagination d-flex justify-content-between">
+      <li class="page-item">
+        <button
+        (click)="pagination('prev')"
+          [disabled]="fields.meta.current_page == 1"
+          class="btn btn-light border-1"
+        >
+        <i class="fa-solid fa-arrow-left"></i>
+        Previous
+        </button>
+      </li>
+      <li class="page-item d-flex gap-3">
+        <button *ngIf="fields.meta.current_page > 1"
+        (click)="pagination('prev')"
+          [disabled]="fields.meta.current_page == 1"
+          class="btn btn-light border-1"
+        >
+          {{ fields.meta.current_page - 1 }}
+        </button>
+        <span class="page-item active rounded mx-1"
+          ><a class="page-link rounded">{{
+            fields.meta.current_page
+          }}</a></span
+        >
+        <button
+        (click)="pagination('next')"
+        [disabled]="fields.meta.current_page == fields.meta.last_page"
+        class="btn btn-light border-1"
+      >
+        {{ fields.meta.current_page + 1 }}
+      </button>
+
+      </li>
+
+      <li class="page-item" >
+        <button
+        (click)="pagination('next')"
+        [disabled]="fields.meta.current_page == fields.meta.last_page"
+          class="btn btn-light border-1"
+        >
+        Next
+        <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </li>
+    </ul>
+  </nav>
 </div>
+
+     <!-- <nav *ngIf="response == true" >
+      <p>eeeeeeeeeeeeeeeeeee</p>
+     <ul class="pagination d-flex justify-content-between">
+        <li class="page-item">
+          <button
+          (click)="pagination('prev')"
+
+            class="btn btn-light border-1"
+          >
+          <i class="fa-solid fa-arrow-left"></i>
+          Previous
+          </button>
+        </li>
+        <li class="page-item d-flex gap-3">
+          <button *ngIf="fields.current_page > 1"
+          (click)="pagination('prev')"
+
+            class="btn btn-light border-1"
+          >
+            {{ fields.current_page - 1 }}
+          </button>
+          <span class="page-item active rounded mx-1"
+            ><a class="page-link rounded">{{
+              fields.current_page
+            }}</a></span
+          >
+          <button
+          (click)="pagination('next')"
+
+          class="btn btn-light border-1"
+        >
+          {{ fields.current_page + 1 }}
+        </button>
+
+        </li>
+
+        <li class="page-item" >
+          <button
+          (click)="pagination('next')"
+
+            class="btn btn-light border-1"
+          >
+          Next
+          <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </li>
+      </ul>
+    </nav> -->
+

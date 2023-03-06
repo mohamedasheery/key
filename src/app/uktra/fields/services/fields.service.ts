@@ -29,6 +29,14 @@ actionOnField = new BehaviorSubject('create');
       })
     );
   }
+  getFieldsFromServerPagination(page:any) {
+
+    return this.http.get(`/api/field?page=${page}`).pipe(
+      catchError((error) => {
+        return throwError(() => error.message || 'some error from server ');
+      })
+    );
+  }
   updateField(field:any) {
     return this.http.post('/api/field/update/'+field.id,field ).pipe(
       catchError((error) => {

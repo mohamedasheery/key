@@ -1,7 +1,10 @@
+
+import { SharedService } from './../../../../shared/shared/services/shared.service';
 import { FieldsService } from './../../services/fields.service';
 import { Component, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { TypeFieldDataService } from '../../services/type-field-data.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-filter-field',
@@ -10,7 +13,11 @@ import { TypeFieldDataService } from '../../services/type-field-data.service';
 })
 export class FilterFieldComponent  {
 
-constructor(private typeFieldDataService:TypeFieldDataService,private fb: FormBuilder,private fieldsService :FieldsService ){}
+constructor(private typeFieldDataService:TypeFieldDataService,
+  private sharedService:SharedService,
+  private fb: FormBuilder,
+  private toastr:ToastrService,
+  private fieldsService :FieldsService ){}
   typeFields:any;
   selectedField: any ={
     text:'',
@@ -26,11 +33,18 @@ constructor(private typeFieldDataService:TypeFieldDataService,private fb: FormBu
   }
 
 fillterFildes(){
+this.sharedService.setToggleSpinner(true);
   console.log(this.selectedField.type);
 this.fieldsService.getFieldsFromApiWithFillter(this.selectedField.type).subscribe((data:any)=>{
-  console.log(data);
+this.sharedService.setToggleSpinner(false);
+this.fieldsService.setFields(data);
+  
 
-},(error:any)=>{console.log(error);
+},(error:any)=>{
+this.sharedService.setToggleSpinner(false);
+this.toastr.error(error.message);
+
+
 })
 }
 

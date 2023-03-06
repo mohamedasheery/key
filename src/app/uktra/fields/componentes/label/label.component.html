@@ -20,8 +20,6 @@
           <div>
 
             <span class=" fw-semibold fs-5 p-3" >{{ field.title[langField] }}</span>
-            <span>{{ field.id }}</span>
-            <span>{{ field.type }}</span>
             <span *ngFor="let item of field.some_requirements">
               <i
                 *ngIf="item == 'Required'"

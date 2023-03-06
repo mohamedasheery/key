@@ -130,7 +130,7 @@ export class AddFieldComponent {
       this.fieldsService.setFieldToUpdata(ele);
       this.selectedField.type = ele.type;
    if(ele.some_requirements != null){
-     
+
    }
       this.createFieldForm.patchValue({
 
@@ -207,7 +207,7 @@ export class AddFieldComponent {
   }
   //  set form control to form array
   setFieldType(ele: any) {
-    debugger
+   
   window.scroll({
     top: 0,
     behavior: 'smooth'
