@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'key';
 
   ngOnInit(): void {
-   sessionStorage.setItem("Token",'7|tdI3QReD5baCTVfIlhguE4X9PXI35srlL4Ft1SSq')
+   sessionStorage.setItem("Token",'9|rnEPnHOxNS121nPYaZ692PFHFgpfekjMjidQn6u1')
 
   }
 

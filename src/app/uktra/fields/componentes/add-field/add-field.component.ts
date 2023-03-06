@@ -129,7 +129,9 @@ export class AddFieldComponent {
       this.fieldsService.setActionOnField('update');
       this.fieldsService.setFieldToUpdata(ele);
       this.selectedField.type = ele.type;
-
+   if(ele.some_requirements != null){
+     
+   }
       this.createFieldForm.patchValue({
 
         title: ele.title[this.langField],
@@ -342,6 +344,7 @@ export class AddFieldComponent {
   getSome_requirements() {
 
     let requirements: any = [];
+
     if (this.fieldRequired?.value == true) {
       requirements.push('Required')
     }

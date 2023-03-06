@@ -1,3 +1,4 @@
+import { FieldsService } from './../../services/fields.service';
 import { Component, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { TypeFieldDataService } from '../../services/type-field-data.service';
@@ -8,7 +9,8 @@ import { TypeFieldDataService } from '../../services/type-field-data.service';
   styleUrls: ['./filter-field.component.scss']
 })
 export class FilterFieldComponent  {
-  constructor(private typeFieldDataService:TypeFieldDataService,private fb: FormBuilder){}
+
+constructor(private typeFieldDataService:TypeFieldDataService,private fb: FormBuilder,private fieldsService :FieldsService ){}
   typeFields:any;
   selectedField: any ={
     text:'',
@@ -17,16 +19,20 @@ export class FilterFieldComponent  {
   };
 
 
-  // changeType(ele: any) {
-  //   console.log(ele.src.slice(22,ele.src.length));
+  setSelectedField(ele: any) {
+    console.log(ele);
+    this.typeFieldDataService.setSelectedField(ele)
 
-  //   this.selectedField.text  = ele.type;
-  //   this.selectedField.src  = ele.src.slice(22,ele.src.length);
+  }
 
+fillterFildes(){
+  console.log(this.selectedField.type);
+this.fieldsService.getFieldsFromApiWithFillter(this.selectedField.type).subscribe((data:any)=>{
+  console.log(data);
 
-  // }
-
-
+},(error:any)=>{console.log(error);
+})
+}
 
 
     ngOnInit(): void {

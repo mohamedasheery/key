@@ -16,6 +16,8 @@ import { SharedModule } from './shared/shared/shared.module';
 import { EnviromentService } from './enviroment.service';
 import { DatePipe } from '@angular/common';
 import { ApiClientInterceptor } from './shared/shared/services/api-client.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,9 @@ import { ApiClientInterceptor } from './shared/shared/services/api-client.interc
         useFactory: httpTranslateLoader,
         deps: [HttpClient],
       },
+    }),
+    StoreModule.forRoot(reducers, {
+      metaReducers
     }),
   ],
   providers: [

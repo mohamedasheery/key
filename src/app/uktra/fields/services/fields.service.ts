@@ -12,7 +12,16 @@ actionOnField = new BehaviorSubject('create');
  fieldToUpdata = new BehaviorSubject({});
  fields = new BehaviorSubject([]);
   getFieldsFromApi() {
-    return this.http.get('/api/field?page=1', {
+    return this.http.get('/api/field', {
+      headers: environment.headers
+    }).pipe(
+      catchError((error) => {
+        return throwError(() => error.message || 'some error from server ');
+      })
+    );
+  }
+  getFieldsFromApiWithFillter(type:any) {
+    return this.http.get(`/api/field?type=${type}`, {
       headers: environment.headers
     }).pipe(
       catchError((error) => {
