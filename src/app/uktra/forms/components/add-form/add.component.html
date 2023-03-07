@@ -7,14 +7,18 @@
       </div>
       <div class="d-sm-flex">
         <button class="btn me-2 h-sm-100   text-danger border-danger rounded-1" >
-            <img class="pe-1 " src="assets/icons-forms/cancel.png" alt="add" /> Cancel
+            <img class="pe-1 " src="assets/icons-forms/cancel.png" alt="add" /> Cancelee
           </button>
         <button class="btn btn-primary btn-new rounded-1  h-sm-100" >
           <img class="pe-1" src="assets/icons/add.png" alt="add" /> save
         </button>
       </div>
     </div>
-   <div class=" container-fluid  ">
+   <div class="container-fluid">
+
+    <div *ngIf="fieldsForm.length > 0">
+      
+    </div>
     <div class="type-text px-3 card my-2">
       <div class="bg-white-content p-2 my-3">
         <div>
@@ -22,7 +26,7 @@
             <span>Title</span>
             <span class="required-mark mx-2">*</span>
           </div>
-       
+
         </div>
         <div class="Answer-text mb-3 mt-2 px-3">
           <div class="">
@@ -42,7 +46,7 @@
             <span class="title_field">Checkbox</span>
             <span class="required-mark mx-2">*</span>
           </div>
-       
+
         </div>
         <div class="Answer-Checkbox mb-2 mt-2 px-3">
           <div class="">
@@ -84,7 +88,7 @@
             <span>Radio Button</span>
             <span class="required-mark mx-2">*</span>
           </div>
-        
+
         </div>
         <div class="Answer mb-3 mt-2 px-3">
           <div class="">

@@ -114,7 +114,6 @@ export class AddFieldComponent {
 
     }
     this.langField = lang
-    console.log(lang);
 
   }
 
@@ -125,7 +124,7 @@ export class AddFieldComponent {
   top: 0,
   behavior: 'smooth'
 });
-     console.log(ele);
+     
       this.fieldsService.setActionOnField('update');
       this.fieldsService.setFieldToUpdata(ele);
       this.selectedField.type = ele.type;
@@ -142,7 +141,7 @@ export class AddFieldComponent {
         },
       })
     this.setOptionsToUpdataField(ele);
-    console.log(this.createFieldForm.value);
+
   }
 
   setOptionsToUpdataField(ele: any) {
@@ -155,7 +154,7 @@ export class AddFieldComponent {
           this.fieldTypeArray.push(this.fb.control(opt, [Validators.required]));
         })
       }else {
-        console.log('no options');
+
         this.fieldTypeArray.push(this.fb.control(''));
       }
     }
@@ -166,7 +165,7 @@ export class AddFieldComponent {
           this.fieldTypeArray.push(this.fb.control(opt, [Validators.required]));
         })
       }else {
-        console.log('no options');
+
         this.fieldTypeArray.push(this.fb.control(''));
       }
     }
@@ -176,10 +175,9 @@ export class AddFieldComponent {
     let singleField:any ;
     this.sharedService.setToggleSpinner(true);
     this.fieldsService.getFieldToUpdata().subscribe((data:any)=>{
-      console.log(data);
+
 
      singleField = data;
-     console.log(singleField);
 
     //  singleField.title[this.langField] = this.fieldTitle?.value;
     //  singleField.options[this.langField] = this.fieldTypeArray.controls.map(cont => cont.value);
@@ -189,7 +187,7 @@ export class AddFieldComponent {
         singleField.title[this.langField] = this.fieldTitle?.value;
         singleField.options[this.langField] = this.fieldTypeArray.controls.map(cont => cont.value);
        singleField.some_requirements = this.getSome_requirements();
-        console.log(singleField);
+
 
       this.fieldsService.updateField(singleField).subscribe((data:any)=>{
       this.sharedService.setToggleSpinner(false);
@@ -207,7 +205,7 @@ export class AddFieldComponent {
   }
   //  set form control to form array
   setFieldType(ele: any) {
-   
+
   window.scroll({
     top: 0,
     behavior: 'smooth'
@@ -402,7 +400,7 @@ export class AddFieldComponent {
         this.sharedService.setToggleSpinner(false);
         this.toastr.error(error.error.message);
         this.errorCreateField = error;
-        console.log(error);
+
       })
 
 
@@ -415,7 +413,7 @@ export class AddFieldComponent {
    let fieldId:any;
     this.fieldsService.getFieldToUpdata().subscribe((data:any)=>{
       fieldId = data.id;
-     console.log(fieldId);
+
     });
     this.fieldsService.deleteField(fieldId).subscribe((data:any)=>{
       this.toastr.success(data.message);

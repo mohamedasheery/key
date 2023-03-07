@@ -11,7 +11,7 @@ import { ListComponent } from './components/list-form/list.component';
 
 const routes: Routes = [
 { path: '', component: FormsComponent },
-{ path: 'add', component: AddComponent },
+{ path: 'add/:id', component: AddComponent },
 { path: 'edit', component: EditFormComponent },
 { path: 'version', component: VersionFormComponent },
 { path: 'version/view', component: ViewVersionFormComponent },

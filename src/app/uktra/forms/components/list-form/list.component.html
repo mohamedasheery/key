@@ -3,14 +3,14 @@
 
 <div class="container">
     <div class="row">
-       <div class="col-sm-3 bg-white-content card border-0 ">
+       <div [routerLink]="'/forms/add/'+ form.id" class="col-sm-3 bg-white-content card border-0 pointer" *ngFor="let form of forms" >
            <div class=" py-4 d-flex justify-content-center">
-     
+
              <img src="assets/icons-forms/forms.png" alt="form icon">
            </div>
            <div>
-             <p class="blue-color fw-semibold">Add Employee</p>
-             <p class="form-desc small-f-12">Last Date Modified Today</p>
+             <p class="blue-color fw-semibold">{{form.title}}</p>
+             <p class="form-desc small-f-12" *ngFor="let version of form.form_versions">Last Date Modified {{version.last_update}}</p>
            </div>
        </div>
     </div>
