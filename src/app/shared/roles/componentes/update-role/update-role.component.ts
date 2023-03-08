@@ -135,7 +135,7 @@ export class UpdateRoleComponent {
     this.router.navigateByUrl('roles')
   }
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
+    this.route.paramMap.subscribe((params:any) => {
       this.activeId = params;
       this.rolesService.getRole(this.activeId.params.id).subscribe((data: singleRole) => {
 

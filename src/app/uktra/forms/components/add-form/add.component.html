@@ -1,136 +1,281 @@
 <div class="m-4">
-  <div class=" container my-2 py-3 bg-white-content">
-    <div class="d-flex justify-content-between ">
-      <div class="title   d-sm-flex align-items-end ">
+  <div class="container my-2 py-3 bg-white-content">
+    <div class="d-flex justify-content-between">
+      <div class="title d-sm-flex align-items-end">
         <p class="fw-bold blue-color">Add Employee</p>
         <p class="form-desc small-f-12 ms-3">Last Date Modified Today</p>
       </div>
       <div class="d-sm-flex">
-        <button class="btn me-2 h-sm-100   text-danger border-danger rounded-1" >
-            <img class="pe-1 " src="assets/icons-forms/cancel.png" alt="add" /> Cancelee
-          </button>
-        <button class="btn btn-primary btn-new rounded-1  h-sm-100" >
+        <button class="btn me-2 h-sm-100 text-danger border-danger rounded-1">
+          <img class="pe-1" src="assets/icons-forms/cancel.png" alt="add" />
+          Cancelee
+        </button>
+        <button
+          (click)="fillData()"
+          class="btn btn-primary btn-new rounded-1 h-sm-100"
+        >
           <img class="pe-1" src="assets/icons/add.png" alt="add" /> save
         </button>
       </div>
     </div>
-   <div class="container-fluid">
+    <!-- list form field  -->
+    <div class="container-fluid">
+      <div *ngIf="fieldsForm.length > 0">
+        <form id="myForm">
 
-    <div *ngIf="fieldsForm.length > 0">
-      
-    </div>
-    <div class="type-text px-3 card my-2">
-      <div class="bg-white-content p-2 my-3">
-        <div>
-          <div>
-            <span>Title</span>
-            <span class="required-mark mx-2">*</span>
-          </div>
+        <div *ngFor="let field of fieldsForm">
+          <!-- field type = Checkbox  -->
+          <div *ngIf="field.type == 'Checkbox'">
+            <div class="bg-white-content p-2 my-3 card">
+              <!-- head of field -->
+              <div class="d-flex justify-content-between">
+                <div>
+                  <span>{{ field.title }}</span>
+                  <!-- <span>_{{ field.field_id }}</span>
+                    <span>{{ field.type }}</span> -->
+                  <span *ngFor="let item of field.some_requirements">
+                    <i
+                      *ngIf="item == 'Required'"
+                      class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                    ></i>
+                  </span>
+                </div>
+              </div>
+              <!-- body of field -->
 
-        </div>
-        <div class="Answer-text mb-3 mt-2 px-3">
-          <div class="">
-            <input
-              type="text"
-              class="form-control shadow-none"
-              placeholder="Text Answer"
-            />
+              <div class="Answer-checkbox mb-3 mt-2 px-3">
+                <div
+                  class="form-check my-2 form-group"
+                  *ngFor="let option of field.options; let i = index"
+                >
+                  <input
+                    class="form-check-input shadow-none"
+                    (change)="
+                      getCheckBoxvalue($event, option, field.form_field_id)
+                    "
+                    type="checkbox"
+                    [value]="i"
+                    [id]="i + ' ' + field.id"
+                    [name]="field.id"
+                  />
+                  <label class="form-check-label" [for]="i + '' + field.id">
+                    {{ option }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- field type = Text  -->
+
+          <div *ngIf="field.type == 'Text'">
+            <div class="type-text px-3 card my-2">
+              <div class="bg-white-content p-2 my-3">
+                <div>
+                  <span>{{ field.title }}</span>
+
+                  <span *ngFor="let item of field.some_requirements">
+                    <i
+                      *ngIf="item == 'Required'"
+                      class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                    ></i>
+                  </span>
+                </div>
+
+                <div class="Answer-text mb-3 mt-2 px-3">
+                  <input
+                    (blur)="getDataFromField(field, $event)"
+                    type="text"
+                    class="form-control shadow-none"
+                    placeholder="Text Answer"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- field type = File Upload  -->
+
+          <div *ngIf="field.type == 'File Upload'">
+            <div class="type-text px-3 card my-2">
+              <div class="bg-white-content p-2 my-3">
+                <!-- head of field -->
+                <div>
+                  <span>{{ field.title }}</span>
+
+                  <span *ngFor="let item of field.some_requirements">
+                    <i
+                      *ngIf="item == 'Required'"
+                      class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                    ></i>
+                  </span>
+                </div>
+                <!-- body of field -->
+                <div class="type-FileUpload">
+                  <div class="bg-white-content p-2 my-3">
+                    <div class="Answer-FileUpload my-3 px-3">
+                      <input
+                        type="text"
+                        class="form-control shadow-none FileUpload-field pointer py-2"
+                        placeholder="Choose an File or drag and drop"
+                        onfocus="(this.type='file')"
+                        (change)="getDataFromField(field, $event)"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="Answer-text mb-3 mt-2 px-3">
+                      <input
+                        (blur)="getDataFromField(field.form_field_id, $event)"
+                        type="file"
+                        class="form-control shadow-none"
+                        placeholder="Text Answer"
+                        required
+                      />
+                    </div> -->
+              </div>
+            </div>
+          </div>
+          <!-- field type = Rating  -->
+
+          <div *ngIf="field.type == 'Rating' ">
+            <div class="type-text px-3 card my-2">
+              <div class="bg-white-content p-2 my-3">
+                <!-- head of field -->
+                <div>
+                  <span>{{ field.title }}</span>
+                  <span>_{{ field.field_id }}</span>
+                  <span>{{ field.type }}</span>
+                  <span *ngFor="let item of field.some_requirements">
+                    <i
+                      *ngIf="item == 'Required'"
+                      class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                    ></i>
+                  </span>
+                </div>
+                <!-- body of field -->
+
+                <div class="Answer-rating my-3 px-3 d-flex  justify-content-around">
+                  <div *ngFor="let option of field.options ; let i = index">
+                 <span (click)="setSelectedIndexRating(field,i,option)" class="pointer" [ngClass]="{'selectedRating': selectedRating.index === i}"> {{option}}</span>
+               </div>
+               </div>
+              </div>
+            </div>
+          </div>
+          <!-- field type = Dropdown  -->
+          <div *ngIf="field.type == 'Dropdown'">
+            <div class="type-text px-3 card my-2">
+              <div class="bg-white-content p-2 my-3">
+                <!-- head of field -->
+                <div>
+                  <span>{{ field.title }}</span>
+                  <!-- <span>_{{ field.field_id }}_</span>
+                  <span>{{ field.type }}</span> -->
+                  <span *ngFor="let item of field.some_requirements">
+                    <i
+                      *ngIf="item == 'Required'"
+                      class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                    ></i>
+                  </span>
+                </div>
+                <!-- body of field -->
+
+                <div class="Answer-dropdown my-3 px-3 d-flex justify-content-around">
+                  <select  #teams (change)="getDataFromField(field, teams.value )" class="form-select shadow-none">
+                    <option class="fs-6 text-center"
+                      *ngFor="let option of field.options; let i = index"
+                      selected
+                    >
+                      {{ option }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+           <!-- field type = TextArea  -->
+           <div *ngIf="field.type == 'TextArea'">
+            <div class="type-text px-3 card my-2">
+              <div class="bg-white-content p-2 my-3">
+                <!-- head of field -->
+                <div>
+                  <span>{{ field.title }}</span>
+                  <span>_{{ field.field_id }}_</span>
+                  <span>{{ field.type }}</span>
+                  <span *ngFor="let item of field.some_requirements">
+                    <i
+                      *ngIf="item == 'Required'"
+                      class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                    ></i>
+                  </span>
+                </div>
+                <!-- body of field -->
+                <div class="Answer-TextArea my-3 px-3 ">
+
+                  <div class="m-3">
+
+                    <textarea (change)="getDataFromField(field, $event)" class="form-control w-100"
+                    placeholder="text Area"
+                     rows="3"></textarea>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
+          <button #reset   class="btn btn-dark d-none"  type="reset"> rest </button>
+      </form>
       </div>
-    </div>
-    <div class="type-Checkbox px-3 card my-2">
-      <div class="bg-white-content p-1 my-2">
-        <div class="">
-          <div>
-            <span class="title_field">Checkbox</span>
-            <span class="required-mark mx-2">*</span>
-          </div>
 
-        </div>
-        <div class="Answer-Checkbox mb-2 mt-2 px-3">
+      <!-- <div class="type-RadioButton px-3 card my-2">
+        <div class="bg-white-content p-2 my-3">
           <div class="">
-            <div class="form-check my-2">
-              <input
-                class="form-check-input shadow-none"
-                type="checkbox"
-                value=""
-                id="option-1"
-              />
-              <label class="form-check-label" for="option-1"> option 1 </label>
+            <div>
+              <span>Radio Button</span>
+              <span class="required-mark mx-2">*</span>
             </div>
-            <div class="form-check my-2">
-              <input
-                class="form-check-input shadow-none"
-                type="checkbox"
-                value=""
-                id="option-2"
-              />
-              <label class="form-check-label" for="option-2"> option 2 </label>
-            </div>
-            <div class="form-check my-2">
-              <input
-                class="form-check-input shadow-none"
-                type="checkbox"
-                value=""
-                id="option-3"
-              />
-              <label class="form-check-label" for="option-3"> option 3 </label>
+          </div>
+          <div class="Answer mb-3 mt-2 px-3">
+            <div class="">
+              <div class="form-check my-2">
+                <input
+                  class="form-check-input shadow-none"
+                  type="radio"
+                  name="radioButton-type"
+                  id="radio-option1"
+                />
+                <label class="form-check-label" for="radio-option1">
+                  option 1
+                </label>
+              </div>
+              <div class="form-check my-2">
+                <input
+                  class="form-check-input shadow-none"
+                  type="radio"
+                  name="radioButton-type"
+                  id="radio-option2"
+                />
+                <label class="form-check-label" for="radio-option2">
+                  option 2
+                </label>
+              </div>
+              <div class="form-check my-2">
+                <input
+                  class="form-check-input shadow-none"
+                  type="radio"
+                  name="radioButton-type"
+                  id="radio-option3"
+                />
+                <label class="form-check-label" for="radio-option3">
+                  option 3
+                </label>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
-    <div class="type-RadioButton px-3 card my-2">
-      <div class="bg-white-content p-2 my-3">
-        <div class="">
-          <div>
-            <span>Radio Button</span>
-            <span class="required-mark mx-2">*</span>
-          </div>
-
-        </div>
-        <div class="Answer mb-3 mt-2 px-3">
-          <div class="">
-            <div class="form-check my-2">
-              <input
-                class="form-check-input shadow-none"
-                type="radio"
-                name="radioButton-type"
-                id="radio-option1"
-              />
-              <label class="form-check-label" for="radio-option1">
-                option 1
-              </label>
-            </div>
-            <div class="form-check my-2">
-              <input
-                class="form-check-input shadow-none"
-                type="radio"
-                name="radioButton-type"
-                id="radio-option2"
-              />
-              <label class="form-check-label" for="radio-option2">
-                option 2
-              </label>
-            </div>
-            <div class="form-check my-2">
-              <input
-                class="form-check-input shadow-none"
-                type="radio"
-                name="radioButton-type"
-                id="radio-option3"
-              />
-              <label class="form-check-label" for="radio-option3">
-                option 3
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-   </div>
-
   </div>
-
 </div>

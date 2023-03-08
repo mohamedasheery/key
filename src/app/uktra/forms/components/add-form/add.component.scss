@@ -21,7 +21,7 @@
 .title_field{
   color: #202124;
   line-height: 24px;
-  
+
 }
 .required-mark{
   color: #d93025;
@@ -29,11 +29,18 @@
 .type-FileUpload{
   .FileUpload-field{
       border: 1px dashed rgba(0, 0, 0, 0.38);
-    
-     
+
+
     }
     .Answer-FileUpload ::placeholder{
       text-align: center;
       color: rgba(0, 0, 0, 0.38);;
     }
+}
+.selectedRating{
+  background-color:#003D5B ;
+  color: #ffffff;
+  padding: 7px;
+  border-radius: 5px;
+  cursor: pointer;
 }
