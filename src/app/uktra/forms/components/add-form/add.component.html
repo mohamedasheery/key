@@ -1,129 +1,131 @@
 <div class="m-4">
   <div class="container my-2 py-3 bg-white-content">
+    <ng-template #noField> <p class="text-center" > not found field or some error from server </p></ng-template>
+    <div  *ngIf="fieldsForm.length > 0 ; else noField ">
     <div class="d-flex justify-content-between">
       <div class="title d-sm-flex align-items-end">
         <p class="fw-bold blue-color">Add Employee</p>
         <p class="form-desc small-f-12 ms-3">Last Date Modified Today</p>
       </div>
       <div class="d-sm-flex">
-        <button class="btn me-2 h-sm-100 text-danger border-danger rounded-1">
-          <img class="pe-1" src="assets/icons-forms/cancel.png" alt="add" />
-          Cancelee
+        <button routerLink="/forms/" class="btn me-2 h-sm-100 text-danger border-danger rounded-1">
+          <i class="fa-solid fa-ban"></i>
+          Cancel
         </button>
         <button
           (click)="fillData()"
-          class="btn btn-primary btn-new rounded-1 h-sm-100"
+          class="btn btn-primary btn-new rounded-1 h-sm-100 "
         >
-          <img class="pe-1" src="assets/icons/add.png" alt="add" /> save
+        <i class="fa-solid fa-check"></i> save
         </button>
       </div>
     </div>
     <!-- list form field  -->
     <div class="container-fluid">
-      <div *ngIf="fieldsForm.length > 0">
+
         <form id="myForm">
-
-        <div *ngFor="let field of fieldsForm">
-          <!-- field type = Checkbox  -->
-          <div *ngIf="field.type == 'Checkbox'">
-            <div class="bg-white-content p-2 my-3 card">
-              <!-- head of field -->
-              <div class="d-flex justify-content-between">
-                <div>
-                  <span>{{ field.title }}</span>
-                  <!-- <span>_{{ field.field_id }}</span>
-                    <span>{{ field.type }}</span> -->
-                  <span *ngFor="let item of field.some_requirements">
-                    <i
-                      *ngIf="item == 'Required'"
-                      class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
-                    ></i>
-                  </span>
-                </div>
-              </div>
-              <!-- body of field -->
-
-              <div class="Answer-checkbox mb-3 mt-2 px-3">
-                <div
-                  class="form-check my-2 form-group"
-                  *ngFor="let option of field.options; let i = index"
-                >
-                  <input
-                    class="form-check-input shadow-none"
-                    (change)="
-                      getCheckBoxvalue($event, option, field.form_field_id)
-                    "
-                    type="checkbox"
-                    [value]="i"
-                    [id]="i + ' ' + field.id"
-                    [name]="field.id"
-                  />
-                  <label class="form-check-label" [for]="i + '' + field.id">
-                    {{ option }}
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- field type = Text  -->
-
-          <div *ngIf="field.type == 'Text'">
-            <div class="type-text px-3 card my-2">
-              <div class="bg-white-content p-2 my-3">
-                <div>
-                  <span>{{ field.title }}</span>
-
-                  <span *ngFor="let item of field.some_requirements">
-                    <i
-                      *ngIf="item == 'Required'"
-                      class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
-                    ></i>
-                  </span>
-                </div>
-
-                <div class="Answer-text mb-3 mt-2 px-3">
-                  <input
-                    (blur)="getDataFromField(field, $event)"
-                    type="text"
-                    class="form-control shadow-none"
-                    placeholder="Text Answer"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- field type = File Upload  -->
-
-          <div *ngIf="field.type == 'File Upload'">
-            <div class="type-text px-3 card my-2">
-              <div class="bg-white-content p-2 my-3">
+          <div *ngFor="let field of fieldsForm">
+            <!-- field type = Checkbox  -->
+            <div *ngIf="field.type == 'Checkbox'">
+              <div class="bg-white-content p-2 my-3 card">
                 <!-- head of field -->
-                <div>
-                  <span>{{ field.title }}</span>
-
-                  <span *ngFor="let item of field.some_requirements">
-                    <i
-                      *ngIf="item == 'Required'"
-                      class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
-                    ></i>
-                  </span>
-                </div>
-                <!-- body of field -->
-                <div class="type-FileUpload">
-                  <div class="bg-white-content p-2 my-3">
-                    <div class="Answer-FileUpload my-3 px-3">
-                      <input
-                        type="text"
-                        class="form-control shadow-none FileUpload-field pointer py-2"
-                        placeholder="Choose an File or drag and drop"
-                        onfocus="(this.type='file')"
-                        (change)="getDataFromField(field, $event)"
-                      />
-                    </div>
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <span>{{ field.title }}</span>
+                    <!-- <span>_{{ field.field_id }}</span>
+                    <span>{{ field.type }}</span> -->
+                    <span *ngFor="let item of field.some_requirements">
+                      <i
+                        *ngIf="item == 'Required'"
+                        class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                      ></i>
+                    </span>
                   </div>
                 </div>
-                <!-- <div class="Answer-text mb-3 mt-2 px-3">
+                <!-- body of field -->
+
+                <div class="Answer-checkbox mb-3 mt-2 px-3">
+                  <div
+                    class="form-check my-2 form-group"
+                    *ngFor="let option of field.options; let i = index"
+                  >
+                    <input
+                      class="form-check-input shadow-none"
+                      (change)="
+                        getCheckBoxvalue($event, option, field.form_field_id)
+                      "
+                      type="checkbox"
+                      [value]="i"
+                      [id]="i + ' ' + field.id"
+                      [name]="field.id"
+                    />
+                    <label class="form-check-label" [for]="i + '' + field.id">
+                      {{ option }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- field type = Text  -->
+
+            <div *ngIf="field.type == 'Text'">
+              <div class="type-text px-3 card my-2">
+                <div class="bg-white-content p-2 my-3">
+                  <!-- head of field -->
+
+                  <div>
+                    <span>{{ field.title }}</span>
+
+                    <span *ngFor="let item of field.some_requirements">
+                      <i
+                        *ngIf="item == 'Required'"
+                        class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                      ></i>
+                    </span>
+                  </div>
+                  <!-- body of field -->
+                  <div class="Answer-text mb-3 mt-2 px-3">
+                    <input
+                      (change)="getDataFromField(field, $event)"
+                      type="text"
+                      class="form-control shadow-none"
+                      placeholder="Text Answer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- field type = File Upload  -->
+
+            <div *ngIf="field.type == 'File Upload'">
+              <div class="type-text px-3 card my-2">
+                <div class="bg-white-content p-2 my-3">
+                  <!-- head of field -->
+                  <div>
+                    <span>{{ field.title }}</span>
+
+                    <span *ngFor="let item of field.some_requirements">
+                      <i
+                        *ngIf="item == 'Required'"
+                        class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                      ></i>
+                    </span>
+                  </div>
+                  <!-- body of field -->
+                  <div class="type-FileUpload">
+                    <div class="bg-white-content p-2 my-3">
+                      <div class="Answer-FileUpload my-3 px-3">
+                        <input
+                          type="text"
+                          class="form-control shadow-none FileUpload-field pointer py-2"
+                          placeholder="Choose an File or drag and drop"
+                          onfocus="(this.type='file')"
+                          (change)="getDataFromField(field, $event)"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="Answer-text mb-3 mt-2 px-3">
                       <input
                         (blur)="getDataFromField(field.form_field_id, $event)"
                         type="file"
@@ -132,101 +134,337 @@
                         required
                       />
                     </div> -->
-              </div>
-            </div>
-          </div>
-          <!-- field type = Rating  -->
-
-          <div *ngIf="field.type == 'Rating' ">
-            <div class="type-text px-3 card my-2">
-              <div class="bg-white-content p-2 my-3">
-                <!-- head of field -->
-                <div>
-                  <span>{{ field.title }}</span>
-                  <span>_{{ field.field_id }}</span>
-                  <span>{{ field.type }}</span>
-                  <span *ngFor="let item of field.some_requirements">
-                    <i
-                      *ngIf="item == 'Required'"
-                      class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
-                    ></i>
-                  </span>
-                </div>
-                <!-- body of field -->
-
-                <div class="Answer-rating my-3 px-3 d-flex  justify-content-around">
-                  <div *ngFor="let option of field.options ; let i = index">
-                 <span (click)="setSelectedIndexRating(field,i,option)" class="pointer" [ngClass]="{'selectedRating': selectedRating.index === i}"> {{option}}</span>
-               </div>
-               </div>
-              </div>
-            </div>
-          </div>
-          <!-- field type = Dropdown  -->
-          <div *ngIf="field.type == 'Dropdown'">
-            <div class="type-text px-3 card my-2">
-              <div class="bg-white-content p-2 my-3">
-                <!-- head of field -->
-                <div>
-                  <span>{{ field.title }}</span>
-                  <!-- <span>_{{ field.field_id }}_</span>
-                  <span>{{ field.type }}</span> -->
-                  <span *ngFor="let item of field.some_requirements">
-                    <i
-                      *ngIf="item == 'Required'"
-                      class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
-                    ></i>
-                  </span>
-                </div>
-                <!-- body of field -->
-
-                <div class="Answer-dropdown my-3 px-3 d-flex justify-content-around">
-                  <select  #teams (change)="getDataFromField(field, teams.value )" class="form-select shadow-none">
-                    <option class="fs-6 text-center"
-                      *ngFor="let option of field.options; let i = index"
-                      selected
-                    >
-                      {{ option }}
-                    </option>
-                  </select>
                 </div>
               </div>
             </div>
-          </div>
-           <!-- field type = TextArea  -->
-           <div *ngIf="field.type == 'TextArea'">
-            <div class="type-text px-3 card my-2">
-              <div class="bg-white-content p-2 my-3">
-                <!-- head of field -->
-                <div>
-                  <span>{{ field.title }}</span>
-                  <span>_{{ field.field_id }}_</span>
-                  <span>{{ field.type }}</span>
-                  <span *ngFor="let item of field.some_requirements">
-                    <i
-                      *ngIf="item == 'Required'"
-                      class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
-                    ></i>
-                  </span>
-                </div>
-                <!-- body of field -->
-                <div class="Answer-TextArea my-3 px-3 ">
+            <!-- field type = Rating  -->
 
-                  <div class="m-3">
-
-                    <textarea (change)="getDataFromField(field, $event)" class="form-control w-100"
-                    placeholder="text Area"
-                     rows="3"></textarea>
+            <div *ngIf="field.type == 'Rating'">
+              <div class="type-text px-3 card my-2">
+                <div class="bg-white-content p-2 my-3">
+                  <!-- head of field -->
+                  <div>
+                    <span>{{ field.title }}</span>
+                    <span>_{{ field.field_id }}</span>
+                    <span>{{ field.type }}</span>
+                    <span *ngFor="let item of field.some_requirements">
+                      <i
+                        *ngIf="item == 'Required'"
+                        class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                      ></i>
+                    </span>
                   </div>
+                  <!-- body of field -->
 
+                  <div
+                    class="Answer-rating my-3 px-3 d-flex justify-content-around"
+                  >
+                    <div *ngFor="let option of field.options; let i = index">
+                      <span
+                        (click)="setSelectedIndexRating(field, i, option)"
+                        class="pointer"
+                        [ngClass]="{
+                          selectedRating: selectedRating.index === i
+                        }"
+                      >
+                        {{ option }}</span
+                      >
+                    </div>
+                  </div>
                 </div>
+              </div>
+            </div>
+            <!-- field type = Dropdown  -->
+            <div *ngIf="field.type == 'Dropdown'">
+              <div class="type-text px-3 card my-2">
+                <div class="bg-white-content p-2 my-3">
+                  <!-- head of field -->
+                  <div>
+                    <span>{{ field.title }}</span>
+                    <span *ngFor="let item of field.some_requirements">
+                      <i
+                        *ngIf="item == 'Required'"
+                        class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                      ></i>
+                    </span>
+                  </div>
+                  <!-- body of field -->
 
+                  <div
+                    class="Answer-dropdown my-3 px-3 d-flex justify-content-around"
+                  >
+                    <select
+                      #teams
+                      (change)="getDataFromField(field, teams.value)"
+                      class="form-select shadow-none"
+                    >
+                      <option class="fs-6 text-center" hidden selected>
+                        {{ field.title }}
+                      </option>
+                      <option
+                        class="fs-6"
+                        *ngFor="let option of field.options; let i = index"
+                      >
+                        {{ option }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- field type = TextArea  -->
+            <div *ngIf="field.type == 'TextArea'">
+              <div class="type-text px-3 card my-2">
+                <div class="bg-white-content p-2 my-3">
+                  <!-- head of field -->
+                  <div>
+                    <span>{{ field.title }}</span>
+                    <!-- <span>_{{ field.field_id }}_</span>
+                  <span>{{ field.type }}</span> -->
+                    <span *ngFor="let item of field.some_requirements">
+                      <i
+                        *ngIf="item == 'Required'"
+                        class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                      ></i>
+                    </span>
+                  </div>
+                  <!-- body of field -->
+                  <div class="Answer-TextArea my-3 px-3">
+                    <div class="m-3">
+                      <textarea
+                        (change)="getDataFromField(field, $event)"
+                        class="form-control w-100"
+                        placeholder="text Area"
+                        rows="3"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- field type = Time Picker  -->
+            <div *ngIf="field.type == 'Time Picker'">
+              <div class="type-text px-3 card my-2">
+                <div class="bg-white-content p-2 my-3">
+                  <!-- head of field -->
+                  <div>
+                    <span>{{ field.title }}</span>
+                    <!-- <span>_{{ field.field_id }}_</span>
+                    <span>{{ field.type }}</span> -->
+                    <span *ngFor="let item of field.some_requirements">
+                      <i
+                        *ngIf="item == 'Required'"
+                        class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                      ></i>
+                    </span>
+                  </div>
+                  <!-- body of field -->
+                  <div class="Answer-TimePicker my-3 px-3">
+                    <div class="form-group">
+                      <input
+                        (change)="getDataFromField(field, $event)"
+                        type="text"
+                        placeholder="00:00"
+                        class="form-control"
+                        value="00:00"
+                        onfocus="(this.type='time')"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- field type = Image  -->
+            <div *ngIf="field.type == 'Image'">
+              <div class="type-text px-3 card my-2">
+                <div class="bg-white-content p-2 my-3">
+                  <!-- head of field -->
+                  <div>
+                    <span>{{ field.title }}</span>
+                    <!-- <span>_{{ field.field_id }}_</span>
+                        <span>{{ field.type }}</span> -->
+                    <span *ngFor="let item of field.some_requirements">
+                      <i
+                        *ngIf="item == 'Required'"
+                        class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                      ></i>
+                    </span>
+                  </div>
+                  <!-- body of field -->
+                  <div class="type-Image">
+                    <div class="bg-white-content p-2 my-3">
+                      <div class="Answer-Image my-3 px-3">
+                        <input
+                          type="text"
+                          class="form-control shadow-none Image-field pointer py-2"
+                          placeholder="Choose an Image or drag and drop"
+                          onfocus="(this.type='file')"
+                          (change)="getDataFromField(field, $event)"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- field type = Label  -->
+            <div *ngIf="field.type == 'Label'">
+              <div class="type-text px-3 card my-2">
+                <div class="bg-white-content p-2 my-3">
+                  <!-- head of field -->
+                  <div>
+                    <span class="fw-bold">{{ field.title }}</span>
+                    <span>_{{ field.field_id }}_</span>
+                    <span>{{ field.type }}</span>
+                    <span *ngFor="let item of field.some_requirements">
+                      <i
+                        *ngIf="item == 'Required'"
+                        class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                      ></i>
+                    </span>
+                  </div>
+                  <!-- body of field -->
+                  <div class="Answer-text mb-3 mt-2 px-3">
+                    <input
+                      (blur)="getDataFromField(field, $event)"
+                      type="text"
+                      class="form-control shadow-none"
+                      placeholder="Text Answer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- field type = Number  -->
+            <div *ngIf="field.type == 'Number'">
+              <div class="type-text px-3 card my-2">
+                <div class="bg-white-content p-2 my-3">
+                  <!-- head of field -->
+                  <div>
+                    <span>{{ field.title }}</span>
+                    <!-- <span>_{{ field.field_id }}_</span>
+                    <span>{{ field.type }}</span> -->
+                    <span *ngFor="let item of field.some_requirements">
+                      <i
+                        *ngIf="item == 'Required'"
+                        class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                      ></i>
+                    </span>
+                  </div>
+                  <!-- body of field -->
+                  <div class="type-NumberField">
+                    <div class="bg-white-content p-2 my-1">
+                      <div class="Answer-NumberField my-1 px-3">
+                        <div class="d-flex">
+                          <button
+                            type="button"
+                            class="btn btn-light px-3 py-1 fs-3"
+                            [disabled]="numberField == 0"
+                            (click)="getNumberField(field, 'desc')"
+                          >
+                            -
+                          </button>
+                          <p class="mx-4 mt-2">{{ numberField }}</p>
+                          <button
+                            type="button"
+                            class="btn btn-light px-3 py-1 fs-3"
+                            (click)="getNumberField(field, 'increment')"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- field type = Radio Button  -->
+            <div *ngIf="field.type == 'Radio Button'">
+              <div class="type-text px-2 card my-2">
+                <div class="bg-white-content p-2 my-2">
+                  <!-- head of field -->
+                  <div>
+                    <span>{{ field.title }}</span>
+
+                    <span *ngFor="let item of field.some_requirements">
+                      <i
+                        *ngIf="item == 'Required'"
+                        class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                      ></i>
+                    </span>
+                  </div>
+                  <!-- body of field -->
+                  <div class="Answer-Radio Button mb-3 mt-2 px-3">
+                    <div
+                      class="form-check my-2"
+                      *ngFor="let option of field.options; let i = index"
+                    >
+                      <input
+                        class="form-check-input shadow-none"
+                        type="radio"
+                        [value]="option"
+                        [id]="i + '' + field.id"
+                        [name]="field.title"
+                        (change)="getDataFromField(field, $event)"
+                      />
+                      <label class="form-check-label" [for]="i + '' + field.id">
+                        {{ option }}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- field type =Toggle Switch -->
+            <div *ngIf="field.type == 'Toggle Switch'">
+              <div class="type-text px-3 card my-2">
+                <div class="bg-white-content p-2 my-3">
+                  <!-- head of field -->
+                  <div>
+                    <span>{{ field.title }}</span>
+                    <span>_{{ field.field_id }}_</span>
+                    <span>{{ field.type }}</span>
+                    <span *ngFor="let item of field.some_requirements">
+                      <i
+                        *ngIf="item == 'Required'"
+                        class="fa-solid fa-asterisk mx-2 text-danger small-f-10"
+                      ></i>
+                    </span>
+                  </div>
+                  <!-- body of field -->
+                  <div class="d-flex justify-content-around p-2">
+                    <div
+                      [class.justify-content-between]="i == 0"
+                      [class.justify-content-end]="i == 1"
+                      class="d-flex my-2 w-50"
+                      *ngFor="let option of field.options; let i = index"
+                    >
+                      <label class="ms-3" *ngIf="i == 0" [for]="field.id">{{
+                        option
+                      }}</label>
+
+                      <div *ngIf="i == 0" class="form-check form-switch">
+                        <input
+                          class="form-check-input shadow-none"
+                          type="checkbox"
+                          (click)="getToggleSwitchValue(field ,ToggleSwitch)"
+                          [checked]="ToggleSwitch"
+                          [id]="field.id"
+                        />
+                      </div>
+
+                      <label *ngIf="i == 1" [for]="field.id">{{
+                        option
+                      }}</label>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-          <button #reset   class="btn btn-dark d-none"  type="reset"> rest </button>
-      </form>
+          <button #reset class="btn btn-dark d-none" type="reset">rest</button>
+        </form>
       </div>
 
       <!-- <div class="type-RadioButton px-3 card my-2">

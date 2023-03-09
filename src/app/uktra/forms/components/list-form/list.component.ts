@@ -22,8 +22,7 @@ ngOnInit(): void {
   this.sharedService.setToggleSpinner(true);
  this.formsService.getFormsFromApi().subscribe((data:any)=>{
   this.sharedService.setToggleSpinner(false);
-  this.forms = data
-  console.log(data);
+  this.forms = data;
  },(error:any)=>{
   this.sharedService.setToggleSpinner(false);
   console.log(error);

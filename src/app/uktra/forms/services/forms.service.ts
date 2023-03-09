@@ -24,12 +24,9 @@ export class FormsService {
       })
     );
   }
-  fillFormData(values:any[]):Observable<any> {
-    // const formData = new FormData()
-    // values.forEach(val=>{
-    //   formData.append(`value[${val.id}]`,val.value)
-    // })
-    return this.http.post<any>('/api/form/1/fill-data',values).pipe(
+  fillFormData(formId:any,values:any[]):Observable<any> {
+
+    return this.http.post<any>(`/api/form/${formId}/fill-data`,values).pipe(
       catchError((error) => {
         return throwError(() => error || 'some error from server ');
       })

@@ -5,7 +5,7 @@
       <h5 class="fw-bold">Add new Field</h5>
     </div>
     <div class="new-btn">
-      <div *ngIf="action == 'create'; then create; else updata"></div>
+      <div *ngIf="action == 'create'; then create; else update"></div>
       <ng-template #create>
         <button
           (click)="createField()"
@@ -14,12 +14,12 @@
           <i class="fa-solid fa-check"></i> Save
         </button>
       </ng-template>
-      <ng-template #updata>
+      <ng-template #update>
         <button
           (click)="sendDataToUpdataField()"
           class="btn btn-primary rounded-1 btn-new"
         >
-          <i class="fa-solid fa-check"></i> updata
+          <i class="fa-solid fa-check"></i> update
         </button>
       </ng-template>
     </div>
@@ -358,7 +358,7 @@
             </div>
             <div class="actions d-flex justify-content-end my-2">
               <div class="new-btn">
-                <div *ngIf="action == 'create'; then create; else updata"></div>
+                <div *ngIf="action == 'create'; then create; else update"></div>
                 <ng-template #create>
                   <button
                     (click)="createField()"
@@ -367,12 +367,12 @@
                     <i class="fa-solid fa-check"></i> Save
                   </button>
                 </ng-template>
-                <ng-template #updata>
+                <ng-template #update>
                   <button
                     (click)="sendDataToUpdataField()"
                     class="btn btn-primary rounded-1 btn-new"
                   >
-                    <i class="fa-solid fa-check"></i> updata
+                    <i class="fa-solid fa-check"></i> update
                   </button>
                 </ng-template>
               </div>

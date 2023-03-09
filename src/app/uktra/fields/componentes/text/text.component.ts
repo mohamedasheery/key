@@ -31,7 +31,6 @@ export class TextComponent {
 @Input() switchLangField: any;
 
 ngOnInit(): void {
-console.log(this.action);
 
 
 }
